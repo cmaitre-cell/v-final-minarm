@@ -115,10 +115,10 @@ export function AnomaliesView() {
   }, []);
 
   return (
-    <div className="grid grid-cols-12 gap-4 p-6 bg-grid min-h-[calc(100vh-130px)]">
+    <div className="grid grid-cols-12 gap-4 p-6 bg-white min-h-[calc(100vh-130px)]">
       {/* Barre de scénarios */}
       <div className="col-span-12 panel rounded-sm">
-        <div className="px-4 py-3 border-b border-ink-700">
+        <div className="px-4 py-3 border-b border-ink-700/40">
           <h2 className="font-display text-sm text-steel-100 tracking-wide">
             SCÉNARIOS DE DÉTECTION
           </h2>
@@ -139,12 +139,12 @@ export function AnomaliesView() {
               <button
                 key={s.key}
                 onClick={() => setFilter(s.key)}
-                className={`text-left px-3 py-2.5 border transition ${
+                className={`text-left px-3 py-2.5 transition rounded-lg ${
                   isActive
-                    ? "border-signal bg-signal/8 shadow-sm"
-                    : "border-ink-700 bg-ink-950 hover:border-signal/40 hover:bg-signal/5"
+                    ? "bg-signal/[0.08] shadow-none"
+                    : "bg-transparent hover:bg-ink-900/60"
                 }`}
-                style={{ borderRadius: 10, transitionDuration: "0.15s" }}
+                style={{ transitionDuration: "0.15s" }}
               >
                 <div className="flex items-center gap-1.5 mb-1">
                   <span
@@ -190,7 +190,7 @@ export function AnomaliesView() {
 
       {/* === Liste anomalies (gauche) === */}
       <div className="col-span-5 panel rounded-sm flex flex-col">
-        <div className="px-4 py-3 border-b border-ink-700 flex items-center justify-between">
+        <div className="px-4 py-3 border-b border-ink-700/40 flex items-center justify-between">
           <h3 className="font-display text-xs tracking-wider text-steel-100">
             ANOMALIES DÉTECTÉES
           </h3>
@@ -205,10 +205,10 @@ export function AnomaliesView() {
               <button
                 key={a.id}
                 onClick={() => setSelectedAnomaly(a)}
-                className={`w-full text-left px-4 py-3 transition border-l-2 ${
+                className={`w-full text-left px-4 py-3 transition ${
                   isSel
-                    ? "bg-signal/[0.06] border-signal"
-                    : `border-transparent hover:bg-ink-800/50 ${severityBg(
+                    ? "bg-signal/[0.06]"
+                    : `hover:bg-ink-900/50 ${severityBg(
                         a.severity
                       ).replace("bg-", "hover:bg-")}`
                 }`}
@@ -220,7 +220,7 @@ export function AnomaliesView() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <span
-                        className={`text-[9px] font-mono px-1.5 py-0.5 rounded-sm border ${severityBg(
+                        className={`text-[9px] font-mono px-1.5 py-0.5 rounded-sm ${severityBg(
                           a.severity
                         )} ${severityColor(a.severity)}`}
                       >
@@ -272,7 +272,7 @@ function AnomalyDetail({ anomaly }: { anomaly: Anomaly }) {
     <>
       {/* Bandeau résumé */}
       <div
-        className={`panel-elevated rounded-sm border-l-2 ${severityBg(
+        className={`panel-elevated rounded-sm ${severityBg(
           anomaly.severity
         )}`}
       >
@@ -281,7 +281,7 @@ function AnomalyDetail({ anomaly }: { anomaly: Anomaly }) {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span
-                  className={`text-[10px] font-mono px-2 py-0.5 rounded-sm border ${severityBg(
+                  className={`text-[10px] font-mono px-2 py-0.5 rounded-sm ${severityBg(
                     anomaly.severity
                   )} ${severityColor(anomaly.severity)}`}
                 >

@@ -15,7 +15,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
   const alerts = [...critical, ...high].slice(0, 4);
 
   return (
-    <div style={{ minHeight: "calc(100vh - 130px)", background: "#F3F4F7", padding: "32px 36px", display: "flex", flexDirection: "column", gap: 28 }}>
+    <div style={{ minHeight: "calc(100vh - 130px)", background: "#ffffff", padding: "32px 36px", display: "flex", flexDirection: "column", gap: 28 }}>
 
       {/* ── KPI strip ── */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
@@ -30,7 +30,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
 
         {/* Alertes */}
         <div className="panel" style={{ overflow: "hidden" }}>
-          <div style={{ padding: "20px 24px", borderBottom: "1px solid rgba(0,0,0,0.06)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ padding: "16px 0 12px", borderBottom: "1px solid #ECEEF1", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#CE0500", display: "inline-block" }} className="animate-pulse_dot" />
               <span style={{ fontWeight: 700, fontSize: 13, color: "#1E2232", letterSpacing: "0.02em" }}>
@@ -40,7 +40,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
                 {critical.length + high.length} actives
               </span>
             </div>
-            <button onClick={onJumpToAnomaly} style={{ fontSize: 12, color: "#000091", background: "none", border: "none", cursor: "pointer", fontFamily: "Marianne, system-ui, sans-serif", fontWeight: 500 }}>
+            <button type="button" onClick={onJumpToAnomaly} style={{ fontSize: 12, color: "#000091", background: "none", border: "none", cursor: "pointer", fontFamily: "Marianne, system-ui, sans-serif", fontWeight: 500 }}>
               Voir toutes →
             </button>
           </div>
@@ -54,7 +54,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
 
         {/* Bâtiments à surveiller */}
         <div className="panel" style={{ overflow: "hidden" }}>
-          <div style={{ padding: "20px 24px", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
+          <div style={{ padding: "16px 0 12px", borderBottom: "1px solid #ECEEF1" }}>
             <div style={{ fontWeight: 700, fontSize: 13, color: "#1E2232" }}>Bâtiments suspects</div>
             <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#5C6378", marginTop: 4, textTransform: "uppercase", letterSpacing: "0.08em" }}>
               {suspicious.length} marqués
@@ -64,8 +64,8 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
             {suspicious.map((v) => {
               const pos = VESSEL_POSITIONS[v.mmsi];
               return (
-                <div key={v.mmsi} style={{ padding: "12px 24px", display: "flex", alignItems: "center", gap: 14, borderBottom: "1px solid rgba(0,0,0,0.04)" }}>
-                  <div style={{ width: 36, height: 36, borderRadius: 10, background: "rgba(198,74,0,0.08)", border: "1.5px solid rgba(198,74,0,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <div key={v.mmsi} style={{ padding: "12px 0", display: "flex", alignItems: "center", gap: 14, borderBottom: "1px solid #F0F2F5" }}>
+                  <div style={{ width: 36, height: 36, borderRadius: 10, background: "rgba(198,74,0,0.08)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     <Ship size={16} color="#C64A00" />
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
@@ -97,7 +97,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
 
         {/* Réseau capteurs */}
         <div className="panel" style={{ overflow: "hidden" }}>
-          <div style={{ padding: "20px 24px", borderBottom: "1px solid rgba(0,0,0,0.06)", display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ padding: "16px 0 12px", borderBottom: "1px solid #ECEEF1", display: "flex", alignItems: "center", gap: 8 }}>
             <Antenna size={15} color="#5C6378" />
             <span style={{ fontWeight: 700, fontSize: 13, color: "#1E2232" }}>Réseau de capteurs</span>
             <span style={{ marginLeft: "auto", fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#5C6378", textTransform: "uppercase", letterSpacing: "0.08em" }}>
@@ -106,7 +106,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
           </div>
           <div style={{ padding: "8px 0" }}>
             {SENSORS.map((s) => (
-              <div key={s.id} style={{ padding: "11px 24px", display: "flex", alignItems: "center", gap: 14, borderBottom: "1px solid rgba(0,0,0,0.04)" }}>
+              <div key={s.id} style={{ padding: "11px 0", display: "flex", alignItems: "center", gap: 14, borderBottom: "1px solid #F0F2F5" }}>
                 <StatusDot state={s.status} />
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 13, fontWeight: 500, color: "#1E2232" }}>{s.name}</div>
@@ -125,11 +125,11 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
 
         {/* Activité RF */}
         <div className="panel" style={{ overflow: "hidden" }}>
-          <div style={{ padding: "20px 24px", borderBottom: "1px solid rgba(0,0,0,0.06)", display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ padding: "16px 0 12px", borderBottom: "1px solid #ECEEF1", display: "flex", alignItems: "center", gap: 8 }}>
             <Activity size={15} color="#5C6378" />
             <span style={{ fontWeight: 700, fontSize: 13, color: "#1E2232" }}>Activité RF — 24 h</span>
           </div>
-          <div style={{ padding: "20px 24px" }}>
+          <div style={{ padding: "16px 0 0" }}>
             <ActivityBars />
           </div>
         </div>
@@ -151,10 +151,9 @@ function AlertRow({ anomaly: a, isLast }: { anomaly: (typeof ANOMALIES)[0]; isLa
   const c = SEV_COLORS[a.severity] ?? SEV_COLORS.low;
   return (
     <div style={{
-      padding: "16px 24px",
+      padding: "16px 0",
       display: "flex", alignItems: "flex-start", gap: 16,
-      borderBottom: isLast ? "none" : "1px solid rgba(0,0,0,0.05)",
-      borderLeft: `3px solid ${c.dot}`,
+      borderBottom: isLast ? "none" : "1px solid #F0F2F5",
     }}>
       <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#9AA3B5", marginTop: 3, minWidth: 28 }}>
         {formatTimeAgo(a.timestamp)}
@@ -206,7 +205,7 @@ function KpiCard({ icon, label, value, unit, tone }: {
   const iconBg = { neutral: "rgba(30,34,50,0.06)", ok: "rgba(24,117,60,0.08)", warn: "rgba(198,74,0,0.08)", critical: "rgba(206,5,0,0.08)" }[tone];
 
   return (
-    <div className="panel" style={{ padding: "22px 24px", display: "flex", alignItems: "flex-start", gap: 16 }}>
+    <div style={{ padding: "12px 0", display: "flex", alignItems: "flex-start", gap: 16 }}>
       <div style={{ width: 44, height: 44, borderRadius: 12, background: iconBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: accent }}>
         {icon}
       </div>

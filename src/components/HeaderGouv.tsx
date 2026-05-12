@@ -5,10 +5,10 @@ import { Radio, Crosshair, AlertOctagon, Activity } from "lucide-react";
 import { TabKey } from "./TopBar";
 
 const TABS: { key: TabKey; label: string; icon: React.ReactNode; code: string }[] = [
-  { key: "synthese",       label: "Synthèse",               code: "S/01", icon: <Activity     className="w-3.5 h-3.5" /> },
-  { key: "identification", label: "Identification RF",       code: "S/02", icon: <Radio        className="w-3.5 h-3.5" /> },
-  { key: "localisation",   label: "Localisation",            code: "S/03", icon: <Crosshair    className="w-3.5 h-3.5" /> },
-  { key: "anomalies",      label: "Anomalies",               code: "S/04", icon: <AlertOctagon className="w-3.5 h-3.5" /> },
+  { key: "synthese",       label: "Synthèse",         code: "S/01", icon: <Activity     className="w-3.5 h-3.5" /> },
+  { key: "identification", label: "Identification RF", code: "S/02", icon: <Radio        className="w-3.5 h-3.5" /> },
+  { key: "localisation",   label: "Localisation",      code: "S/03", icon: <Crosshair    className="w-3.5 h-3.5" /> },
+  { key: "anomalies",      label: "Anomalies",         code: "S/04", icon: <AlertOctagon className="w-3.5 h-3.5" /> },
 ];
 
 export function HeaderGouv({
@@ -21,104 +21,86 @@ export function HeaderGouv({
   clock: string;
 }) {
   return (
-    <header style={{ background: "#fff", boxShadow: "0 1px 0 #D0D3D9, 0 2px 12px rgba(0,0,0,0.06)" }}>
+    <header
+      className="site-header"
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 20000,
+        background: "#fff",
+        boxShadow: "0 1px 0 #E8EAED",
+      }}
+    >
 
-      {/* ── TIER 1 — République Française / Ministère des Armées ─────────── */}
-      <div style={{ background: "#111111" }}>
-        <div style={{ maxWidth: 1600, margin: "0 auto", padding: "10px 28px", display: "flex", alignItems: "center", gap: 20 }}>
+      {/* ── TIER 1 — bleu Marine Nationale ───────────────────────────────────── */}
+      <div style={{ background: "#002654" }}>
+        <div style={{ maxWidth: 1600, margin: "0 auto", padding: "10px 36px", display: "flex", alignItems: "center", gap: 20 }}>
 
-          {/* Bloc République Française */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
-            {/* Drapeau tricolore vertical — symbole DSFR officiel */}
-            <div style={{ display: "flex", height: 44, width: 30, borderRadius: 3, overflow: "hidden", flexShrink: 0, boxShadow: "0 1px 4px rgba(0,0,0,0.3)" }}>
+          {/* Drapeau + République */}
+          <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+            <div style={{ display: "flex", height: 22, width: 16, borderRadius: 2, overflow: "hidden", flexShrink: 0, boxShadow: "0 1px 3px rgba(0,0,0,0.2)" }}>
               <div style={{ flex: 1, background: "#002395" }} />
               <div style={{ flex: 1, background: "#FFFFFF" }} />
               <div style={{ flex: 1, background: "#ED2939" }} />
             </div>
             <div>
-              <div style={{ color: "#fff", fontWeight: 700, fontSize: 14, lineHeight: "1.15", letterSpacing: "0.005em" }}>Gouvernement</div>
-              <div style={{ color: "rgba(255,255,255,0.72)", fontSize: 11, letterSpacing: "0.03em" }}>République Française</div>
+              <div style={{ color: "#fff", fontWeight: 700, fontSize: 13, lineHeight: "1.2" }}>Gouvernement</div>
+              <div style={{ color: "rgba(255,255,255,0.65)", fontSize: 11 }}>République Française</div>
             </div>
           </div>
 
-          {/* Séparateur */}
-          <div style={{ width: 1, height: 36, background: "rgba(255,255,255,0.2)", flexShrink: 0 }} />
+          <div style={{ width: 1, height: 32, background: "rgba(255,255,255,0.2)", flexShrink: 0 }} />
 
-          {/* Ministère */}
           <div>
-            <div style={{ color: "#fff", fontWeight: 700, fontSize: 14, lineHeight: "1.15" }}>
+            <div style={{ color: "#fff", fontWeight: 700, fontSize: 13, lineHeight: "1.2" }}>
               Ministère des Armées et des Anciens Combattants
             </div>
-            <div style={{ color: "rgba(255,255,255,0.65)", fontSize: 11, letterSpacing: "0.04em", textTransform: "uppercase", marginTop: 1 }}>
+            <div style={{ color: "rgba(255,255,255,0.6)", fontSize: 11, letterSpacing: "0.04em", textTransform: "uppercase", marginTop: 1 }}>
               Direction générale de l'armement · Cellule SURMAR
             </div>
           </div>
 
-          {/* Droite — Liberté Égalité Fraternité */}
-          <div style={{ marginLeft: "auto", color: "rgba(255,255,255,0.45)", fontSize: 11, fontStyle: "italic", letterSpacing: "0.02em", textAlign: "right", lineHeight: 1.6 }}>
+          <div style={{ marginLeft: "auto", color: "rgba(255,255,255,0.4)", fontSize: 10, fontStyle: "italic", textAlign: "right", lineHeight: 1.7 }}>
             Liberté<br />Égalité<br />Fraternité
           </div>
         </div>
       </div>
 
-      {/* ── TIER 2 — Identité applicative ──────────────────────────────────── */}
-      <div style={{ background: "#fff", borderBottom: "1px solid #E8EAED" }}>
-        <div style={{ maxWidth: 1600, margin: "0 auto", padding: "14px 28px", display: "flex", alignItems: "center", gap: 20 }}>
+      {/* ── TIER 2 — identité app ────────────────────────────────────────────── */}
+      <div style={{ background: "#fff", borderBottom: "1px solid #EBEBEB" }}>
+        <div style={{ maxWidth: 1600, margin: "0 auto", padding: "14px 36px", display: "flex", alignItems: "center", gap: 18 }}>
 
-          {/* Logo Marine Nationale */}
-          <div style={{ flexShrink: 0, width: 64, height: 64, position: "relative" }}>
+          <div style={{ flexShrink: 0, width: 56, height: 56, position: "relative" }}>
             <Image
               src="/logos/marine-nationale.png"
               alt="Marine Nationale"
               fill
+              sizes="56px"
               style={{ objectFit: "contain", objectPosition: "center" }}
               priority
             />
           </div>
 
-          {/* Séparateur accent bleu */}
-          <div style={{ width: 3, height: 52, background: "linear-gradient(180deg, #000091 0%, #000091 70%, rgba(0,0,145,0.2) 100%)", borderRadius: 99, flexShrink: 0 }} />
+          <div style={{ width: 3, height: 48, background: "#000091", borderRadius: 99, flexShrink: 0 }} />
 
-          {/* Titre app */}
           <div>
-            <div style={{ color: "#11142B", fontWeight: 700, fontSize: 20, letterSpacing: "-0.02em", lineHeight: "1.15" }}>
+            <div style={{ color: "#111827", fontWeight: 700, fontSize: 19, letterSpacing: "-0.02em", lineHeight: "1.1" }}>
               RF Intelligence Maritime
             </div>
-            <div style={{ color: "#636878", fontSize: 12, marginTop: 3, display: "flex", alignItems: "center", gap: 8 }}>
-              <span>Plateforme de surveillance passive · Identification RF & AIS</span>
-              <span style={{ width: 3, height: 3, borderRadius: "50%", background: "#D0D3D9", display: "inline-block" }} />
-              <span style={{ color: "#000091", fontWeight: 600, fontFamily: "JetBrains Mono, monospace", fontSize: 11 }}>v1.0</span>
+            <div style={{ color: "#6B7280", fontSize: 12, marginTop: 4 }}>
+              Plateforme de surveillance passive · Identification RF & AIS ·{" "}
+              <span style={{ color: "#000091", fontWeight: 600 }}>v1.0</span>
             </div>
           </div>
 
-          {/* Droite : badge démo + horloge */}
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 20 }}>
 
-            {/* Bandeau DÉMONSTRATEUR obligatoire */}
-            <div style={{
-              background: "linear-gradient(135deg, #FFF3E0 0%, #FFF8E7 100%)",
-              border: "1.5px solid #C64A00",
-              borderRadius: 8,
-              padding: "7px 16px",
-              display: "flex", alignItems: "center", gap: 8,
-            }}>
-              <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#C64A00", animation: "pulse_dot 2s ease-in-out infinite" }} />
-              <div>
-                <div style={{ fontSize: 10, fontFamily: "JetBrains Mono, monospace", color: "#C64A00", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
-                  Démonstrateur
-                </div>
-                <div style={{ fontSize: 9, color: "#A35000", letterSpacing: "0.03em", marginTop: 1 }}>
-                  Maquette à usage pédagogique
-                </div>
-              </div>
-            </div>
-
-            {/* Horloge UTC */}
+            {/* Horloge */}
             <div style={{ textAlign: "right" }}>
-              <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 9, textTransform: "uppercase", letterSpacing: "0.12em", color: "#636878", marginBottom: 2 }}>
+              <div style={{ fontSize: 9, textTransform: "uppercase", letterSpacing: "0.12em", color: "#9CA3AF", marginBottom: 2 }}>
                 UTC
               </div>
-              <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 20, color: "#11142B", fontWeight: 700, letterSpacing: "0.04em", fontVariantNumeric: "tabular-nums" }}>
+              <div style={{ fontSize: 22, color: "#111827", fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>
                 {clock}
               </div>
             </div>
@@ -126,24 +108,25 @@ export function HeaderGouv({
         </div>
       </div>
 
-      {/* ── TIER 3 — Navigation ──────────────────────────────────────────────── */}
+      {/* ── TIER 3 — navigation ──────────────────────────────────────────────── */}
       <div style={{ background: "#fff" }}>
-        <div style={{ maxWidth: 1600, margin: "0 auto", padding: "0 20px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ maxWidth: 1600, margin: "0 auto", padding: "0 28px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
 
-          {/* Onglets */}
           <nav style={{ display: "flex", gap: 2 }}>
             {TABS.map((t) => {
               const isActive = active === t.key;
               return (
                 <button
+                  type="button"
                   key={t.key}
                   onClick={() => onChange(t.key)}
                   style={{
                     position: "relative",
                     padding: "13px 20px",
                     fontSize: 13.5,
-                    fontWeight: isActive ? 700 : 500,
-                    color: isActive ? "#000091" : "#636878",
+                    fontFamily: "Marianne, system-ui, sans-serif",
+                    fontWeight: isActive ? 700 : 400,
+                    color: isActive ? "#000091" : "#6B7280",
                     background: "transparent",
                     border: "none",
                     cursor: "pointer",
@@ -152,23 +135,20 @@ export function HeaderGouv({
                     gap: 8,
                     transition: "color 0.15s",
                     outline: "none",
-                    borderRadius: "8px 8px 0 0",
-                    letterSpacing: isActive ? "-0.01em" : "0",
                   }}
                   onMouseEnter={(e) => { if (!isActive) (e.currentTarget as HTMLElement).style.color = "#000091"; }}
-                  onMouseLeave={(e) => { if (!isActive) (e.currentTarget as HTMLElement).style.color = "#636878"; }}
+                  onMouseLeave={(e) => { if (!isActive) (e.currentTarget as HTMLElement).style.color = "#6B7280"; }}
                 >
-                  <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 9, color: isActive ? "#8080CC" : "#B0B7C3", letterSpacing: "0.1em" }}>
+                  <span style={{ fontSize: 9, color: isActive ? "#7B8FDB" : "#C4C9D4", letterSpacing: "0.1em" }}>
                     {t.code}
                   </span>
-                  <span style={{ color: isActive ? "#000091" : "#8A9099" }}>{t.icon}</span>
+                  <span style={{ color: isActive ? "#000091" : "#9CA3AF" }}>{t.icon}</span>
                   <span>{t.label}</span>
-                  {/* Indicateur actif */}
                   {isActive && (
                     <span style={{
-                      position: "absolute", bottom: 0, left: 12, right: 12, height: 3,
-                      background: "linear-gradient(90deg, #000091, #1212CC)",
-                      borderRadius: "3px 3px 0 0",
+                      position: "absolute", bottom: 0, left: 14, right: 14, height: 2,
+                      background: "#000091",
+                      borderRadius: "2px 2px 0 0",
                     }} />
                   )}
                 </button>
@@ -176,36 +156,27 @@ export function HeaderGouv({
             })}
           </nav>
 
-          {/* Indicateurs opérationnels */}
-          <div style={{ display: "flex", alignItems: "center", gap: 20, padding: "8px 0" }}>
-            <StatusPill label="Capteurs" value="4 / 5 actifs"  tone="ok" />
-            <StatusPill label="AIS feed"  value="2.4 s latence" tone="ok" />
-            <StatusPill label="RF feed"   value="42 sigs/h"     tone="ok" />
+          {/* Indicateurs — flat, pas de boîte */}
+          <div style={{ display: "flex", alignItems: "center", gap: 28, padding: "8px 0" }}>
+            <FlatStatus label="Capteurs" value="4 / 5 actifs"  tone="ok" />
+            <FlatStatus label="AIS feed"  value="2.4 s latence" tone="ok" />
+            <FlatStatus label="RF feed"   value="42 sigs/h"     tone="ok" />
           </div>
         </div>
-
-        {/* Liseré de séparation bas de header */}
-        <div style={{ height: 1, background: "linear-gradient(90deg, #000091 0%, #D0D3D9 40%, #D0D3D9 100%)" }} />
+        <div style={{ height: 1, background: "#E8EAED" }} />
       </div>
     </header>
   );
 }
 
-function StatusPill({ label, value, tone }: { label: string; value: string; tone: "ok" | "warn" | "bad" }) {
-  const dotColor = { ok: "#18753C", warn: "#8B5E00", bad: "#CE0500" }[tone];
-  const dotBg    = { ok: "#DFFCE9", warn: "#FFF0C0", bad: "#FFE5E5" }[tone];
+function FlatStatus({ label, value, tone }: { label: string; value: string; tone: "ok" | "warn" | "bad" }) {
+  const dotColor = { ok: "#16A34A", warn: "#D97706", bad: "#DC2626" }[tone];
   return (
-    <div style={{
-      display: "flex", alignItems: "center", gap: 8,
-      background: "#F4F5F7",
-      border: "1px solid #E0E3E8",
-      borderRadius: 8,
-      padding: "5px 12px",
-    }}>
-      <div style={{ width: 8, height: 8, borderRadius: "50%", background: dotBg, border: `1.5px solid ${dotColor}`, flexShrink: 0 }} className="animate-pulse_dot" />
-      <div style={{ lineHeight: "1.3" }}>
-        <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 9, textTransform: "uppercase", letterSpacing: "0.1em", color: "#636878" }}>{label}</div>
-        <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 11.5, color: "#11142B", fontWeight: 600 }}>{value}</div>
+    <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+      <div style={{ width: 6, height: 6, borderRadius: "50%", background: dotColor, flexShrink: 0 }} className="animate-pulse_dot" />
+      <div>
+        <div style={{ fontSize: 10, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 500 }}>{label}</div>
+        <div style={{ fontSize: 12, color: "#374151", fontWeight: 600 }}>{value}</div>
       </div>
     </div>
   );

@@ -159,14 +159,29 @@ export function Globe3D() {
       isMounted = false;
       const g = globeRef.current;
       if (g) {
-        try { g.pauseAnimation?.(); } catch (_) {}
-        try { g.renderer?.().dispose(); } catch (_) {}
-        try { g.renderer?.().domElement?.remove(); } catch (_) {}
-        try { g._destructor?.(); } catch (_) {}
+        try {
+          const ctrl = g.controls?.();
+          if (ctrl) ctrl.enabled = false;
+        } catch (_) {}
+        try {
+          g.pauseAnimation?.();
+        } catch (_) {}
+        try {
+          g._destructor?.();
+        } catch (_) {}
+        try {
+          const r = g.renderer?.();
+          const el = r?.domElement;
+          if (el?.parentNode) {
+            el.parentNode.removeChild(el);
+          }
+          r?.dispose?.();
+        } catch (_) {}
         globeRef.current = null;
       }
-      // Supprimer le sous-div manuellement avant que React démonte le parent
-      try { subDiv.remove(); } catch (_) {}
+      try {
+        subDiv.remove();
+      } catch (_) {}
     };
   }, []);
 
@@ -295,6 +310,7 @@ export function Globe3D() {
                 <div className="text-[9px] text-[#1e3a5f] mt-1">Source : {selected.source}</div>
               </div>
               <button
+                type="button"
                 onClick={handleClose}
                 className="text-[#334155] hover:text-[#94a3b8] text-xs font-mono mt-0.5 flex-shrink-0"
               >

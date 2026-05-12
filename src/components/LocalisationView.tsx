@@ -47,7 +47,7 @@ const REAL_POSITIONS = Object.fromEntries(
 const LeafletMap = dynamic(() => import("./LeafletMap").then((m) => m.LeafletMap), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full bg-ink-900 flex items-center justify-center text-steel-400 text-xs font-mono">
+    <div className="w-full h-full bg-ink-900 flex items-center justify-center text-steel-400 text-xs">
       Initialisation cartographie...
     </div>
   ),
@@ -90,7 +90,7 @@ export function LocalisationView() {
   }, [selectedVessel, result]);
 
   return (
-    <div className="grid grid-cols-12 gap-4 p-6 bg-grid min-h-[calc(100vh-130px)]">
+    <div className="grid grid-cols-12 gap-4 p-6 bg-white min-h-[calc(100vh-130px)]">
       {/* === Colonne gauche : carte === */}
       <div className="col-span-9 flex flex-col gap-4">
         <div className="panel rounded-sm overflow-hidden flex-1 min-h-[600px] flex flex-col">
@@ -119,6 +119,7 @@ export function LocalisationView() {
                   const isAlert = mode === "alertes";
                   return (
                     <button
+                      type="button"
                       key={mode}
                       onClick={() => setMapMode(mode)}
                       style={{
@@ -177,11 +178,12 @@ export function LocalisationView() {
               )}
             </div>
           </div>
-          <div className="flex-1">
+          <div className="flex-1 min-h-0 overflow-hidden relative">
             {mapMode === "alertes" ? (
-              <Globe3D />
+              <Globe3D key="globe-alertes" />
             ) : (
               <LeafletMap
+                key={mapMode}
                 sensors={SENSORS}
                 vessels={REAL_VESSEL_LIST}
                 positions={REAL_POSITIONS}

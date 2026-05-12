@@ -1,6 +1,15 @@
 "use client";
 
-import { MapContainer, TileLayer, CircleMarker, Marker, Popup, Polyline, Circle } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  CircleMarker,
+  Marker,
+  Popup,
+  Polyline,
+  Circle,
+  LayerGroup,
+} from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Sensor, Vessel, ANOMALIES } from "@/lib/data";
@@ -91,7 +100,7 @@ export function LeafletMap({
           s.type === "côtier" ? "#3b82f6" : s.type === "frégate" ? "#22c55e" : "#a855f7";
         const shape = s.type === "côtier" ? "square" : s.type === "frégate" ? "diamond" : "triangle";
         return (
-          <div key={s.id}>
+          <LayerGroup key={s.id}>
             <Marker position={[s.lat, s.lon]} icon={makeIcon(color, shape, 16)}>
               <Popup>
                 <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 11, color: "#161a23" }}>
@@ -115,7 +124,7 @@ export function LeafletMap({
                 dashArray: "4 6",
               }}
             />
-          </div>
+          </LayerGroup>
         );
       })}
 
@@ -254,7 +263,7 @@ export function LeafletMap({
           const color = colorMap[a.severity] ?? "#9aa3b5";
 
           return (
-            <div key={a.id}>
+            <LayerGroup key={a.id}>
               {/* Halo extérieur dégradé */}
               <Circle
                 center={[a.lat, a.lon]}
@@ -300,7 +309,7 @@ export function LeafletMap({
                   </div>
                 </Popup>
               </Circle>
-            </div>
+            </LayerGroup>
           );
         })}
 

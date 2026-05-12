@@ -44,7 +44,7 @@
   font-weight: 700; font-style: italic; font-display: swap;
 }
 
-/* JetBrains Mono — uniquement pour données techniques/chiffres */
+/* JetBrains Mono — données techniques / chiffres */
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
 
 /* ── Variables DSFR ─────────────────────────────────────────────────────── */
@@ -55,7 +55,7 @@
   --text:      #1E2232;
   --text-m:    #5C6378;
   --bg:        #ffffff;
-  --bg-alt:    #F3F4F7;
+  --bg-alt:    #ffffff;
   --border:    rgba(0, 0, 0, 0.08);
   --radius:    12px;
   --radius-sm: 8px;
@@ -65,11 +65,17 @@
 
 /* ── Reset & base ────────────────────────────────────────────────────────── */
 html, body {
-  background: var(--bg-alt);
+  background: var(--bg);
   color: var(--text);
   font-family: "Marianne", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Au-dessus des panes Leaflet (z-index internes jusqu’à ~1000) et de tout canvas résiduel */
+.site-header {
+  position: sticky;
+  isolation: isolate;
 }
 
 *, *::before, *::after {
@@ -83,19 +89,18 @@ html, body {
 *::-webkit-scrollbar-thumb { background: #C4C9D4; border-radius: 99px; }
 *::-webkit-scrollbar-thumb:hover { background: #9AA3B5; }
 
-/* ── Panel ───────────────────────────────────────────────────────────────── */
+/* ── Sections (fond uni, sans encadré) ───────────────────────────────────── */
 .panel {
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  transition: box-shadow 0.2s;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 .panel-elevated {
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 /* ── Étiquette technique (mono) ──────────────────────────────────────────── */

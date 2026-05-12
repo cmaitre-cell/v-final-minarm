@@ -28,7 +28,7 @@ export function FooterGouv() {
               </div>
             </div>
             <p style={{ color: "#545D6E", fontSize: 11.5, lineHeight: 1.7, maxWidth: 380 }}>
-              Démonstrateur à usage pédagogique exclusivement. Aucune donnée classifiée.
+              Maquette à usage pédagogique exclusivement. Aucune donnée classifiée.
               Positions, signatures et identités de navires sont entièrement fictives.
             </p>
             {/* Tricolore décoratif */}
@@ -60,21 +60,11 @@ export function FooterGouv() {
             <div style={{ color: "#fff", fontWeight: 600, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 14 }}>
               Accessibilité
             </div>
-            <div style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              background: "#16202E",
-              border: "1px solid #2A3445",
-              borderRadius: 8,
-              padding: "7px 14px",
-              marginBottom: 10,
-            }}>
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#C64A00" }} />
-              <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 11, color: "#C8CDD6" }}>
-                Accessibilité : non conforme
-              </span>
+            <div style={{ color: "#C8CDD6", fontSize: 11, marginBottom: 10 }}>
+              Accessibilité : non conforme (non évalué)
             </div>
             <div style={{ color: "#3E4A5C", fontSize: 11, lineHeight: 1.6 }}>
-              Conformité RGAA non évaluée<br />Démonstrateur — hors périmètre légal
+              Conformité RGAA non évaluée · hors périmètre légal (maquette)
             </div>
           </div>
         </div>
@@ -89,13 +79,7 @@ export function FooterGouv() {
           <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#3E4A5C", letterSpacing: "0.06em" }}>
             MARITIME RF INTELLIGENCE · v1.0.0 · build 2026.05 · © Ministère des Armées / DGA
           </div>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: 8,
-            fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#C64A00",
-            border: "1px solid rgba(198,74,0,0.3)", borderRadius: 6,
-            padding: "4px 12px", letterSpacing: "0.06em",
-          }}>
-            <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#C64A00" }} />
+          <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#C64A00", letterSpacing: "0.06em" }}>
             DIFFUSION RESTREINTE — DÉMONSTRATION UNIQUEMENT
           </div>
         </div>

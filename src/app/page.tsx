@@ -27,7 +27,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "#F6F6F6" }}>
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "#ffffff" }}>
       <HeaderGouv active={tab} onChange={setTab} clock={clock} />
 
       <main style={{ flex: 1 }}>
