@@ -100,25 +100,125 @@ html, body {
   border: 1px solid var(--blue-border);
   border-radius: var(--radius);
   box-shadow: none;
-  transition: border-color 0.15s, background 0.15s;
+  transition: background 0.25s ease, border-color 0.25s ease,
+              transform 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform;
 }
 .panel:hover {
+  background: var(--blue-bg-h);
   border-color: var(--blue-border-h);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -10px rgba(0, 0, 145, 0.18),
+              0 1px 3px rgba(0, 0, 145, 0.05);
+}
+/* Désactive le translate sur les panels contenant une carte ou un canvas
+   (sinon le contenu se déplace de 2px au survol) */
+.panel:has(.leaflet-container):hover,
+.panel:has(canvas):hover,
+.panel-no-lift:hover {
+  transform: none;
+  background: var(--blue-bg);
+  border-color: var(--blue-border-h);
+  box-shadow: 0 1px 3px rgba(0, 0, 145, 0.04);
 }
 .panel-elevated {
   background: var(--blue-bg-h);
   border: 1px solid var(--blue-border-h);
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
+  transition: background 0.25s ease, border-color 0.25s ease,
+              transform 0.25s ease, box-shadow 0.25s ease;
+}
+.panel-elevated:hover {
+  border-color: #9A9AF8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -12px rgba(0, 0, 145, 0.22),
+              0 1px 3px rgba(0, 0, 145, 0.06);
 }
 .panel-header {
   border-bottom: 1px solid var(--blue-border);
 }
 .panel-row {
   border-bottom: 1px solid var(--blue-border);
+  transition: background 0.18s ease;
 }
 .panel-row:last-child {
   border-bottom: none;
+}
+.panel-row:hover {
+  background: rgba(0, 0, 145, 0.04);
+}
+
+/* Animation d'apparition fluide à l'entrée */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in {
+  animation: fadeInUp 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+.fade-in-stagger > * {
+  animation: fadeInUp 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+.fade-in-stagger > *:nth-child(1) { animation-delay: 0.00s; }
+.fade-in-stagger > *:nth-child(2) { animation-delay: 0.06s; }
+.fade-in-stagger > *:nth-child(3) { animation-delay: 0.12s; }
+.fade-in-stagger > *:nth-child(4) { animation-delay: 0.18s; }
+.fade-in-stagger > *:nth-child(5) { animation-delay: 0.24s; }
+.fade-in-stagger > *:nth-child(6) { animation-delay: 0.30s; }
+
+/* Lien-bouton type "Voir toutes →" */
+.btn-link {
+  font-family: "Marianne", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--blue);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.2s ease, color 0.2s ease, gap 0.2s ease;
+}
+.btn-link:hover {
+  background: var(--blue-bg-h);
+  color: var(--blue-h);
+  gap: 8px;
+}
+
+/* Ligne de tableau interactive */
+.list-row {
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+.list-row:hover {
+  background: rgba(0, 0, 145, 0.04);
+}
+
+/* Animation pulse douce pour les indicateurs critiques */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(206, 5, 0, 0.4); }
+  50%      { box-shadow: 0 0 0 6px rgba(206, 5, 0, 0); }
+}
+.glow-critical {
+  animation: glow-pulse 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel, .panel-elevated, .panel-row, .list-row, .btn-link,
+  .fade-in, .fade-in-stagger > * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
 }
 
 /* ── Titre de section (harmonise avec les onglets de navigation) ─────────── */

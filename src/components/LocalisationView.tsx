@@ -90,10 +90,10 @@ export function LocalisationView() {
   }, [selectedVessel, result]);
 
   return (
-    <div className="grid grid-cols-12 gap-4 p-6 bg-white min-h-[calc(100vh-130px)]">
+    <div className="grid grid-cols-12 gap-4 p-6 bg-white min-h-[calc(100vh-130px)] fade-in-stagger">
       {/* === Colonne gauche : carte === */}
       <div className="col-span-9 flex flex-col gap-4">
-        <div className="panel rounded-sm overflow-hidden flex-1 min-h-[600px] flex flex-col">
+        <div className="panel panel-no-lift rounded-sm overflow-hidden flex-1 min-h-[600px] flex flex-col">
           <div className="px-4 py-3 border-b border-ink-700 flex items-center justify-between gap-4">
             <div>
               <h2 className="section-title">Carte opérationnelle — Méditerranée occidentale</h2>

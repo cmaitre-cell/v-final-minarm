@@ -66,7 +66,7 @@ export function IdentificationView() {
   const clusterColors = ["#3b82f6", "#22c55e", "#eab308", "#f97316", "#ef4444"];
 
   return (
-    <div className="grid grid-cols-12 gap-4 p-6 bg-white min-h-[calc(100vh-130px)]">
+    <div className="grid grid-cols-12 gap-4 p-6 bg-white min-h-[calc(100vh-130px)] fade-in-stagger">
       {/* === COLONNE GAUCHE : profils & visualisations === */}
       <div className="col-span-8 space-y-4">
         {/* En-tête métier */}

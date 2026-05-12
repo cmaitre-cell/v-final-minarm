@@ -18,7 +18,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
     <div style={{ minHeight: "calc(100vh - 130px)", background: "#ffffff", padding: "32px 36px", display: "flex", flexDirection: "column", gap: 28 }}>
 
       {/* ── KPI strip ── */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
+      <div className="fade-in-stagger" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
         <KpiCard icon={<Ship size={20} />}          label="Navires suivis"   value={VESSELS.length}                  unit=""       tone="neutral" />
         <KpiCard icon={<AlertTriangle size={20} />} label="Alertes critiques" value={critical.length}                unit=""       tone="critical" />
         <KpiCard icon={<Eye size={20} />}           label="AIS désactivés"   value={aisOff}                          unit="navires" tone={aisOff > 2 ? "warn" : "neutral"} />
@@ -26,7 +26,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
       </div>
 
       {/* ── Rangée principale ── */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: 20 }}>
+      <div className="fade-in-stagger" style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: 20 }}>
 
         {/* Alertes */}
         <div className="panel" style={{ overflow: "hidden" }}>
@@ -38,7 +38,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
                 {critical.length + high.length} actives
               </span>
             </div>
-            <button type="button" onClick={onJumpToAnomaly} style={{ fontSize: 12, color: "#000091", background: "none", border: "none", cursor: "pointer", fontFamily: "Marianne, system-ui, sans-serif", fontWeight: 500 }}>
+            <button type="button" onClick={onJumpToAnomaly} className="btn-link">
               Voir toutes →
             </button>
           </div>
@@ -62,7 +62,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
             {suspicious.map((v, idx) => {
               const pos = VESSEL_POSITIONS[v.mmsi];
               return (
-                <div key={v.mmsi} style={{ padding: "12px 0", display: "flex", alignItems: "center", gap: 14, borderBottom: idx === suspicious.length - 1 ? "none" : "1px solid #E3E3FD" }}>
+                <div key={v.mmsi} className="list-row" style={{ padding: "12px 12px", margin: "0 -12px", borderRadius: 6, display: "flex", alignItems: "center", gap: 14, borderBottom: idx === suspicious.length - 1 ? "none" : "1px solid #E3E3FD" }}>
                   <div style={{ width: 36, height: 36, borderRadius: 8, background: "rgba(198,74,0,0.08)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     <Ship size={16} color="#C64A00" />
                   </div>
@@ -91,7 +91,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
       </div>
 
       {/* ── Rangée basse ── */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+      <div className="fade-in-stagger" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
 
         {/* Réseau capteurs */}
         <div className="panel" style={{ overflow: "hidden" }}>
@@ -104,7 +104,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
           </div>
           <div style={{ padding: "4px 20px" }}>
             {SENSORS.map((s, idx) => (
-              <div key={s.id} style={{ padding: "11px 0", display: "flex", alignItems: "center", gap: 14, borderBottom: idx === SENSORS.length - 1 ? "none" : "1px solid #E3E3FD" }}>
+              <div key={s.id} className="list-row" style={{ padding: "11px 12px", margin: "0 -12px", borderRadius: 6, display: "flex", alignItems: "center", gap: 14, borderBottom: idx === SENSORS.length - 1 ? "none" : "1px solid #E3E3FD" }}>
                 <StatusDot state={s.status} />
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 13, fontWeight: 500, color: "#1E2232" }}>{s.name}</div>
@@ -148,11 +148,12 @@ const SEV_COLORS: Record<string, { bg: string; border: string; text: string; dot
 function AlertRow({ anomaly: a, isLast }: { anomaly: (typeof ANOMALIES)[0]; isLast: boolean }) {
   const c = SEV_COLORS[a.severity] ?? SEV_COLORS.low;
   return (
-    <div style={{
+    <div className="list-row" style={{
       padding: "16px 20px",
       display: "flex", alignItems: "flex-start", gap: 16,
       borderBottom: isLast ? "none" : "1px solid #E3E3FD",
       borderLeft: `3px solid ${c.dot}`,
+      cursor: "pointer",
     }}>
       <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#9AA3B5", marginTop: 3, minWidth: 28 }}>
         {formatTimeAgo(a.timestamp)}

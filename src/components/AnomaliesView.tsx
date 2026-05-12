@@ -115,7 +115,7 @@ export function AnomaliesView() {
   }, []);
 
   return (
-    <div className="grid grid-cols-12 gap-4 p-6 bg-white min-h-[calc(100vh-130px)]">
+    <div className="grid grid-cols-12 gap-4 p-6 bg-white min-h-[calc(100vh-130px)] fade-in-stagger">
       {/* Barre de scénarios */}
       <div className="col-span-12 panel rounded-sm">
         <div className="px-4 py-3 border-b border-ink-700/40">
