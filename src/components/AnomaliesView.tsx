@@ -119,9 +119,7 @@ export function AnomaliesView() {
       {/* Barre de scénarios */}
       <div className="col-span-12 panel rounded-sm">
         <div className="px-4 py-3 border-b border-ink-700/40">
-          <h2 className="font-display text-sm text-steel-100 tracking-wide">
-            SCÉNARIOS DE DÉTECTION
-          </h2>
+          <h2 className="section-title">Scénarios de détection</h2>
           <div className="label-tag mt-0.5">
             6 typologies couvertes — règles statistiques + cross-check sources
           </div>
@@ -191,9 +189,7 @@ export function AnomaliesView() {
       {/* === Liste anomalies (gauche) === */}
       <div className="col-span-5 panel rounded-sm flex flex-col">
         <div className="px-4 py-3 border-b border-ink-700/40 flex items-center justify-between">
-          <h3 className="font-display text-xs tracking-wider text-steel-100">
-            ANOMALIES DÉTECTÉES
-          </h3>
+          <h3 className="section-title">Anomalies détectées</h3>
           <span className="label-tag">
             {filtered.length} {filtered.length > 1 ? "items" : "item"}
           </span>
@@ -294,7 +290,7 @@ function AnomalyDetail({ anomaly }: { anomaly: Anomaly }) {
                   · détectée {formatTimeAgo(anomaly.timestamp)}
                 </span>
               </div>
-              <h2 className="font-display text-xl text-steel-100 tracking-tight">
+              <h2 className="section-title" style={{ fontSize: 17 }}>
                 {anomaly.type}
               </h2>
               <div className="mt-0.5 text-sm text-steel-300">
@@ -346,9 +342,7 @@ function AnomalyDetail({ anomaly }: { anomaly: Anomaly }) {
         <div className="panel rounded-sm">
           <div className="px-4 py-3 border-b border-ink-700 flex items-center justify-between">
             <div>
-              <h3 className="font-display text-xs tracking-wider text-steel-100">
-                ÉVOLUTION RF — 48 DERNIÈRES HEURES
-              </h3>
+              <h3 className="section-title">Évolution RF — 48 dernières heures</h3>
               <div className="label-tag mt-0.5">
                 Bande référence ± 2σ · seuil rouge = saut détecté
               </div>
@@ -434,9 +428,7 @@ function AnomalyDetail({ anomaly }: { anomaly: Anomaly }) {
       {/* Actions / Workflow */}
       <div className="panel rounded-sm">
         <div className="px-4 py-3 border-b border-ink-700">
-          <h3 className="font-display text-xs tracking-wider text-steel-100">
-            CHAÎNE D'ANALYSE & ACTIONS RECOMMANDÉES
-          </h3>
+          <h3 className="section-title">Chaîne d'analyse & actions recommandées</h3>
         </div>
         <div className="p-4 space-y-3">
           {getRecommendations(anomaly).map((rec, i) => (

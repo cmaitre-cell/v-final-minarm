@@ -73,9 +73,7 @@ export function IdentificationView() {
         <div className="panel rounded-sm px-4 py-3">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="font-display text-sm text-steel-100 tracking-wide">
-                BASE DE PROFILS RADIO
-              </h2>
+              <h2 className="section-title">Base de profils radio</h2>
               <div className="label-tag mt-0.5">
                 Empreinte RF agrégée — {VESSELS.length} navires en référence
               </div>
@@ -93,9 +91,7 @@ export function IdentificationView() {
           {/* Scatter clusters */}
           <div className="panel rounded-sm">
             <div className="px-4 py-3 border-b border-ink-700">
-              <h3 className="font-display text-xs tracking-wider text-steel-100">
-                CLUSTERS K-MEANS · FRÉQUENCE × PUISSANCE
-              </h3>
+              <h3 className="section-title">Clusters K-means · fréquence × puissance</h3>
               <div className="label-tag mt-0.5">
                 5 familles RF — chaque point = un navire
               </div>
@@ -166,9 +162,7 @@ export function IdentificationView() {
           {/* Stats par pavillon */}
           <div className="panel rounded-sm">
             <div className="px-4 py-3 border-b border-ink-700">
-              <h3 className="font-display text-xs tracking-wider text-steel-100">
-                FRÉQUENCE MOYENNE PAR PAVILLON
-              </h3>
+              <h3 className="section-title">Fréquence moyenne par pavillon</h3>
               <div className="label-tag mt-0.5">
                 Hors-norme = pavillon usurpé probable
               </div>
@@ -216,9 +210,7 @@ export function IdentificationView() {
         <div className="panel rounded-sm">
           <div className="px-4 py-3 border-b border-ink-700 flex items-center justify-between">
             <div>
-              <h3 className="font-display text-xs tracking-wider text-steel-100">
-                PROFILS DE RÉFÉRENCE — TOP NAVIRES
-              </h3>
+              <h3 className="section-title">Profils de référence — top navires</h3>
               <div className="label-tag mt-0.5">
                 Mean & Std agrégés sur historique RF
               </div>
@@ -288,9 +280,7 @@ export function IdentificationView() {
         <div className="panel-elevated rounded-sm sticky top-4">
           <div className="px-4 py-3 border-b border-ink-700 flex items-center gap-2">
             <Zap className="w-4 h-4 text-signal" />
-            <h3 className="font-display text-sm text-steel-100 tracking-wide">
-              RECONNAISSANCE PASSIVE
-            </h3>
+            <h3 className="section-title">Reconnaissance passive</h3>
           </div>
 
           <div className="px-4 py-3 border-b border-ink-700">

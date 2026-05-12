@@ -96,9 +96,7 @@ export function LocalisationView() {
         <div className="panel rounded-sm overflow-hidden flex-1 min-h-[600px] flex flex-col">
           <div className="px-4 py-3 border-b border-ink-700 flex items-center justify-between gap-4">
             <div>
-              <h2 className="font-display text-sm text-steel-100 tracking-wide">
-                CARTE OPÉRATIONNELLE — MÉDITERRANÉE OCCIDENTALE
-              </h2>
+              <h2 className="section-title">Carte opérationnelle — Méditerranée occidentale</h2>
               <div className="label-tag mt-0.5">
                 Triangulation RF multilatération · Capteurs DGA
               </div>
@@ -201,9 +199,7 @@ export function LocalisationView() {
         {/* Tableau capteurs avec mesures */}
         <div className="panel rounded-sm">
           <div className="px-4 py-3 border-b border-ink-700">
-            <h3 className="font-display text-xs tracking-wider text-steel-100">
-              MESURES DES CAPTEURS — SIGNAL CIBLE
-            </h3>
+            <h3 className="section-title">Mesures des capteurs — signal cible</h3>
             <div className="label-tag mt-0.5">
               RSSI mesuré → distance estimée par path loss
             </div>
@@ -268,9 +264,7 @@ export function LocalisationView() {
         <div className="panel-elevated rounded-sm">
           <div className="px-4 py-3 border-b border-ink-700 flex items-center gap-2">
             <Crosshair className="w-4 h-4 text-signal" />
-            <h3 className="font-display text-sm text-steel-100 tracking-wide">
-              TRIANGULATION
-            </h3>
+            <h3 className="section-title">Triangulation</h3>
           </div>
 
           {/* Résultat principal */}

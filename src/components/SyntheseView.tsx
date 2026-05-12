@@ -33,9 +33,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
           <div style={{ padding: "16px 20px", borderBottom: "1px solid #E3E3FD", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#CE0500", display: "inline-block" }} className="animate-pulse_dot" />
-              <span style={{ fontWeight: 700, fontSize: 13, color: "#1E2232", letterSpacing: "0.02em" }}>
-                Alertes prioritaires
-              </span>
+              <span className="section-title">Alertes prioritaires</span>
               <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#000091", background: "#ECECFE", border: "1px solid #CACAFB", borderRadius: 4, padding: "2px 8px", letterSpacing: "0.08em", textTransform: "uppercase" }}>
                 {critical.length + high.length} actives
               </span>
@@ -55,7 +53,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
         {/* Bâtiments à surveiller */}
         <div className="panel" style={{ overflow: "hidden" }}>
           <div style={{ padding: "16px 20px", borderBottom: "1px solid #E3E3FD" }}>
-            <div style={{ fontWeight: 700, fontSize: 13, color: "#1E2232" }}>Bâtiments suspects</div>
+            <div className="section-title">Bâtiments suspects</div>
             <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#5C6378", marginTop: 4, textTransform: "uppercase", letterSpacing: "0.08em" }}>
               {suspicious.length} marqués
             </div>
@@ -99,7 +97,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
         <div className="panel" style={{ overflow: "hidden" }}>
           <div style={{ padding: "16px 20px", borderBottom: "1px solid #E3E3FD", display: "flex", alignItems: "center", gap: 8 }}>
             <Antenna size={15} color="#000091" />
-            <span style={{ fontWeight: 700, fontSize: 13, color: "#1E2232" }}>Réseau de capteurs</span>
+            <span className="section-title">Réseau de capteurs</span>
             <span style={{ marginLeft: "auto", fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#5C6378", textTransform: "uppercase", letterSpacing: "0.08em" }}>
               {SENSORS.filter(s => s.status === "actif").length}/{SENSORS.length} actifs
             </span>
@@ -127,7 +125,7 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
         <div className="panel" style={{ overflow: "hidden" }}>
           <div style={{ padding: "16px 20px", borderBottom: "1px solid #E3E3FD", display: "flex", alignItems: "center", gap: 8 }}>
             <Activity size={15} color="#000091" />
-            <span style={{ fontWeight: 700, fontSize: 13, color: "#1E2232" }}>Activité RF — 24 h</span>
+            <span className="section-title">Activité RF — 24 h</span>
           </div>
           <div style={{ padding: "20px" }}>
             <ActivityBars />
