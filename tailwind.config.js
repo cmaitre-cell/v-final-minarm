@@ -9,14 +9,14 @@ module.exports = {
         display: ['"Marianne"', '"Space Grotesk"', "sans-serif"],
       },
       colors: {
-        // Fond institutionnel — DSFR light theme
+        // Fond institutionnel — DSFR light theme + accents bleu clair pour panels
         ink: {
           950: "#FFFFFF",
-          900: "#F4F5F7",
-          800: "#EAECEF",
-          700: "#D0D3D9",
-          600: "#B8BCC5",
-          500: "#8A9099",
+          900: "#F5F5FE", // background-alt-blue-france
+          800: "#ECECFE", // background-contrast-blue-france
+          700: "#E3E3FD", // border subtle blue-france-950
+          600: "#CACAFB", // border-action-low-blue-france
+          500: "#9A9AF8",
         },
         // Texte hiérarchique — fort contraste DSFR
         steel: {

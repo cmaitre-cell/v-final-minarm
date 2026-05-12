@@ -49,18 +49,23 @@
 
 /* ── Variables DSFR ─────────────────────────────────────────────────────── */
 :root {
-  --blue:      #000091;
-  --blue-h:    #1212CC;
-  --red:       #E1000F;
-  --text:      #1E2232;
-  --text-m:    #5C6378;
-  --bg:        #ffffff;
-  --bg-alt:    #ffffff;
-  --border:    rgba(0, 0, 0, 0.08);
-  --radius:    12px;
-  --radius-sm: 8px;
-  --shadow:    0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
-  --shadow-lg: 0 2px 8px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.08);
+  --blue:           #000091;
+  --blue-h:         #1212CC;
+  --blue-soft:      #6A6AF4; /* blue-france-625 */
+  --blue-bg:        #F5F5FE; /* background-alt-blue-france */
+  --blue-bg-h:      #ECECFE; /* background-contrast-blue-france (hover) */
+  --blue-border:    #E3E3FD; /* border subtle blue-france-950 */
+  --blue-border-h:  #CACAFB; /* border-action-low-blue-france */
+  --red:            #E1000F;
+  --text:           #1E2232;
+  --text-m:         #5C6378;
+  --bg:             #ffffff;
+  --bg-alt:         #ffffff;
+  --border:         #E3E3FD;
+  --radius:         8px;
+  --radius-sm:      6px;
+  --shadow:         none;
+  --shadow-lg:      0 1px 2px rgba(0,0,145,0.04);
 }
 
 /* ── Reset & base ────────────────────────────────────────────────────────── */
@@ -89,18 +94,31 @@ html, body {
 *::-webkit-scrollbar-thumb { background: #C4C9D4; border-radius: 99px; }
 *::-webkit-scrollbar-thumb:hover { background: #9AA3B5; }
 
-/* ── Sections (fond uni, sans encadré) ───────────────────────────────────── */
+/* ── Cards style DSFR (encadrés bleu clair) ──────────────────────────────── */
 .panel {
-  background: transparent;
-  border: none;
-  border-radius: 0;
+  background: var(--blue-bg);
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius);
   box-shadow: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.panel:hover {
+  border-color: var(--blue-border-h);
 }
 .panel-elevated {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
+  background: var(--blue-bg-h);
+  border: 1px solid var(--blue-border-h);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+}
+.panel-header {
+  border-bottom: 1px solid var(--blue-border);
+}
+.panel-row {
+  border-bottom: 1px solid var(--blue-border);
+}
+.panel-row:last-child {
+  border-bottom: none;
 }
 
 /* ── Étiquette technique (mono) ──────────────────────────────────────────── */
