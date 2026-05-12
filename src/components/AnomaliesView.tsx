@@ -3,11 +3,13 @@
 import { useState, useMemo } from "react";
 import {
   ANOMALIES,
-  VESSELS,
   Anomaly,
-  generateFrequencyTimeSeries,
+  ML_RECALL_BY_TYPE,
+  ML_TEMPORAL_Q9,
+  ML_KPIS,
 } from "@/lib/data";
 import { severityBg, severityColor, formatTimeAgo, fmtMmsi } from "@/lib/engine";
+import { generateAnomalyAlertPdf, generateDetectionReportPdf } from "@/lib/report";
 import {
   LineChart,
   Line,
@@ -28,6 +30,7 @@ import {
   MapPin,
   GitBranch,
   ShieldOff,
+  FileDown,
 } from "lucide-react";
 
 type ScenarioKey =
@@ -121,7 +124,8 @@ export function AnomaliesView() {
         <div className="px-4 py-3 border-b border-ink-700/40">
           <h2 className="section-title">Scénarios de détection</h2>
           <div className="label-tag mt-0.5">
-            6 typologies couvertes — règles statistiques + cross-check sources
+            6 typologies couvertes — règles statistiques + cross-check OSINT · les compteurs ci-dessous
+            = cas-types illustratifs ; l'évaluation chiffrée est dans le panneau « Évaluation vs vérité terrain »
           </div>
         </div>
         <div className="p-3 grid grid-cols-7 gap-2">
@@ -186,10 +190,62 @@ export function AnomaliesView() {
         )}
       </div>
 
-      {/* === Liste anomalies (gauche) === */}
+      {/* === Évaluation vs vérité terrain — chiffres réels === */}
+      <div className="col-span-12 panel rounded-sm">
+        <div className="px-4 py-3 border-b border-ink-700/40 flex items-start justify-between gap-4">
+          <div>
+            <h3 className="section-title">Évaluation vs vérité terrain — anomalies_large.csv</h3>
+            <div className="label-tag mt-0.5">
+              100 anomalies de référence · rappel = part retrouvée par nos détecteurs à partir des tables ·
+              plafond atteignable {Math.round(ML_KPIS.achievableRecallCeiling * 100)} % ({ML_KPIS.nUnrecoverable} anomalies
+              décrites uniquement en texte libre, non récupérables)
+            </div>
+          </div>
+          <button
+            onClick={() =>
+              generateDetectionReportPdf({ kpis: ML_KPIS, recallByType: [...ML_RECALL_BY_TYPE] })
+            }
+            className="btn-secondary text-xs whitespace-nowrap flex items-center gap-1.5"
+            title="Ouvrir le rapport de détection (vue imprimable A4) et l'enregistrer en PDF"
+          >
+            <FileDown className="w-3.5 h-3.5" />
+            Rapport de détection (PDF)
+          </button>
+        </div>
+        <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+          {ML_RECALL_BY_TYPE.map((r) => (
+            <div key={r.type} className="flex items-center gap-3 text-xs">
+              <span className="w-36 shrink-0 text-steel-200">{r.type}</span>
+              <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "#E5E5E5" }}>
+                <div
+                  className="h-full"
+                  style={{
+                    width: `${Math.max(r.recall * 100, 2)}%`,
+                    background: !r.recoverable ? "#9AA3B5" : r.recall >= 0.3 ? "#18753C" : r.recall > 0 ? "#C64A00" : "#CE0500",
+                  }}
+                />
+              </div>
+              <span className="w-28 shrink-0 text-right font-mono text-steel-400">
+                {Math.round(r.recall * 100)}% · {r.nOverlap}/{r.nTruth}
+              </span>
+            </div>
+          ))}
+        </div>
+        <div className="px-4 py-2.5 border-t border-ink-700 bg-ink-800/30 text-[11px] font-mono text-steel-400 flex flex-wrap gap-x-6 gap-y-1">
+          <span>AIS off &gt; 24 h : <span className="text-steel-200">{ML_KPIS.nAisOffBlocks}</span> épisodes / {ML_KPIS.nAisOffMmsi} navires</span>
+          <span>écart position AIS↔RF &gt; 1 km : <span className="text-steel-200">{ML_KPIS.nPosMismatchPairs}</span> paires / {ML_KPIS.nPosMismatchMmsi} navires</span>
+          <span>MMSI orphelins : <span className="text-steel-200">{ML_KPIS.nOrphans}</span> (intégrité référentielle parfaite)</span>
+          <span>score de suspicion : AUC {ML_KPIS.scoreAuc.toFixed(2)}, précision@k {Math.round(ML_KPIS.scorePrecisionAtK * 100)}%</span>
+        </div>
+      </div>
+
+      {/* === Liste anomalies (gauche) — exemples === */}
       <div className="col-span-5 panel rounded-sm flex flex-col">
         <div className="px-4 py-3 border-b border-ink-700/40 flex items-center justify-between">
-          <h3 className="section-title">Anomalies détectées</h3>
+          <div>
+            <h3 className="section-title">Cas-types — exemples illustratifs</h3>
+            <div className="label-tag mt-0.5">scénarios annotés à la main pour la démo</div>
+          </div>
           <span className="label-tag">
             {filtered.length} {filtered.length > 1 ? "items" : "item"}
           </span>
@@ -260,9 +316,8 @@ export function AnomaliesView() {
 }
 
 function AnomalyDetail({ anomaly }: { anomaly: Anomaly }) {
-  const vessel = VESSELS.find((v) => v.mmsi === anomaly.mmsi);
-  const timeseries = vessel ? generateFrequencyTimeSeries(vessel.mmsi) : [];
-  const showChart = anomaly.type === "Saut de fréquence" || anomaly.type === "Faux pavillon";
+  const q9 = ML_TEMPORAL_Q9;
+  const showChart = anomaly.type === "Saut de fréquence";
 
   return (
     <>
@@ -337,39 +392,38 @@ function AnomalyDetail({ anomaly }: { anomaly: Anomaly }) {
         </div>
       </div>
 
-      {/* Graphique évolution fréquence si pertinent */}
-      {showChart && vessel && (
+      {/* Graphique évolution fréquence — cas réel du dataset (Q9) */}
+      {showChart && (
         <div className="panel rounded-sm">
           <div className="px-4 py-3 border-b border-ink-700 flex items-center justify-between">
             <div>
-              <h3 className="section-title">Évolution RF — 48 dernières heures</h3>
+              <h3 className="section-title">
+                Exemple réel — historique RF du MMSI {q9.mmsi}
+              </h3>
               <div className="label-tag mt-0.5">
-                Bande référence ± 2σ · seuil rouge = saut détecté
+                {q9.series.length} captations sur l'année · {q9.jumpsFreq} sauts de fréquence détectés
+                (|Δf| &gt; 1 MHz, points rouges) · {q9.jumpsSignal} sauts de puissance reçue
               </div>
             </div>
             <div className="flex gap-3 text-[10px] font-mono">
-              <span className="text-steel-400">
-                f̄ ref = {vessel.freqMean.toFixed(2)} MHz
-              </span>
-              <span className="text-steel-400">
-                σ = {vessel.freqStd.toFixed(2)}
-              </span>
+              <span className="text-steel-400">f̄ = {q9.freqMean.toFixed(2)} MHz</span>
+              <span className="text-steel-400">σ = {q9.freqStd.toFixed(2)}</span>
             </div>
           </div>
           <div className="p-4 h-72">
             <ResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={timeseries}>
+              <ComposedChart data={[...q9.series]}>
                 <CartesianGrid stroke="#E5E5E5" strokeDasharray="3 3" />
                 <XAxis
                   dataKey="t"
                   tick={{ fill: "#777777", fontSize: 9, fontFamily: "JetBrains Mono" }}
                   stroke="#CCCCCC"
-                  interval={5}
+                  interval={2}
                 />
                 <YAxis
                   domain={[
-                    Math.floor(vessel.freqMean - 4),
-                    Math.ceil(vessel.freqMean + 4),
+                    Math.floor(q9.freqMean - 3),
+                    Math.ceil(q9.freqMean + 3),
                   ]}
                   tick={{ fill: "#777777", fontSize: 10, fontFamily: "JetBrains Mono" }}
                   stroke="#CCCCCC"
@@ -390,9 +444,9 @@ function AnomalyDetail({ anomaly }: { anomaly: Anomaly }) {
                     color: "#161616",
                   }}
                 />
-                {/* Bande référence */}
+                {/* Bande référence ± 2σ */}
                 <Area
-                  dataKey={() => vessel.freqMean + vessel.freqStd * 2}
+                  dataKey={() => q9.freqMean + q9.freqStd * 2}
                   fill="#22c55e"
                   fillOpacity={0.06}
                   stroke="none"
@@ -402,10 +456,10 @@ function AnomalyDetail({ anomaly }: { anomaly: Anomaly }) {
                   dataKey="freq"
                   stroke="#3b82f6"
                   strokeWidth={2}
-                  dot={false}
+                  dot={{ r: 2.5, fill: "#3b82f6" }}
                   isAnimationActive={false}
                 />
-                {timeseries.map((p, i) =>
+                {q9.series.map((p, i) =>
                   p.anomaly ? (
                     <ReferenceDot
                       key={i}
@@ -421,6 +475,10 @@ function AnomalyDetail({ anomaly }: { anomaly: Anomaly }) {
                 )}
               </ComposedChart>
             </ResponsiveContainer>
+          </div>
+          <div className="px-4 py-2 border-t border-ink-700 text-[10px] font-mono text-steel-400">
+            Détection de rupture (Q9) : on suit la dérive du profil RF par MMSI ; ici le signal saute
+            de 156 à 161 MHz sans logique — substitution d'équipement ou usurpation probable.
           </div>
         </div>
       )}
@@ -452,8 +510,13 @@ function AnomalyDetail({ anomaly }: { anomaly: Anomaly }) {
           <button className="btn-secondary text-xs">
             Demander overpass satellite
           </button>
-          <button className="ml-auto px-3 py-1.5 text-xs text-steel-300 hover:text-signal transition-colors" style={{ background: "none", border: "none", cursor: "pointer" }}>
-            Exporter rapport →
+          <button
+            onClick={() => generateAnomalyAlertPdf(anomaly, getRecommendations(anomaly))}
+            className="ml-auto btn-secondary text-xs flex items-center gap-1.5"
+            title="Ouvrir la fiche d'alerte (vue imprimable A4) et l'enregistrer en PDF"
+          >
+            <FileDown className="w-3.5 h-3.5" />
+            Exporter la fiche d'alerte (PDF)
           </button>
         </div>
       </div>

@@ -1,5 +1,31 @@
-// Données de référence — basées sur la structure du dataset hackathon
-// MAIS avec des valeurs cohérentes (vrais MMSI préfixés pays, vraies routes méditerranéennes)
+// Données de référence.
+// - VESSELS / SENSORS / VESSEL_POSITIONS / ANOMALIES : décor opérationnel
+//   (vrais MMSI préfixés pays, routes méditerranéennes) — utilisé par S/01, S/03, S/04.
+// - RADIO_PROFILES / CLUSTER_DATA / FLAG_PROFILES / ML_* : **vrais résultats ML du Sujet 3**
+//   (994 navires profilés depuis radio_signatures_large.csv, K-Means K=5, profils pavillon Q10)
+//   importés depuis ml-data.ts — utilisé par S/02 « Identification RF ».
+import {
+  ML_VESSELS,
+  ML_CLUSTER_DATA,
+  ML_FLAG_PROFILES,
+  ML_FLAG_GLOBAL_MEAN,
+  ML_META,
+  ML_KMEANS_ELBOW,
+  ML_PRESETS,
+  ML_KPIS,
+  ML_RECALL_BY_TYPE,
+  ML_TEMPORAL_Q9,
+} from "./ml-data";
+
+export {
+  ML_FLAG_GLOBAL_MEAN,
+  ML_META,
+  ML_KMEANS_ELBOW,
+  ML_PRESETS,
+  ML_KPIS,
+  ML_RECALL_BY_TYPE,
+  ML_TEMPORAL_Q9,
+};
 
 export type Vessel = {
   mmsi: number;
@@ -492,32 +518,16 @@ export function generateFrequencyTimeSeries(mmsi: number) {
   return result;
 }
 
-// ========== HEAT MAP de profil radio (clustering K-Means simulé) ==========
-export const CLUSTER_DATA = VESSELS.map((v) => ({
-  mmsi: v.mmsi,
-  name: v.name,
-  freq: v.freqMean,
-  power: v.powerMean,
-  cluster:
-    v.freqMean < 157
-      ? 0
-      : v.freqMean < 158
-      ? 1
-      : v.freqMean < 160
-      ? 2
-      : v.freqMean < 162
-      ? 3
-      : 4,
-  isSuspicious: v.isSuspicious,
-}));
+// ========== BASE DE PROFILS RADIO (Q1) — données réelles ==========
+// 994 navires profilés depuis radio_signatures_large.csv (5 000 signatures).
+// Source : sujet3/scripts/export_dashboard_ml.py → src/lib/ml-data.ts
+export const RADIO_PROFILES: Vessel[] = ML_VESSELS as unknown as Vessel[];
 
-export const FLAG_PROFILES: { flag: string; meanFreq: number; std: number; n: number }[] = [
-  { flag: "France", meanFreq: 156.83, std: 0.31, n: 4 },
-  { flag: "Italy", meanFreq: 156.91, std: 0.34, n: 1 },
-  { flag: "United Kingdom", meanFreq: 156.74, std: 0.28, n: 1 },
-  { flag: "Hong Kong", meanFreq: 157.21, std: 0.41, n: 1 },
-  { flag: "Panama", meanFreq: 161.99, std: 2.41, n: 1 },
-  { flag: "Liberia", meanFreq: 163.12, std: 2.84, n: 1 },
-  { flag: "Marshall Islands", meanFreq: 159.82, std: 1.12, n: 1 },
-  { flag: "Russia", meanFreq: 162.41, std: 1.82, n: 1 },
-];
+// ========== CLUSTERS K-MEANS (Q3) — K=5, pipeline StandardScaler + KMeans++ ==========
+// Étiquettes réelles du KMeans(n_clusters=5, n_init=10, random_state=42) sur
+// (freq_mean, bandwidth_mean, power_mean) standardisés — identique à sujet3/src/cluster.py.
+export const CLUSTER_DATA = ML_CLUSTER_DATA;
+
+// ========== FRÉQUENCE MOYENNE PAR PAVILLON (Q10) — données réelles ==========
+export const FLAG_PROFILES: { flag: string; meanFreq: number; std: number; n: number }[] =
+  ML_FLAG_PROFILES;

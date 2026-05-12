@@ -1,28 +1,34 @@
 "use client";
 
-import { VESSELS, ANOMALIES, SENSORS, VESSEL_POSITIONS } from "@/lib/data";
+import { VESSELS, ANOMALIES, SENSORS, VESSEL_POSITIONS, ML_KPIS } from "@/lib/data";
 import { formatTimeAgo, fmtMmsi } from "@/lib/engine";
-import { AlertTriangle, Ship, Antenna, Eye, TrendingUp, Activity } from "lucide-react";
+import { AlertTriangle, Ship, Antenna, MapPin, Activity } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void }) {
   const suspicious = VESSELS.filter((v) => v.isSuspicious);
   const critical    = ANOMALIES.filter((a) => a.severity === "critical");
   const high        = ANOMALIES.filter((a) => a.severity === "high");
-  const aisOff      = Object.values(VESSEL_POSITIONS).filter((p) => !p.aisActive).length;
-  const confidence  = Math.round(ANOMALIES.reduce((s, a) => s + a.confidence, 0) / ANOMALIES.length * 100);
 
   const alerts = [...critical, ...high].slice(0, 4);
 
   return (
     <div style={{ minHeight: "calc(100vh - 130px)", background: "#ffffff", padding: "32px 36px", display: "flex", flexDirection: "column", gap: 28 }}>
 
-      {/* ── KPI strip ── */}
-      <div className="fade-in-stagger" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
-        <KpiCard icon={<Ship size={20} />}          label="Navires suivis"   value={VESSELS.length}                  unit=""       tone="neutral" />
-        <KpiCard icon={<AlertTriangle size={20} />} label="Alertes critiques" value={critical.length}                unit=""       tone="critical" />
-        <KpiCard icon={<Eye size={20} />}           label="AIS désactivés"   value={aisOff}                          unit="navires" tone={aisOff > 2 ? "warn" : "neutral"} />
-        <KpiCard icon={<TrendingUp size={20} />}   label="Confiance moy."   value={confidence}                       unit="%"      tone="ok" />
+      {/* ── KPI strip — chiffres réels (results.json) ── */}
+      <div className="fade-in-stagger" style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
+          <KpiCard icon={<Ship size={20} />}          label="Navires au registre"        value={ML_KPIS.nShips}             unit="" tone="neutral" />
+          <KpiCard icon={<AlertTriangle size={20} />} label="Anomalies — vérité terrain"  value={ML_KPIS.nAnomaliesTruth}    unit="" tone="critical" />
+          <KpiCard icon={<Antenna size={20} />}       label="AIS désactivé > 24 h"        value={ML_KPIS.nAisOffMmsi}        unit="navires" tone="warn" />
+          <KpiCard icon={<MapPin size={20} />}        label="Écart position AIS↔RF > 1 km" value={ML_KPIS.nPosMismatchMmsi}  unit="navires" tone="warn" />
+        </div>
+        <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 11, color: "#5C6378", letterSpacing: "0.02em" }}>
+          {ML_KPIS.nSignatures.toLocaleString("fr-FR")} signatures RF → {ML_KPIS.nProfiled} profils navires ·
+          K-Means K={ML_KPIS.kmeansK} (silhouette {ML_KPIS.silhouette.toFixed(2)}) ·
+          {" "}{ML_KPIS.nSilentShips} navires « jamais entendus » (dont {ML_KPIS.nSilentSuspicious} suspects) ·
+          {" "}score de suspicion AUC {ML_KPIS.scoreAuc.toFixed(2)} — plafond de rappel atteignable {Math.round(ML_KPIS.achievableRecallCeiling * 100)} %
+        </div>
       </div>
 
       {/* ── Rangée principale ── */}

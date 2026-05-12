@@ -1,7 +1,14 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { VESSELS, CLUSTER_DATA, FLAG_PROFILES } from "@/lib/data";
+import {
+  RADIO_PROFILES,
+  CLUSTER_DATA,
+  FLAG_PROFILES,
+  ML_FLAG_GLOBAL_MEAN,
+  ML_META,
+  ML_PRESETS,
+} from "@/lib/data";
 import {
   identifyVessel,
   fmtMmsi,
@@ -19,51 +26,92 @@ import {
   ResponsiveContainer,
   BarChart,
   Bar,
+  ReferenceLine,
   Cell,
 } from "recharts";
 import { Search, Zap, AlertCircle, CheckCircle2 } from "lucide-react";
 
-const PRESETS: Record<string, SignatureInput> = {
-  cargo_normal: {
-    frequency: 156.92,
-    bandwidth: 25.0,
-    power: 290,
-    modulation: "DSC",
-    pulsePattern: "Short-Long-Short",
-  },
-  tanker_suspect: {
-    frequency: 162.4,
-    bandwidth: 31.2,
-    power: 410,
-    modulation: "SSB",
-    pulsePattern: "Continuous",
-  },
-  passenger: {
-    frequency: 156.75,
-    bandwidth: 25.0,
-    power: 285,
-    modulation: "DSC",
-    pulsePattern: "Short-Short-Short",
-  },
-  orphan: {
-    frequency: 158.2,
-    bandwidth: 27.5,
-    power: 340,
-    modulation: "OFDM",
-    pulsePattern: "Long-Short-Long",
-  },
+// Presets = signatures RF réelles extraites de radio_signatures_large.csv
+// (cf. sujet3/scripts/export_dashboard_ml.py). On garde la vérité terrain
+// (_trueMmsi / _trueName / _trueRank) à part pour l'afficher après l'identification.
+type PresetMeta = {
+  trueMmsi: number;
+  trueName: string;
+  trueFlag: string;
+  trueRank: number | null;
+  signatureId: string;
 };
+const PRESET_LABELS: Record<string, string> = {
+  sig_match: "signature identifiable",
+  sig_suspect: "navire signalé suspect",
+  sig_nominal: "signature courante",
+  sig_atypique: "signature atypique",
+};
+const PRESETS: Record<string, SignatureInput> = Object.fromEntries(
+  Object.entries(ML_PRESETS).map(([k, p]) => [
+    k,
+    {
+      frequency: p.frequency,
+      bandwidth: p.bandwidth,
+      power: p.power,
+      modulation: p.modulation as SignatureInput["modulation"],
+      pulsePattern: p.pulsePattern,
+    },
+  ])
+);
+const PRESET_META: Record<string, PresetMeta> = Object.fromEntries(
+  Object.entries(ML_PRESETS).map(([k, p]) => [
+    k,
+    {
+      trueMmsi: p._trueMmsi,
+      trueName: p._trueName,
+      trueFlag: p._trueFlag,
+      trueRank: p._trueRank ?? null,
+      signatureId: p._signatureId,
+    },
+  ])
+);
+
+// Profils affichés dans le tableau : top navires par nombre de signatures captées.
+const TOP_PROFILES = [...RADIO_PROFILES]
+  .sort((a, b) => b.nSignatures - a.nSignatures)
+  .slice(0, 30);
+
+function samePreset(a: SignatureInput, b?: SignatureInput) {
+  return (
+    !!b &&
+    a.frequency === b.frequency &&
+    a.bandwidth === b.bandwidth &&
+    a.power === b.power &&
+    a.modulation === b.modulation &&
+    a.pulsePattern === b.pulsePattern
+  );
+}
 
 export function IdentificationView() {
-  const [input, setInput] = useState<SignatureInput>(PRESETS.tanker_suspect);
+  const [presetKey, setPresetKey] = useState<string>("sig_match");
+  const [input, setInputState] = useState<SignatureInput>(PRESETS.sig_match);
   const [results, setResults] = useState<IdentificationResult[] | null>(null);
+  const [resultMeta, setResultMeta] = useState<PresetMeta | null>(null);
 
-  const runIdentification = () => {
-    const r = identifyVessel(input, 5);
-    setResults(r);
+  // Toute modification manuelle « casse » l'association à un preset (plus de vérité terrain).
+  const setInput = (next: SignatureInput) => {
+    setInputState(next);
+    if (!samePreset(next, PRESETS[presetKey])) setPresetKey("");
+  };
+  const applyPreset = (key: string) => {
+    setPresetKey(key);
+    setInputState(PRESETS[key]);
+    setResults(null);
+    setResultMeta(null);
   };
 
-  const clusterColors = ["#3b82f6", "#22c55e", "#eab308", "#f97316", "#ef4444"];
+  const runIdentification = () => {
+    setResults(identifyVessel(input, 5, RADIO_PROFILES));
+    setResultMeta(samePreset(input, PRESETS[presetKey]) ? PRESET_META[presetKey] ?? null : null);
+  };
+
+  const clusterColors = ["#3b82f6", "#22c55e", "#eab308", "#f97316", "#a855f7"];
 
   return (
     <div className="grid grid-cols-12 gap-4 p-6 bg-white min-h-[calc(100vh-130px)] fade-in-stagger">
@@ -75,13 +123,15 @@ export function IdentificationView() {
             <div>
               <h2 className="section-title">Base de profils radio</h2>
               <div className="label-tag mt-0.5">
-                Empreinte RF agrégée — {VESSELS.length} navires en référence
+                Empreinte RF agrégée — {ML_META.nProfiled} navires profilés ·{" "}
+                {ML_META.nSignatures.toLocaleString("fr-FR")} signatures (radio_signatures_large.csv)
               </div>
             </div>
             <div className="flex gap-2">
-              <Metric label="Fréq. min" value="156.74" unit="MHz" />
-              <Metric label="Fréq. max" value="163.12" unit="MHz" />
-              <Metric label="Bande VHF" value="156-163" unit="MHz" />
+              <Metric label="Bande" value={`${ML_META.freqMin}-${ML_META.freqMax}`} unit="MHz" />
+              <Metric label="K-Means" value={`K=${ML_META.kmeansK}`} />
+              <Metric label="Silhouette" value={ML_META.silhouette.toFixed(3)} />
+              <Metric label="Combos mod×pulse×bande" value={`${ML_META.nUniqueCombos}`} />
             </div>
           </div>
         </div>
@@ -91,9 +141,10 @@ export function IdentificationView() {
           {/* Scatter clusters */}
           <div className="panel rounded-sm">
             <div className="px-4 py-3 border-b border-ink-700">
-              <h3 className="section-title">Clusters K-means · fréquence × puissance</h3>
+              <h3 className="section-title">Clusters K-Means · fréquence × puissance</h3>
               <div className="label-tag mt-0.5">
-                5 familles RF — chaque point = un navire
+                K={ML_META.kmeansK} (imposé) · StandardScaler + KMeans++ · {ML_META.nProfiled} navires
+                — silhouette {ML_META.silhouette.toFixed(3)}, WCSS {Math.round(ML_META.wcss)}
               </div>
             </div>
             <div className="p-3 h-72">
@@ -105,7 +156,7 @@ export function IdentificationView() {
                     name="Fréquence"
                     unit=" MHz"
                     tick={{ fill: "#777777", fontSize: 10, fontFamily: "JetBrains Mono" }}
-                    domain={[156, 164]}
+                    domain={[156, 162.5]}
                     stroke="#CCCCCC"
                   />
                   <YAxis
@@ -115,7 +166,7 @@ export function IdentificationView() {
                     tick={{ fill: "#777777", fontSize: 10, fontFamily: "JetBrains Mono" }}
                     stroke="#CCCCCC"
                   />
-                  <ZAxis range={[60, 60]} />
+                  <ZAxis range={[24, 24]} />
                   <Tooltip
                     contentStyle={{
                       background: "#FFFFFF",
@@ -132,39 +183,29 @@ export function IdentificationView() {
                       name={`Cluster ${c}`}
                       data={CLUSTER_DATA.filter((d) => d.cluster === c)}
                       fill={clusterColors[c]}
-                    >
-                      {CLUSTER_DATA.filter((d) => d.cluster === c).map((d, i) => (
-                        <Cell
-                          key={i}
-                          fill={clusterColors[c]}
-                          stroke={d.isSuspicious ? "#ef4444" : "transparent"}
-                          strokeWidth={d.isSuspicious ? 2 : 0}
-                        />
-                      ))}
-                    </Scatter>
+                      fillOpacity={0.55}
+                    />
                   ))}
                 </ScatterChart>
               </ResponsiveContainer>
             </div>
             <div className="px-4 py-2 border-t border-ink-700 flex items-center gap-3 text-[10px] font-mono text-steel-400">
-              <Legend color="#3b82f6" label="C0" />
-              <Legend color="#22c55e" label="C1" />
-              <Legend color="#eab308" label="C2" />
-              <Legend color="#f97316" label="C3" />
-              <Legend color="#ef4444" label="C4" />
-              <span className="ml-auto">
-                <span className="inline-block w-2 h-2 border border-alert-critical mr-1" />
-                contour rouge = suspect
-              </span>
+              <Legend color={clusterColors[0]} label="C0" />
+              <Legend color={clusterColors[1]} label="C1" />
+              <Legend color={clusterColors[2]} label="C2" />
+              <Legend color={clusterColors[3]} label="C3" />
+              <Legend color={clusterColors[4]} label="C4" />
+              <span className="ml-auto">silhouette ≈ 0,22 → familles RF peu séparées (jeu synthétique)</span>
             </div>
           </div>
 
           {/* Stats par pavillon */}
           <div className="panel rounded-sm">
             <div className="px-4 py-3 border-b border-ink-700">
-              <h3 className="section-title">Fréquence moyenne par pavillon</h3>
+              <h3 className="section-title">Fréquence moyenne par pavillon (Q10)</h3>
               <div className="label-tag mt-0.5">
-                Hors-norme = pavillon usurpé probable
+                10 pavillons · {FLAG_PROFILES.reduce((s, f) => s + f.n, 0).toLocaleString("fr-FR")} signatures —
+                trait pointillé = moyenne globale {ML_FLAG_GLOBAL_MEAN.toFixed(2)} MHz
               </div>
             </div>
             <div className="p-3 h-72">
@@ -173,7 +214,8 @@ export function IdentificationView() {
                   <CartesianGrid stroke="#E5E5E5" strokeDasharray="3 3" horizontal={false} />
                   <XAxis
                     type="number"
-                    domain={[155, 165]}
+                    domain={[158.5, 159.5]}
+                    allowDataOverflow
                     tick={{ fill: "#777777", fontSize: 10, fontFamily: "JetBrains Mono" }}
                     stroke="#CCCCCC"
                   />
@@ -185,6 +227,7 @@ export function IdentificationView() {
                     stroke="#CCCCCC"
                   />
                   <Tooltip
+                    formatter={(v: number) => [`${v.toFixed(3)} MHz`, "f̄"]}
                     contentStyle={{
                       background: "#FFFFFF",
                       border: "1px solid #DDDDDD",
@@ -192,16 +235,22 @@ export function IdentificationView() {
                       color: "#161616",
                     }}
                   />
+                  <ReferenceLine x={ML_FLAG_GLOBAL_MEAN} stroke="#000091" strokeDasharray="4 3" />
                   <Bar dataKey="meanFreq" radius={[0, 2, 2, 0]}>
                     {FLAG_PROFILES.map((d, i) => (
                       <Cell
                         key={i}
-                        fill={d.meanFreq > 160 ? "#ef4444" : d.meanFreq > 158 ? "#f97316" : "#3b82f6"}
+                        fill={Math.abs(d.meanFreq - ML_FLAG_GLOBAL_MEAN) > 0.08 ? "#f97316" : "#3b82f6"}
                       />
                     ))}
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
+            </div>
+            <div className="px-4 py-2 border-t border-ink-700 text-[10px] font-mono text-steel-400">
+              Tous les pavillons tiennent dans ±0,15 MHz : la fréquence seule ne discrimine pas
+              le pavillon → la détection de faux pavillon (Q4) repose sur la distance de Mahalanobis
+              multivariée (fréquence × bande × puissance × modulation).
             </div>
           </div>
         </div>
@@ -210,9 +259,10 @@ export function IdentificationView() {
         <div className="panel rounded-sm">
           <div className="px-4 py-3 border-b border-ink-700 flex items-center justify-between">
             <div>
-              <h3 className="section-title">Profils de référence — top navires</h3>
+              <h3 className="section-title">Profils de référence — ship_radio_profiles.csv (Q1)</h3>
               <div className="label-tag mt-0.5">
-                Mean & Std agrégés sur historique RF
+                {ML_META.nProfiled} navires agrégés (mean/std par MMSI) — {TOP_PROFILES.length} plus
+                observés affichés
               </div>
             </div>
           </div>
@@ -232,7 +282,7 @@ export function IdentificationView() {
                 </tr>
               </thead>
               <tbody>
-                {VESSELS.map((v) => (
+                {TOP_PROFILES.map((v) => (
                   <tr
                     key={v.mmsi}
                     className={`border-b border-ink-700/50 hover:bg-ink-800/50 transition ${
@@ -256,7 +306,7 @@ export function IdentificationView() {
                       {v.freqStd.toFixed(2)}
                     </td>
                     <td className="px-3 py-2 text-right font-mono text-steel-300">
-                      {v.powerMean}
+                      {Math.round(v.powerMean)}
                     </td>
                     <td className="px-3 py-2 text-right font-mono text-steel-300">
                       {v.snrMean.toFixed(1)}
@@ -284,19 +334,21 @@ export function IdentificationView() {
           </div>
 
           <div className="px-4 py-3 border-b border-ink-700">
-            <div className="label-tag mb-2">Presets opérationnels</div>
+            <div className="label-tag mb-2">Signatures RF réelles — radio_signatures_large.csv</div>
             <div className="grid grid-cols-2 gap-1.5">
-              {Object.entries(PRESETS).map(([key, val]) => (
+              {Object.keys(PRESETS).map((key) => (
                 <button
                   key={key}
-                  onClick={() => {
-                    setInput(val);
-                    setResults(null);
-                  }}
-                  className="text-[10px] font-mono px-2 py-1.5 bg-ink-900 hover:bg-ink-800 border border-ink-700 rounded-sm text-steel-200 transition text-left"
+                  onClick={() => applyPreset(key)}
+                  className={`text-[10px] font-mono px-2 py-1.5 border rounded-sm transition text-left ${
+                    presetKey === key
+                      ? "border-signal bg-signal/10 text-signal"
+                      : "bg-ink-900 hover:bg-ink-800 border-ink-700 text-steel-200"
+                  }`}
                   style={{ borderRadius: 6 }}
                 >
-                  {key.replace("_", " ")}
+                  <div>{PRESET_LABELS[key] ?? key}</div>
+                  <div className="text-steel-400">{PRESET_META[key]?.signatureId}</div>
                 </button>
               ))}
             </div>
@@ -389,27 +441,33 @@ export function IdentificationView() {
           {results && (
             <div className="border-t border-ink-700">
               <div className="px-4 py-2.5 border-b border-ink-700 flex items-center justify-between bg-ink-800/50">
-                <span className="label-tag">Résultats — top 5 candidats</span>
+                <span className="label-tag">k-NN sur {ML_META.nProfiled} profils — top 5 candidats</span>
                 <span className="text-[10px] font-mono text-steel-400">
                   {new Date().toISOString().slice(11, 19)} UTC
                 </span>
               </div>
               <div className="divide-y divide-ink-700">
                 {results.map((r) => (
-                  <CandidateRow key={r.vessel.mmsi} result={r} top={r.rank === 1} />
+                  <CandidateRow
+                    key={r.vessel.mmsi}
+                    result={r}
+                    top={r.rank === 1}
+                    isTruth={resultMeta?.trueMmsi === r.vessel.mmsi}
+                  />
                 ))}
               </div>
-              <div className="px-4 py-3 border-t border-ink-700 bg-ink-800/30">
+              <div className="px-4 py-3 border-t border-ink-700 bg-ink-800/30 space-y-2">
+                {/* Verdict opérationnel */}
                 {results[0].confidence > 0.5 ? (
                   <div className="flex items-start gap-2 text-xs">
                     <CheckCircle2 className="w-4 h-4 text-alert-nominal shrink-0 mt-0.5" />
                     <div>
                       <div className="text-steel-100">
-                        Match probable :{" "}
+                        Candidat le plus probable :{" "}
                         <span className="font-medium">{results[0].vessel.name}</span>
                       </div>
                       <div className="text-steel-400 mt-0.5">
-                        Confiance {(results[0].confidence * 100).toFixed(1)}% — vérifier
+                        Confiance {(results[0].confidence * 100).toFixed(1)}% — à confirmer par
                         coopération AIS et cohérence pavillon.
                       </div>
                     </div>
@@ -418,12 +476,30 @@ export function IdentificationView() {
                   <div className="flex items-start gap-2 text-xs">
                     <AlertCircle className="w-4 h-4 text-alert-medium shrink-0 mt-0.5" />
                     <div>
-                      <div className="text-steel-100">Signature atypique</div>
+                      <div className="text-steel-100">Pas de correspondance franche</div>
                       <div className="text-steel-400 mt-0.5">
-                        Confiance &lt; 50% sur tous les candidats. Émetteur inconnu ou
-                        modifié — escalade analyste recommandée.
+                        Confiance &lt; 50 % sur tous les candidats — émetteur non profilé, modifié,
+                        ou jeu de profils peu discriminant. Escalade analyste.
                       </div>
                     </div>
+                  </div>
+                )}
+
+                {/* Vérité terrain (preset = signature réelle au propriétaire connu) */}
+                {resultMeta && (
+                  <div className="text-[10px] font-mono text-steel-400 border-t border-ink-700 pt-2">
+                    Vérité terrain — {resultMeta.signatureId} émise par{" "}
+                    <span className="text-steel-200">{resultMeta.trueName}</span> ({resultMeta.trueFlag},
+                    MMSI {fmtMmsi(resultMeta.trueMmsi)}).{" "}
+                    {resultMeta.trueRank === 1 ? (
+                      <span className="text-alert-nominal">k-NN l'a classé #1 → identification correcte.</span>
+                    ) : resultMeta.trueRank ? (
+                      <span className="text-alert-medium">
+                        k-NN l'a classé #{resultMeta.trueRank}/{ML_META.nProfiled} — non identifié (taux
+                        d'ID correcte mesuré sur 10 signatures, Q13 ≈ {Math.round(ML_META.identCorrectRate * 100)} % :
+                        la limite du jeu synthétique est assumée).
+                      </span>
+                    ) : null}
                   </div>
                 )}
               </div>
@@ -474,15 +550,21 @@ function FormField({
 function CandidateRow({
   result,
   top,
+  isTruth = false,
 }: {
   result: IdentificationResult;
   top: boolean;
+  isTruth?: boolean;
 }) {
   const pct = result.confidence * 100;
   return (
     <div
       className={`px-4 py-2.5 ${
-        top ? "bg-signal/[0.06] border-l-2 border-signal" : ""
+        isTruth
+          ? "bg-alert-nominal/[0.08] border-l-2 border-alert-nominal"
+          : top
+          ? "bg-signal/[0.06] border-l-2 border-signal"
+          : ""
       }`}
     >
       <div className="flex items-center gap-2 mb-1">
@@ -496,6 +578,11 @@ function CandidateRow({
         <span className="text-sm text-steel-100 flex-1 truncate">
           {result.vessel.name}
         </span>
+        {isTruth && (
+          <span className="text-[9px] font-mono px-1 py-0.5 bg-alert-nominal/15 border border-alert-nominal/40 text-alert-nominal rounded-sm">
+            VRAI ÉMETTEUR
+          </span>
+        )}
         {result.vessel.isSuspicious && (
           <span className="text-[9px] font-mono px-1 py-0.5 bg-alert-critical/15 border border-alert-critical/40 text-alert-critical rounded-sm">
             SUSPECT

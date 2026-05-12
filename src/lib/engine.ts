@@ -20,14 +20,14 @@ export type IdentificationResult = {
   matchedFeatures: { feature: string; deviation: number }[];
 };
 
-// Mean/Std globaux pour normalisation (calculés sur les profils)
-function computeStats() {
-  const freqs = VESSELS.map((v) => v.freqMean);
-  const bws = VESSELS.map((v) => v.bandwidthMean);
-  const pws = VESSELS.map((v) => v.powerMean);
+// Mean/Std globaux pour normalisation (calculés sur la base de profils fournie)
+function computeStats(profiles: Vessel[]) {
+  const freqs = profiles.map((v) => v.freqMean);
+  const bws = profiles.map((v) => v.bandwidthMean);
+  const pws = profiles.map((v) => v.powerMean);
   const mean = (a: number[]) => a.reduce((s, x) => s + x, 0) / a.length;
   const std = (a: number[], m: number) =>
-    Math.sqrt(a.reduce((s, x) => s + (x - m) ** 2, 0) / a.length);
+    Math.sqrt(a.reduce((s, x) => s + (x - m) ** 2, 0) / a.length) || 1;
   const fm = mean(freqs);
   const bm = mean(bws);
   const pm = mean(pws);
@@ -41,10 +41,17 @@ function computeStats() {
   };
 }
 
-export function identifyVessel(input: SignatureInput, topN = 5): IdentificationResult[] {
-  const { fm, fs, bm, bs, pm, ps } = computeStats();
+// Identification passive (Q12) : k-NN — distance euclidienne sur (frequency, bandwidth,
+// power) standardisés par l'écart-type des moyennes de la base, + bonus si modulation /
+// pulse_pattern correspondent. Par défaut : base de profils RF réelle (994 navires).
+export function identifyVessel(
+  input: SignatureInput,
+  topN = 5,
+  profiles: Vessel[] = VESSELS
+): IdentificationResult[] {
+  const { fm, fs, bm, bs, pm, ps } = computeStats(profiles);
 
-  const candidates = VESSELS.map((v) => {
+  const candidates = profiles.map((v) => {
     const df = (input.frequency - v.freqMean) / fs;
     const db = (input.bandwidth - v.bandwidthMean) / bs;
     const dp = (input.power - v.powerMean) / ps;
