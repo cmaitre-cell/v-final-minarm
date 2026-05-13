@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Radio, Crosshair, AlertOctagon, Activity, Share2 } from "lucide-react";
+import { Radio, Crosshair, AlertOctagon, Activity } from "lucide-react";
 import { TabKey } from "./TopBar";
 
 const TABS: { key: TabKey; label: string; icon: React.ReactNode; code: string }[] = [
@@ -9,7 +9,6 @@ const TABS: { key: TabKey; label: string; icon: React.ReactNode; code: string }[
   { key: "identification", label: "Identification RF", code: "S/02", icon: <Radio        className="w-3.5 h-3.5" /> },
   { key: "localisation",   label: "Localisation",      code: "S/03", icon: <Crosshair    className="w-3.5 h-3.5" /> },
   { key: "anomalies",      label: "Anomalies",         code: "S/04", icon: <AlertOctagon className="w-3.5 h-3.5" /> },
-  { key: "graph",          label: "Graphe",            code: "S/05", icon: <Share2       className="w-3.5 h-3.5" /> },
 ];
 
 export function HeaderGouv({
@@ -99,7 +98,7 @@ export function HeaderGouv({
             {/* Horloge */}
             <div style={{ textAlign: "right" }}>
               <div style={{ fontSize: 9, textTransform: "uppercase", letterSpacing: "0.12em", color: "#9CA3AF", marginBottom: 2 }}>
-                UTC
+                Paris
               </div>
               <div style={{ fontSize: 22, color: "#111827", fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>
                 {clock}

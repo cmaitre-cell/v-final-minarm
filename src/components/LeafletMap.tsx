@@ -33,6 +33,16 @@ const makeIcon = (color: string, shape: "square" | "diamond" | "triangle" | "cir
   });
 };
 
+export type LiveVessel = {
+  mmsi: number;
+  name: string;
+  lat: number;
+  lon: number;
+  cog: number;
+  sog: number;
+  ts: string;
+};
+
 export function LeafletMap({
   sensors,
   vessels,
@@ -43,6 +53,7 @@ export function LeafletMap({
   mode = "tactique",
   center = [20, 0],
   zoom = 2,
+  liveVessels = [],
 }: {
   sensors: Sensor[];
   vessels: Vessel[];
@@ -53,6 +64,7 @@ export function LeafletMap({
   mode?: MapMode;
   center?: [number, number];
   zoom?: number;
+  liveVessels?: LiveVessel[];
 }) {
   return (
     <MapContainer
@@ -313,6 +325,37 @@ export function LeafletMap({
           );
         })}
 
+      {/* AIS LIVE — flux temps-réel AISStream (proxy SSE côté serveur) */}
+      {liveVessels.length > 0 && (
+        <LayerGroup>
+          {liveVessels.map((v) => (
+            <CircleMarker
+              key={`live-${v.mmsi}`}
+              center={[v.lat, v.lon]}
+              radius={6}
+              pathOptions={{
+                color: "#ffffff",
+                weight: 1.5,
+                fillColor: "#ef4444",
+                fillOpacity: 0.95,
+              }}
+            >
+              <Popup>
+                <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 11, color: "#161a23" }}>
+                  <b style={{ color: "#ef4444", textTransform: "uppercase" }}>● LIVE AIS</b><br />
+                  <b>{v.name || `MMSI ${v.mmsi}`}</b><br />
+                  MMSI: {v.mmsi}<br />
+                  Position : {v.lat.toFixed(4)}, {v.lon.toFixed(4)}<br />
+                  COG: {v.cog.toFixed(1)}° · SOG: {v.sog.toFixed(1)} kn<br />
+                  <span style={{ color: "#475569", fontSize: 10 }}>
+                    {new Date(v.ts).toLocaleTimeString("fr-FR")} UTC — AISStream.io
+                  </span>
+                </div>
+              </Popup>
+            </CircleMarker>
+          ))}
+        </LayerGroup>
+      )}
     </MapContainer>
   );
 }

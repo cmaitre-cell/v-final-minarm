@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { SENSORS, VESSELS, VESSEL_POSITIONS } from "@/lib/data";
 import { REAL_VESSELS } from "@/lib/real-data";
 import { isAtSea } from "@/lib/sea-filter";
 import { triangulate, haversine, fmtMmsi } from "@/lib/engine";
-import { Crosshair, Radio, Satellite, Ship } from "lucide-react";
+import { Crosshair, Radio, Satellite, Ship, WifiOff } from "lucide-react";
 import { Globe3D } from "./Globe3D";
+import type { LiveVessel } from "./LeafletMap";
 
 // Ne garder que les navires dont la position est en mer
 const SEA_VESSELS = REAL_VESSELS.filter((v) => isAtSea(v.lat, v.lon));
@@ -62,11 +63,80 @@ const DEMO_MEASUREMENTS = [
   { sensorId: "FRG-FREMM-AQT", rssi: -75 },
 ];
 
+type LiveStatus = "off" | "connecting" | "open" | "closed" | "error";
+
 export function LocalisationView() {
   const [measurements, setMeasurements] = useState(DEMO_MEASUREMENTS);
   const [emittedPower, setEmittedPower] = useState(54.77);
   const [selectedVessel, setSelectedVessel] = useState<number | null>(273456120);
   const [mapMode, setMapMode] = useState<MapMode>("tactique");
+
+  // ─── AIS LIVE — proxy SSE vers AISStream.io ───────────────────────────────
+  const [liveOn, setLiveOn] = useState(false);
+  const [liveVessels, setLiveVessels] = useState<Map<number, LiveVessel>>(new Map());
+  const [liveStatus, setLiveStatus] = useState<LiveStatus>("off");
+  const [liveErrorMsg, setLiveErrorMsg] = useState<string>("");
+  const [lastLiveAt, setLastLiveAt] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!liveOn) {
+      setLiveStatus("off");
+      setLiveVessels(new Map());
+      setLastLiveAt(null);
+      setLiveErrorMsg("");
+      return;
+    }
+    setLiveStatus("connecting");
+    setLiveErrorMsg("");
+    const es = new EventSource("/api/ais-stream");
+    const onStatus = (ev: MessageEvent) => {
+      try {
+        const d = JSON.parse(ev.data);
+        if (d?.state) setLiveStatus(d.state as LiveStatus);
+      } catch {}
+    };
+    const onAis = (ev: MessageEvent) => {
+      try {
+        const v = JSON.parse(ev.data) as LiveVessel;
+        setLiveVessels((prev) => {
+          const next = new Map(prev);
+          next.set(v.mmsi, v);
+          if (next.size > 500) {
+            const firstKey = next.keys().next().value as number | undefined;
+            if (firstKey !== undefined) next.delete(firstKey);
+          }
+          return next;
+        });
+        setLastLiveAt(Date.now());
+      } catch {}
+    };
+    const onCustomError = (ev: Event) => {
+      const me = ev as MessageEvent;
+      let msg = "";
+      try {
+        if (me?.data) {
+          const d = JSON.parse(me.data);
+          if (d?.message) msg = String(d.message);
+        }
+      } catch {}
+      if (msg) setLiveErrorMsg(msg);
+      setLiveStatus("error");
+      // Sur un 429 / erreur terminale AISStream, on coupe l'EventSource côté
+      // navigateur (sinon il re-tente tout seul et aggrave le rate-limit).
+      // L'utilisateur doit cliquer à nouveau « Activer le LIVE » pour ré-essayer.
+      if (msg.includes("429") || msg.toLowerCase().includes("unauthorized")) {
+        setTimeout(() => setLiveOn(false), 100);
+      }
+    };
+    es.addEventListener("status", onStatus as EventListener);
+    es.addEventListener("ais", onAis as EventListener);
+    es.addEventListener("error", onCustomError as EventListener);
+    return () => {
+      es.close();
+    };
+  }, [liveOn]);
+
+  const liveArray = useMemo(() => Array.from(liveVessels.values()), [liveVessels]);
 
   const result = useMemo(
     () =>
@@ -155,6 +225,76 @@ export function LocalisationView() {
               </div>
             </div>
 
+            {/* LIVE AIS — proxy AISStream.io */}
+            {mapMode !== "alertes" && (
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 3 }}>
+                <button
+                  onClick={() => setLiveOn((v) => !v)}
+                  title={
+                    liveOn
+                      ? "Désactiver le flux AIS temps-réel"
+                      : "Activer AISStream.io (Méditerranée occidentale)"
+                  }
+                  className="flex items-center gap-2 text-xs font-mono px-3 py-1.5 rounded-md border transition"
+                  style={{
+                    background: liveOn ? "#CE0500" : "#fff",
+                    color: liveOn ? "#fff" : "#161616",
+                    borderColor: liveOn ? "#CE0500" : "#D0D3D9",
+                    fontWeight: 700,
+                  }}
+                >
+                  {liveOn ? (
+                    <span
+                      className="animate-pulse_dot"
+                      style={{
+                        width: 7,
+                        height: 7,
+                        borderRadius: "50%",
+                        background: "#fff",
+                        display: "inline-block",
+                      }}
+                    />
+                  ) : (
+                    <WifiOff className="w-3.5 h-3.5" />
+                  )}
+                  {liveOn ? (
+                    <span>
+                      LIVE · {liveVessels.size} navire{liveVessels.size > 1 ? "s" : ""}
+                    </span>
+                  ) : (
+                    <span>Activer le LIVE</span>
+                  )}
+                </button>
+                {liveOn && (
+                  <span
+                    style={{
+                      fontFamily: "JetBrains Mono, monospace",
+                      fontSize: 9,
+                      color:
+                        liveStatus === "open"
+                          ? "#18753C"
+                          : liveStatus === "error"
+                          ? "#CE0500"
+                          : "#5C6378",
+                      letterSpacing: "0.04em",
+                      maxWidth: 280,
+                      textAlign: "right",
+                    }}
+                    title={liveErrorMsg || undefined}
+                  >
+                    {liveStatus === "connecting" && "Connexion AISStream…"}
+                    {liveStatus === "open" &&
+                      (lastLiveAt
+                        ? `flux ouvert · maj ${new Date(lastLiveAt).toLocaleTimeString("fr-FR")}`
+                        : "flux ouvert · en attente de messages")}
+                    {liveStatus === "closed" && "Flux fermé"}
+                    {liveStatus === "error" &&
+                      (liveErrorMsg || "Erreur AISStream — réessayer dans quelques minutes")}
+                  </span>
+                )}
+              </div>
+            )}
+
             <div className="flex items-center gap-4 text-[10px] font-mono">
               {mapMode === "alertes" ? (
                 <>
@@ -191,6 +331,7 @@ export function LocalisationView() {
                 mode={mapMode}
                 center={[20, 0]}
                 zoom={2}
+                liveVessels={liveArray}
               />
             )}
           </div>

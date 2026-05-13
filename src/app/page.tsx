@@ -8,20 +8,20 @@ import { SyntheseView } from "@/components/SyntheseView";
 import { IdentificationView } from "@/components/IdentificationView";
 import { LocalisationView } from "@/components/LocalisationView";
 import { AnomaliesView } from "@/components/AnomaliesView";
-import { GraphView } from "@/components/GraphView";
 
 export default function Home() {
   const [tab, setTab] = useState<TabKey>("synthese");
   const [clock, setClock] = useState("");
 
   useEffect(() => {
-    const update = () => {
-      const d = new Date();
-      const pad = (n: number) => n.toString().padStart(2, "0");
-      setClock(
-        `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}`
-      );
-    };
+    const fmt = new Intl.DateTimeFormat("fr-FR", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+      timeZone: "Europe/Paris",
+    });
+    const update = () => setClock(fmt.format(new Date()));
     update();
     const id = setInterval(update, 1000);
     return () => clearInterval(id);
@@ -36,7 +36,6 @@ export default function Home() {
         {tab === "identification" && <IdentificationView />}
         {tab === "localisation"   && <LocalisationView />}
         {tab === "anomalies"      && <AnomaliesView />}
-        {tab === "graph"          && <GraphView />}
       </main>
 
       <FooterGouv />

@@ -194,9 +194,9 @@ export function severityBg(sev: string): string {
 }
 
 export function formatTimeAgo(iso: string): string {
-  const now = new Date("2026-05-12T10:00:00Z").getTime();
+  const now = Date.now();
   const t = new Date(iso).getTime();
-  const diff = (now - t) / 1000;
+  const diff = Math.max(0, (now - t) / 1000);
   if (diff < 60) return `${Math.round(diff)}s`;
   if (diff < 3600) return `${Math.round(diff / 60)}m`;
   if (diff < 86400) return `${Math.round(diff / 3600)}h`;

@@ -2,7 +2,7 @@
 
 import { Radio, Crosshair, AlertOctagon, Activity, Shield } from "lucide-react";
 
-export type TabKey = "identification" | "localisation" | "anomalies" | "synthese" | "graph";
+export type TabKey = "identification" | "localisation" | "anomalies" | "synthese";
 
 const TABS: { key: TabKey; label: string; icon: React.ReactNode; code: string }[] = [
   {
