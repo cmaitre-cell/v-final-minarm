@@ -1,8 +1,8 @@
 "use client";
 
-import { VESSELS, ANOMALIES, SENSORS, VESSEL_POSITIONS, ML_KPIS } from "@/lib/data";
+import { VESSELS, ANOMALIES, SENSORS, VESSEL_POSITIONS, ML_KPIS, ML_WATCHLIST } from "@/lib/data";
 import { formatTimeAgo, fmtMmsi } from "@/lib/engine";
-import { AlertTriangle, Ship, Antenna, MapPin, Activity } from "lucide-react";
+import { AlertTriangle, Ship, Antenna, MapPin, Activity, Rss, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void }) {
@@ -136,6 +136,78 @@ export function SyntheseView({ onJumpToAnomaly }: { onJumpToAnomaly: () => void 
           <div style={{ padding: "20px" }}>
             <ActivityBars />
           </div>
+        </div>
+      </div>
+
+      {/* ── Veille OSINT (Q14) ─────────────────────────────────────────────── */}
+      <div className="fade-in-stagger panel" style={{ overflow: "hidden" }}>
+        <div style={{ padding: "16px 20px", borderBottom: "1px solid #E3E3FD", display: "flex", alignItems: "center", gap: 10 }}>
+          <Rss size={15} color="#000091" />
+          <div style={{ flex: 1 }}>
+            <div className="section-title">Veille OSINT — flux RSS maritimes (Q14)</div>
+            <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#5C6378", marginTop: 4, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+              gCaptain · Maritime Executive · OFAC — ingestion automatique, déduplication par GUID,
+              extraction MMSI / IMO / mots-clés de suspicion (saisie, sanctions, shadow fleet…)
+            </div>
+          </div>
+          <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#000091", background: "#ECECFE", border: "1px solid #CACAFB", borderRadius: 4, padding: "2px 8px", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+            {ML_WATCHLIST.length} items
+          </span>
+        </div>
+        <div>
+          {ML_WATCHLIST.map((it, idx) => {
+            const isSusp = !!it.suspicionKeywords;
+            return (
+              <a
+                key={`${it.source}-${idx}`}
+                href={it.link || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="list-row"
+                style={{
+                  display: "flex", alignItems: "flex-start", gap: 14,
+                  padding: "12px 20px",
+                  borderBottom: idx === ML_WATCHLIST.length - 1 ? "none" : "1px solid #E3E3FD",
+                  textDecoration: "none", color: "inherit",
+                  borderLeft: isSusp ? "3px solid #C64A00" : "3px solid transparent",
+                  background: isSusp ? "rgba(198,74,0,0.04)" : "transparent",
+                }}
+              >
+                <div style={{
+                  fontFamily: "JetBrains Mono, monospace", fontSize: 9, color: "#9AA3B5",
+                  marginTop: 4, minWidth: 70, textTransform: "uppercase", letterSpacing: "0.04em",
+                }}>
+                  {it.source.replace(/^www\./, "").slice(0, 20)}
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 13, color: "#1E2232", lineHeight: 1.45 }}>
+                    {it.title}
+                  </div>
+                  <div style={{ marginTop: 4, display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+                    {isSusp && (
+                      <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 9, fontWeight: 700, padding: "1px 6px", background: "rgba(198,74,0,0.12)", border: "1px solid rgba(198,74,0,0.3)", color: "#C64A00", borderRadius: 4, letterSpacing: "0.04em", textTransform: "uppercase" }}>
+                        {it.suspicionKeywords}
+                      </span>
+                    )}
+                    {it.mmsi && (
+                      <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#000091" }}>MMSI {it.mmsi}</span>
+                    )}
+                    {it.imo && (
+                      <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#000091" }}>IMO {it.imo}</span>
+                    )}
+                    <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#9AA3B5" }}>
+                      {it.published ? new Date(it.published).toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric" }) : "—"}
+                    </span>
+                  </div>
+                </div>
+                <ExternalLink size={13} color="#9AA3B5" style={{ marginTop: 4, flexShrink: 0 }} />
+              </a>
+            );
+          })}
+        </div>
+        <div style={{ padding: "10px 20px", borderTop: "1px solid #E3E3FD", fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "#9AA3B5" }}>
+          Source des données : <code>data/processed/watchlist.csv</code> · régénéré par <code>make generalisation</code> ou re-run du notebook.
+          Les items avec mot-clé de suspicion sont mis en évidence (orange).
         </div>
       </div>
     </div>

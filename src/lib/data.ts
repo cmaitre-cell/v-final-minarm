@@ -15,6 +15,9 @@ import {
   ML_KPIS,
   ML_RECALL_BY_TYPE,
   ML_TEMPORAL_Q9,
+  ML_SILENT_SHIPS,
+  ML_TOP_OUTLIERS,
+  ML_WATCHLIST,
 } from "./ml-data";
 
 export {
@@ -25,6 +28,9 @@ export {
   ML_KPIS,
   ML_RECALL_BY_TYPE,
   ML_TEMPORAL_Q9,
+  ML_SILENT_SHIPS,
+  ML_TOP_OUTLIERS,
+  ML_WATCHLIST,
 };
 
 export type Vessel = {

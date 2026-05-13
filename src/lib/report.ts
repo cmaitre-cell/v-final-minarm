@@ -24,7 +24,12 @@ type Kpis = {
   nNameChangeFlagged: number;
   nOrphans: number;
   achievableRecallCeiling: number;
+  achievableRecallCeilingBefore: number;
   nUnrecoverable: number;
+  nUnrecoverableBefore: number;
+  recallOverall: number;
+  recallOverallBefore: number;
+  nRecoveredKinematic: number;
   scoreAuc: number;
   scorePrecisionAtK: number;
   kmeansK: number;
@@ -209,7 +214,7 @@ export function generateDetectionReportPdf(opts: { kpis: Kpis; recallByType: Rec
     `<tr><td>Changement de nom répété — candidats</td><td class="note">plus de 2 noms historiques (pattern d'identity laundering)</td><td class="num"><b>${fr(k.nNameChangeFlagged)}</b></td></tr>` +
     `</tbody></table>` +
     `<h2>4 — Évaluation vs vérité terrain (anomalies_large.csv)</h2>` +
-    `<p class="tight">Le rappel mesure la part des ${fr(k.nAnomaliesTruth)} anomalies de référence retrouvée par nos détecteurs à partir des données structurées. Plafond atteignable : <b>${pct(k.achievableRecallCeiling)} %</b> — ${fr(k.nUnrecoverable)} anomalies sont décrites uniquement en texte libre (vitesse / cap renseignés dans la description, non récupérables des tables).</p>` +
+    `<p class="tight">Le rappel mesure la part des ${fr(k.nAnomaliesTruth)} anomalies de référence retrouvée par nos détecteurs à partir des données structurées. L'analyse initiale concluait à un <b>plafond théorique de ${pct(k.achievableRecallCeilingBefore)} %</b> (${fr(k.nUnrecoverableBefore)} anomalies Speed / Course renseignées uniquement en texte libre, vitesse plafonnée à 30 nœuds dans la colonne <i>ais.speed</i>). En reconstituant la <b>vitesse implicite</b> par distance géodésique entre positions AIS consécutives, et le <b>Δcap</b> entre points avec gestion du wraparound 0/360°, ces anomalies redeviennent récupérables des tables : <b>plafond porté à ${pct(k.achievableRecallCeiling)} %</b>, <b>rappel global passé de ${pct(k.recallOverallBefore)} % à ${pct(k.recallOverall)} %</b> (+ ${fr(k.nRecoveredKinematic)} anomalies cinématiques retrouvées).</p>` +
     `<table><thead><tr><th>Type d'anomalie</th><th style="text-align:right">Réf.</th><th style="text-align:right">Retrouvées</th><th>Rappel</th><th>Remarque</th></tr></thead><tbody>${recallRows}</tbody></table>` +
     `<div class="cal"><b>Score de suspicion multi-facteurs :</b> AUC ${k.scoreAuc.toFixed(2)} · précision@k ${pct(k.scorePrecisionAtK)} %. Sur ce jeu synthétique, les détecteurs non-supervisés se situent près du hasard (corrélations ≈ 0, fréquences par pavillon indiscernables) — la performance brute n'est pas l'objet : le livrable est la <b>méthode</b> et la chaîne de bout en bout.</div>` +
     `<h2>5 — Limites &amp; perspectives</h2>` +

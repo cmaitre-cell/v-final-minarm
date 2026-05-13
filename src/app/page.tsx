@@ -8,6 +8,7 @@ import { SyntheseView } from "@/components/SyntheseView";
 import { IdentificationView } from "@/components/IdentificationView";
 import { LocalisationView } from "@/components/LocalisationView";
 import { AnomaliesView } from "@/components/AnomaliesView";
+import { GraphView } from "@/components/GraphView";
 
 export default function Home() {
   const [tab, setTab] = useState<TabKey>("synthese");
@@ -35,6 +36,7 @@ export default function Home() {
         {tab === "identification" && <IdentificationView />}
         {tab === "localisation"   && <LocalisationView />}
         {tab === "anomalies"      && <AnomaliesView />}
+        {tab === "graph"          && <GraphView />}
       </main>
 
       <FooterGouv />

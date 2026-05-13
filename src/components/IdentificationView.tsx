@@ -8,6 +8,9 @@ import {
   ML_FLAG_GLOBAL_MEAN,
   ML_META,
   ML_PRESETS,
+  ML_KMEANS_ELBOW,
+  ML_SILENT_SHIPS,
+  ML_TOP_OUTLIERS,
 } from "@/lib/data";
 import {
   identifyVessel,
@@ -27,6 +30,8 @@ import {
   BarChart,
   Bar,
   ReferenceLine,
+  ComposedChart,
+  Line,
   Cell,
 } from "recharts";
 import { Search, Zap, AlertCircle, CheckCircle2 } from "lucide-react";
@@ -252,6 +257,249 @@ export function IdentificationView() {
               le pavillon → la détection de faux pavillon (Q4) repose sur la distance de Mahalanobis
               multivariée (fréquence × bande × puissance × modulation).
             </div>
+          </div>
+        </div>
+
+        {/* Choix de K — méthode du coude + silhouette */}
+        <div className="panel rounded-sm">
+          <div className="px-4 py-3 border-b border-ink-700">
+            <h3 className="section-title">Choix de K — méthode du coude &amp; silhouette</h3>
+            <div className="label-tag mt-0.5">
+              WCSS et silhouette pour K ∈ [2, 10] — K = {ML_META.kmeansK} imposé par l'énoncé ·
+              silhouette plate ≈ 0,21–0,22 → optimum mou, on l'assume
+            </div>
+          </div>
+          <div className="p-3 h-44">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={[...ML_KMEANS_ELBOW]} margin={{ top: 8, right: 30, bottom: 6, left: 0 }}>
+                <CartesianGrid stroke="#E5E5E5" strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="k"
+                  tick={{ fill: "#777777", fontSize: 10, fontFamily: "JetBrains Mono" }}
+                  stroke="#CCCCCC"
+                  label={{ value: "K", position: "insideBottom", offset: -2, fill: "#777777", fontSize: 10 }}
+                />
+                <YAxis
+                  yAxisId="wcss"
+                  tick={{ fill: "#9AA3B5", fontSize: 10, fontFamily: "JetBrains Mono" }}
+                  stroke="#CCCCCC"
+                  width={50}
+                />
+                <YAxis
+                  yAxisId="sil"
+                  orientation="right"
+                  domain={[0.19, 0.24]}
+                  tickFormatter={(v: number) => v.toFixed(2)}
+                  tick={{ fill: "#000091", fontSize: 10, fontFamily: "JetBrains Mono" }}
+                  stroke="#000091"
+                  width={42}
+                />
+                <Tooltip
+                  contentStyle={{
+                    background: "#FFFFFF",
+                    border: "1px solid #DDDDDD",
+                    fontSize: 11,
+                    fontFamily: "JetBrains Mono",
+                    color: "#161616",
+                  }}
+                  formatter={(v: number, name: string) => [
+                    name === "silhouette" ? v.toFixed(3) : Math.round(v).toLocaleString("fr-FR"),
+                    name === "wcss" ? "WCSS (inertie)" : "Silhouette",
+                  ]}
+                  labelFormatter={(k) => `K = ${k}`}
+                />
+                <ReferenceLine
+                  x={ML_META.kmeansK}
+                  yAxisId="sil"
+                  stroke="#000091"
+                  strokeDasharray="4 3"
+                  label={{ value: `K=${ML_META.kmeansK}`, position: "top", fill: "#000091", fontSize: 10 }}
+                />
+                <Line
+                  yAxisId="wcss"
+                  type="monotone"
+                  dataKey="wcss"
+                  name="wcss"
+                  stroke="#9AA3B5"
+                  strokeWidth={1.5}
+                  dot={{ r: 2.5, fill: "#9AA3B5" }}
+                  isAnimationActive={false}
+                />
+                <Line
+                  yAxisId="sil"
+                  type="monotone"
+                  dataKey="silhouette"
+                  name="silhouette"
+                  stroke="#000091"
+                  strokeWidth={2}
+                  dot={{ r: 3, fill: "#000091" }}
+                  isAnimationActive={false}
+                />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="px-4 py-2 border-t border-ink-700 flex items-center gap-4 text-[10px] font-mono text-steel-400">
+            <span><span className="inline-block w-3 h-0.5 align-middle mr-1" style={{ background: "#9AA3B5" }} />WCSS (inertie intra-cluster, axe gauche)</span>
+            <span><span className="inline-block w-3 h-0.5 align-middle mr-1" style={{ background: "#000091" }} />Silhouette (axe droit)</span>
+            <span className="ml-auto">à K=5 : WCSS {Math.round(ML_META.wcss).toLocaleString("fr-FR")} · silhouette {ML_META.silhouette.toFixed(3)}</span>
+          </div>
+        </div>
+
+        {/* Top aberrants RF — distance au centroïde K-Means */}
+        <div className="panel rounded-sm">
+          <div className="px-4 py-3 border-b border-ink-700 flex items-center justify-between">
+            <div>
+              <h3 className="section-title">
+                Top {ML_TOP_OUTLIERS.length} aberrants RF — empreintes les plus éloignées de leur famille
+              </h3>
+              <div className="label-tag mt-0.5">
+                Distance euclidienne au centroïde K-Means (espace standardisé) — proxy d'« atypique » :
+                candidats prioritaires pour l'analyse, alimente le score de suspicion (S/04)
+              </div>
+            </div>
+            <span className="label-tag">
+              {ML_TOP_OUTLIERS.filter((v) => v.isSuspicious).length}/{ML_TOP_OUTLIERS.length} déjà suspects
+            </span>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-ink-700 text-steel-400">
+                  <th className="px-3 py-2 text-left label-tag font-normal">#</th>
+                  <th className="px-3 py-2 text-left label-tag font-normal">Nom</th>
+                  <th className="px-3 py-2 text-left label-tag font-normal">MMSI</th>
+                  <th className="px-3 py-2 text-left label-tag font-normal">Pavillon</th>
+                  <th className="px-3 py-2 text-left label-tag font-normal">Type</th>
+                  <th className="px-3 py-2 text-center label-tag font-normal">Cluster</th>
+                  <th className="px-3 py-2 text-left label-tag font-normal">Distance au centroïde</th>
+                  <th className="px-3 py-2 text-center label-tag font-normal">Marquage</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ML_TOP_OUTLIERS.map((v, i) => {
+                  const maxD = ML_TOP_OUTLIERS[0]?.distanceToCentroid || 1;
+                  const w = (v.distanceToCentroid / maxD) * 100;
+                  const cColor = clusterColors[v.cluster] ?? "#9AA3B5";
+                  return (
+                    <tr
+                      key={v.mmsi}
+                      className={`border-b border-ink-700/50 hover:bg-ink-800/50 transition ${
+                        v.isSuspicious ? "bg-alert-critical/[0.04]" : ""
+                      }`}
+                    >
+                      <td className="px-3 py-2 font-mono text-steel-400">#{i + 1}</td>
+                      <td className="px-3 py-2 text-steel-100">{v.name}</td>
+                      <td className="px-3 py-2 font-mono text-steel-300">{fmtMmsi(v.mmsi)}</td>
+                      <td className="px-3 py-2 text-steel-300">{v.flag}</td>
+                      <td className="px-3 py-2 text-steel-300">{v.type}</td>
+                      <td className="px-3 py-2 text-center">
+                        <span
+                          className="text-[10px] font-mono px-1.5 py-0.5 rounded-sm"
+                          style={{
+                            background: `${cColor}22`,
+                            color: cColor,
+                            border: `1px solid ${cColor}55`,
+                          }}
+                        >
+                          C{v.cluster}
+                        </span>
+                      </td>
+                      <td className="px-3 py-2">
+                        <div className="flex items-center gap-2">
+                          <div
+                            className="flex-1 h-1.5 rounded-full overflow-hidden"
+                            style={{ background: "#E5E5E5", minWidth: 60 }}
+                          >
+                            <div className="h-full" style={{ width: `${w}%`, background: "#000091" }} />
+                          </div>
+                          <span
+                            className="font-mono text-[11px] text-steel-200 tabular-nums"
+                            style={{ minWidth: 36, textAlign: "right" }}
+                          >
+                            {v.distanceToCentroid.toFixed(2)}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="px-3 py-2 text-center">
+                        {v.isSuspicious ? (
+                          <span className="text-[9px] font-mono px-1.5 py-0.5 bg-alert-critical/15 border border-alert-critical/40 text-alert-critical rounded-sm">
+                            SUSPECT
+                          </span>
+                        ) : (
+                          <span className="text-[10px] text-steel-400">nominal</span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <div className="px-4 py-2 border-t border-ink-700 text-[10px] font-mono text-steel-400">
+            Centroïdes K-Means calculés dans l'espace standardisé (fréquence × bande × puissance) — distance ≳ 3 = signal d'atypicité significatif.
+          </div>
+        </div>
+
+        {/* Navires jamais entendus */}
+        <div className="panel rounded-sm">
+          <div className="px-4 py-3 border-b border-ink-700 flex items-center justify-between">
+            <div>
+              <h3 className="section-title">
+                Navires « jamais entendus » — {ML_SILENT_SHIPS.length} bâtiments du registre sans aucune signature RF
+              </h3>
+              <div className="label-tag mt-0.5">
+                Présents dans ships_large.csv, absents de ship_radio_profiles.csv (radio_mmsi_orphans = 0,
+                ships_without_radio = {ML_SILENT_SHIPS.length}) — signal de suspicion en soi : un navire qui
+                n'émet jamais alors qu'il navigue est anormal
+              </div>
+            </div>
+            <span className="label-tag">
+              {ML_SILENT_SHIPS.filter((s) => s.isSuspicious).length} suspect{ML_SILENT_SHIPS.filter((s) => s.isSuspicious).length > 1 ? "s" : ""}
+            </span>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-ink-700 text-steel-400">
+                  <th className="px-3 py-2 text-left label-tag font-normal">Nom</th>
+                  <th className="px-3 py-2 text-left label-tag font-normal">MMSI</th>
+                  <th className="px-3 py-2 text-left label-tag font-normal">Pavillon</th>
+                  <th className="px-3 py-2 text-left label-tag font-normal">Type</th>
+                  <th className="px-3 py-2 text-left label-tag font-normal">Destination</th>
+                  <th className="px-3 py-2 text-center label-tag font-normal">Année</th>
+                  <th className="px-3 py-2 text-center label-tag font-normal">Marquage</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ML_SILENT_SHIPS.map((s) => (
+                  <tr
+                    key={s.mmsi}
+                    className={`border-b border-ink-700/50 hover:bg-ink-800/50 transition ${
+                      s.isSuspicious ? "bg-alert-critical/[0.04]" : ""
+                    }`}
+                  >
+                    <td className="px-3 py-2 text-steel-100 flex items-center gap-2">
+                      {s.isSuspicious && <span className="w-1.5 h-1.5 rounded-full bg-alert-critical" />}
+                      {s.name}
+                    </td>
+                    <td className="px-3 py-2 font-mono text-steel-300">{fmtMmsi(s.mmsi)}</td>
+                    <td className="px-3 py-2 text-steel-300">{s.flag}</td>
+                    <td className="px-3 py-2 text-steel-300">{s.type}</td>
+                    <td className="px-3 py-2 text-steel-300">{s.destination || "—"}</td>
+                    <td className="px-3 py-2 text-center font-mono text-steel-400">{s.yearBuilt || "—"}</td>
+                    <td className="px-3 py-2 text-center">
+                      {s.isSuspicious ? (
+                        <span className="text-[9px] font-mono px-1.5 py-0.5 bg-alert-critical/15 border border-alert-critical/40 text-alert-critical rounded-sm">
+                          SUSPECT
+                        </span>
+                      ) : (
+                        <span className="text-[10px] text-steel-400">nominal</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 

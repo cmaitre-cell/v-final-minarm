@@ -11,7 +11,7 @@ export type MlVessel = {
   freqMean: number; freqStd: number; bandwidthMean: number; powerMean: number;
   signalStrengthMean: number; snrMean: number;
   dominantModulation: "DSC" | "SSB" | "AM" | "OFDM" | "FM"; dominantPulse: string;
-  nSignatures: number; cluster: number;
+  nSignatures: number; cluster: number; distanceToCentroid: number;
 };
 
 export const ML_META = {
@@ -44,7 +44,7 @@ export const ML_KMEANS_ELBOW: { k: number; wcss: number; silhouette: number }[] 
   },
   {
     "k": 4,
-    "wcss": 1623.0834649729918,
+    "wcss": 1623.083464972992,
     "silhouette": 0.2270713862154527
   },
   {
@@ -69,7 +69,7 @@ export const ML_KMEANS_ELBOW: { k: number; wcss: number; silhouette: number }[] 
   },
   {
     "k": 9,
-    "wcss": 1046.9309413457222,
+    "wcss": 1046.930941345722,
     "silhouette": 0.2118121235266999
   },
   {
@@ -165,7 +165,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.78
   },
   {
     "mmsi": 201837657,
@@ -191,7 +192,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.985
   },
   {
     "mmsi": 202156040,
@@ -214,7 +216,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 2.007
   },
   {
     "mmsi": 203295373,
@@ -240,7 +243,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 2.473
   },
   {
     "mmsi": 204111655,
@@ -266,7 +270,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.266
   },
   {
     "mmsi": 205804175,
@@ -292,7 +297,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.175
   },
   {
     "mmsi": 205927097,
@@ -318,7 +324,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 1,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 2.677
   },
   {
     "mmsi": 206220320,
@@ -343,7 +350,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 1,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 2.639
   },
   {
     "mmsi": 206352442,
@@ -369,7 +377,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 2.489
   },
   {
     "mmsi": 207068046,
@@ -395,7 +404,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.879
   },
   {
     "mmsi": 207618219,
@@ -421,7 +431,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.784
   },
   {
     "mmsi": 208204205,
@@ -444,7 +455,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.882
   },
   {
     "mmsi": 208289492,
@@ -470,7 +482,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 10,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.604
   },
   {
     "mmsi": 208492908,
@@ -493,7 +506,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.754
   },
   {
     "mmsi": 208551916,
@@ -519,7 +533,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.329
   },
   {
     "mmsi": 209428274,
@@ -546,7 +561,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 9,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.142
   },
   {
     "mmsi": 209766902,
@@ -573,7 +589,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.935
   },
   {
     "mmsi": 210027019,
@@ -596,7 +613,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.915
   },
   {
     "mmsi": 210044819,
@@ -621,7 +639,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.469
   },
   {
     "mmsi": 211239944,
@@ -647,7 +666,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 1,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 3.546
   },
   {
     "mmsi": 211394760,
@@ -670,7 +690,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.679
   },
   {
     "mmsi": 211548097,
@@ -693,7 +714,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.94
   },
   {
     "mmsi": 211617904,
@@ -720,7 +742,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.787
   },
   {
     "mmsi": 212186950,
@@ -746,7 +769,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.978
   },
   {
     "mmsi": 213287515,
@@ -769,7 +793,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.899
   },
   {
     "mmsi": 213704539,
@@ -796,7 +821,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.23
   },
   {
     "mmsi": 213740252,
@@ -823,7 +849,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.603
   },
   {
     "mmsi": 214748253,
@@ -850,7 +877,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.52
   },
   {
     "mmsi": 216417532,
@@ -873,7 +901,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.979
   },
   {
     "mmsi": 218251125,
@@ -900,7 +929,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.746
   },
   {
     "mmsi": 220627024,
@@ -927,7 +957,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.631
   },
   {
     "mmsi": 221046878,
@@ -953,7 +984,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.556
   },
   {
     "mmsi": 221716335,
@@ -978,7 +1010,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 2.202
   },
   {
     "mmsi": 222054856,
@@ -1005,7 +1038,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.66
   },
   {
     "mmsi": 222807422,
@@ -1028,7 +1062,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.812
   },
   {
     "mmsi": 224255892,
@@ -1054,7 +1089,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.962
   },
   {
     "mmsi": 224383026,
@@ -1077,7 +1113,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.947
   },
   {
     "mmsi": 224472298,
@@ -1103,7 +1140,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.04
   },
   {
     "mmsi": 224497350,
@@ -1126,7 +1164,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.29
   },
   {
     "mmsi": 224756004,
@@ -1153,7 +1192,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.38
   },
   {
     "mmsi": 225377906,
@@ -1180,7 +1220,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 1,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 3.161
   },
   {
     "mmsi": 225857489,
@@ -1205,7 +1246,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.815
   },
   {
     "mmsi": 226103089,
@@ -1232,7 +1274,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.233
   },
   {
     "mmsi": 226542358,
@@ -1257,7 +1300,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 2.072
   },
   {
     "mmsi": 226809877,
@@ -1283,7 +1327,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.267
   },
   {
     "mmsi": 227501683,
@@ -1306,7 +1351,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.065
   },
   {
     "mmsi": 229631895,
@@ -1333,7 +1379,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.505
   },
   {
     "mmsi": 229818721,
@@ -1360,7 +1407,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.471
   },
   {
     "mmsi": 230810621,
@@ -1386,7 +1434,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.774
   },
   {
     "mmsi": 231663168,
@@ -1411,7 +1460,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 1,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 3.936
   },
   {
     "mmsi": 231960753,
@@ -1437,7 +1487,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.006
   },
   {
     "mmsi": 232381331,
@@ -1464,7 +1515,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.869
   },
   {
     "mmsi": 232898606,
@@ -1490,7 +1542,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 11,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.77
   },
   {
     "mmsi": 232986245,
@@ -1513,7 +1566,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.822
   },
   {
     "mmsi": 233953583,
@@ -1536,7 +1590,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.456
   },
   {
     "mmsi": 234821769,
@@ -1559,7 +1614,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.572
   },
   {
     "mmsi": 236109802,
@@ -1585,7 +1641,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.659
   },
   {
     "mmsi": 236409764,
@@ -1608,7 +1665,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.504
   },
   {
     "mmsi": 236576735,
@@ -1634,7 +1692,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.703
   },
   {
     "mmsi": 236700807,
@@ -1657,7 +1716,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.357
   },
   {
     "mmsi": 236799075,
@@ -1682,7 +1742,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.928
   },
   {
     "mmsi": 237361564,
@@ -1707,7 +1768,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.286
   },
   {
     "mmsi": 238178908,
@@ -1733,7 +1795,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.623
   },
   {
     "mmsi": 239547546,
@@ -1756,7 +1819,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.203
   },
   {
     "mmsi": 239574544,
@@ -1783,7 +1847,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.068
   },
   {
     "mmsi": 240011469,
@@ -1808,7 +1873,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.741
   },
   {
     "mmsi": 242221601,
@@ -1834,7 +1900,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.868
   },
   {
     "mmsi": 242442486,
@@ -1859,7 +1926,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.621
   },
   {
     "mmsi": 242569188,
@@ -1885,7 +1953,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 15,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.722
   },
   {
     "mmsi": 243740029,
@@ -1910,7 +1979,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.051
   },
   {
     "mmsi": 244246514,
@@ -1933,7 +2003,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.046
   },
   {
     "mmsi": 245445168,
@@ -1960,7 +2031,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.757
   },
   {
     "mmsi": 245472810,
@@ -1983,7 +2055,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.396
   },
   {
     "mmsi": 245760948,
@@ -2008,7 +2081,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 2,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.572
   },
   {
     "mmsi": 245808653,
@@ -2035,7 +2109,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 1,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.856
   },
   {
     "mmsi": 246056778,
@@ -2062,7 +2137,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 12,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.28
   },
   {
     "mmsi": 247443252,
@@ -2087,7 +2163,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 10,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.219
   },
   {
     "mmsi": 247512338,
@@ -2112,7 +2189,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.046
   },
   {
     "mmsi": 248068308,
@@ -2138,7 +2216,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.765
   },
   {
     "mmsi": 248607497,
@@ -2164,7 +2243,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.672
   },
   {
     "mmsi": 249217423,
@@ -2190,7 +2270,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.778
   },
   {
     "mmsi": 249354554,
@@ -2215,7 +2296,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.47
   },
   {
     "mmsi": 249938716,
@@ -2240,7 +2322,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.389
   },
   {
     "mmsi": 249974230,
@@ -2263,7 +2346,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.626
   },
   {
     "mmsi": 250320883,
@@ -2288,7 +2372,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.882
   },
   {
     "mmsi": 251261537,
@@ -2311,7 +2396,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 2.51
   },
   {
     "mmsi": 251603728,
@@ -2338,7 +2424,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.801
   },
   {
     "mmsi": 252620067,
@@ -2365,7 +2452,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 9,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.246
   },
   {
     "mmsi": 252789184,
@@ -2391,7 +2479,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.48
   },
   {
     "mmsi": 253462026,
@@ -2418,7 +2507,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.987
   },
   {
     "mmsi": 254059131,
@@ -2444,7 +2534,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.685
   },
   {
     "mmsi": 254445689,
@@ -2470,7 +2561,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.899
   },
   {
     "mmsi": 254528621,
@@ -2497,7 +2589,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.576
   },
   {
     "mmsi": 255660986,
@@ -2520,7 +2613,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 1,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.493
   },
   {
     "mmsi": 256138286,
@@ -2545,7 +2639,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.966
   },
   {
     "mmsi": 256362827,
@@ -2570,7 +2665,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.91
   },
   {
     "mmsi": 258157843,
@@ -2597,7 +2693,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.732
   },
   {
     "mmsi": 258846593,
@@ -2623,7 +2720,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.406
   },
   {
     "mmsi": 258954341,
@@ -2650,7 +2748,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.884
   },
   {
     "mmsi": 259203883,
@@ -2677,7 +2776,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 10,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.857
   },
   {
     "mmsi": 260273820,
@@ -2702,7 +2802,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.923
   },
   {
     "mmsi": 260362728,
@@ -2725,7 +2826,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.13
   },
   {
     "mmsi": 260490181,
@@ -2750,7 +2852,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.414
   },
   {
     "mmsi": 260690058,
@@ -2776,7 +2879,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.952
   },
   {
     "mmsi": 260756426,
@@ -2799,7 +2903,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.954
   },
   {
     "mmsi": 260984664,
@@ -2826,7 +2931,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.64
   },
   {
     "mmsi": 263371036,
@@ -2851,7 +2957,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.777
   },
   {
     "mmsi": 264651594,
@@ -2878,7 +2985,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.006
   },
   {
     "mmsi": 266304575,
@@ -2904,7 +3012,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.053
   },
   {
     "mmsi": 266578761,
@@ -2927,7 +3036,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.214
   },
   {
     "mmsi": 267514528,
@@ -2954,7 +3064,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.477
   },
   {
     "mmsi": 269833961,
@@ -2979,7 +3090,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.755
   },
   {
     "mmsi": 270127453,
@@ -3006,7 +3118,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 9,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.925
   },
   {
     "mmsi": 270308779,
@@ -3033,7 +3146,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.934
   },
   {
     "mmsi": 270851441,
@@ -3060,7 +3174,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.811
   },
   {
     "mmsi": 271063396,
@@ -3085,7 +3200,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.802
   },
   {
     "mmsi": 272130864,
@@ -3108,7 +3224,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 2.392
   },
   {
     "mmsi": 272132718,
@@ -3133,7 +3250,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.576
   },
   {
     "mmsi": 272481430,
@@ -3156,7 +3274,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.387
   },
   {
     "mmsi": 272653360,
@@ -3179,7 +3298,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.642
   },
   {
     "mmsi": 272658165,
@@ -3206,7 +3326,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.639
   },
   {
     "mmsi": 272713588,
@@ -3229,7 +3350,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.958
   },
   {
     "mmsi": 273148379,
@@ -3255,7 +3377,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.214
   },
   {
     "mmsi": 273564660,
@@ -3278,7 +3401,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.97
   },
   {
     "mmsi": 273664882,
@@ -3305,7 +3429,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.049
   },
   {
     "mmsi": 274434905,
@@ -3330,7 +3455,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.383
   },
   {
     "mmsi": 274778707,
@@ -3355,7 +3481,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.626
   },
   {
     "mmsi": 274897537,
@@ -3380,7 +3507,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.675
   },
   {
     "mmsi": 275200104,
@@ -3405,7 +3533,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.817
   },
   {
     "mmsi": 275369472,
@@ -3430,7 +3559,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.338
   },
   {
     "mmsi": 275509216,
@@ -3456,7 +3586,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.962
   },
   {
     "mmsi": 275630215,
@@ -3481,7 +3612,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 10,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.647
   },
   {
     "mmsi": 277439544,
@@ -3508,7 +3640,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.052
   },
   {
     "mmsi": 278144112,
@@ -3533,7 +3666,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.607
   },
   {
     "mmsi": 279762531,
@@ -3559,7 +3693,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.782
   },
   {
     "mmsi": 279944509,
@@ -3586,7 +3721,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 10,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.432
   },
   {
     "mmsi": 280901691,
@@ -3613,7 +3749,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.703
   },
   {
     "mmsi": 281753993,
@@ -3639,7 +3776,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.806
   },
   {
     "mmsi": 282716427,
@@ -3666,7 +3804,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.113
   },
   {
     "mmsi": 283205861,
@@ -3693,7 +3832,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.163
   },
   {
     "mmsi": 283486500,
@@ -3720,7 +3860,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.872
   },
   {
     "mmsi": 284896056,
@@ -3746,7 +3887,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.669
   },
   {
     "mmsi": 285312502,
@@ -3772,7 +3914,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 9,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.862
   },
   {
     "mmsi": 285869970,
@@ -3797,7 +3940,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.798
   },
   {
     "mmsi": 286026287,
@@ -3820,7 +3964,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.878
   },
   {
     "mmsi": 286089776,
@@ -3843,7 +3988,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.601
   },
   {
     "mmsi": 286169281,
@@ -3866,7 +4012,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.614
   },
   {
     "mmsi": 287106487,
@@ -3891,7 +4038,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.734
   },
   {
     "mmsi": 287767589,
@@ -3918,7 +4066,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.996
   },
   {
     "mmsi": 287792665,
@@ -3941,7 +4090,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.923
   },
   {
     "mmsi": 288065994,
@@ -3964,7 +4114,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.462
   },
   {
     "mmsi": 288338344,
@@ -3987,7 +4138,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.955
   },
   {
     "mmsi": 288344510,
@@ -4014,7 +4166,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 10,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.316
   },
   {
     "mmsi": 288730213,
@@ -4039,7 +4192,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.367
   },
   {
     "mmsi": 288924361,
@@ -4064,7 +4218,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.55
   },
   {
     "mmsi": 289401636,
@@ -4087,7 +4242,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 10,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.609
   },
   {
     "mmsi": 289775372,
@@ -4112,7 +4268,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.231
   },
   {
     "mmsi": 289890030,
@@ -4139,7 +4296,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.909
   },
   {
     "mmsi": 290000334,
@@ -4164,7 +4322,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.885
   },
   {
     "mmsi": 290782162,
@@ -4187,7 +4346,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.892
   },
   {
     "mmsi": 291644254,
@@ -4213,7 +4373,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.106
   },
   {
     "mmsi": 292189198,
@@ -4238,7 +4399,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 8,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.874
   },
   {
     "mmsi": 293447967,
@@ -4263,7 +4425,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.64
   },
   {
     "mmsi": 294304036,
@@ -4290,7 +4453,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.267
   },
   {
     "mmsi": 295701710,
@@ -4317,7 +4481,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.214
   },
   {
     "mmsi": 295965871,
@@ -4340,7 +4505,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.047
   },
   {
     "mmsi": 296114362,
@@ -4366,7 +4532,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.476
   },
   {
     "mmsi": 297489083,
@@ -4391,7 +4558,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.831
   },
   {
     "mmsi": 298360481,
@@ -4418,7 +4586,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.454
   },
   {
     "mmsi": 299479186,
@@ -4445,7 +4614,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.862
   },
   {
     "mmsi": 299685327,
@@ -4468,7 +4638,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.209
   },
   {
     "mmsi": 300905246,
@@ -4495,7 +4666,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.823
   },
   {
     "mmsi": 301027718,
@@ -4520,7 +4692,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.403
   },
   {
     "mmsi": 302489810,
@@ -4545,7 +4718,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.491
   },
   {
     "mmsi": 303568824,
@@ -4568,7 +4742,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.413
   },
   {
     "mmsi": 303641269,
@@ -4591,7 +4766,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 1,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 2.335
   },
   {
     "mmsi": 303830441,
@@ -4618,7 +4794,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.625
   },
   {
     "mmsi": 305441760,
@@ -4645,7 +4822,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.413
   },
   {
     "mmsi": 305790946,
@@ -4672,7 +4850,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.344
   },
   {
     "mmsi": 305792048,
@@ -4695,7 +4874,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.979
   },
   {
     "mmsi": 306585349,
@@ -4718,7 +4898,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.026
   },
   {
     "mmsi": 306994240,
@@ -4743,7 +4924,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.547
   },
   {
     "mmsi": 307516995,
@@ -4770,7 +4952,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.92
   },
   {
     "mmsi": 307986418,
@@ -4796,7 +4979,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.75
   },
   {
     "mmsi": 308695892,
@@ -4823,7 +5007,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.572
   },
   {
     "mmsi": 309163379,
@@ -4849,7 +5034,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.673
   },
   {
     "mmsi": 310055463,
@@ -4874,7 +5060,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.018
   },
   {
     "mmsi": 310273206,
@@ -4901,7 +5088,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.629
   },
   {
     "mmsi": 311470002,
@@ -4926,7 +5114,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.875
   },
   {
     "mmsi": 312462705,
@@ -4951,7 +5140,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.887
   },
   {
     "mmsi": 312878650,
@@ -4976,7 +5166,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.618
   },
   {
     "mmsi": 313328800,
@@ -4999,7 +5190,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.853
   },
   {
     "mmsi": 313389958,
@@ -5025,7 +5217,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.171
   },
   {
     "mmsi": 314355800,
@@ -5051,7 +5244,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 1,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.444
   },
   {
     "mmsi": 314390060,
@@ -5076,7 +5270,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.661
   },
   {
     "mmsi": 315074468,
@@ -5101,7 +5296,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 2.146
   },
   {
     "mmsi": 315113308,
@@ -5126,7 +5322,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.639
   },
   {
     "mmsi": 315605444,
@@ -5153,7 +5350,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.086
   },
   {
     "mmsi": 315782943,
@@ -5180,7 +5378,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.194
   },
   {
     "mmsi": 316234277,
@@ -5205,7 +5404,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.896
   },
   {
     "mmsi": 316474826,
@@ -5231,7 +5431,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.855
   },
   {
     "mmsi": 318125935,
@@ -5256,7 +5457,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 10,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.662
   },
   {
     "mmsi": 318975900,
@@ -5281,7 +5483,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.893
   },
   {
     "mmsi": 319469731,
@@ -5307,7 +5510,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.699
   },
   {
     "mmsi": 320624243,
@@ -5332,7 +5536,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.267
   },
   {
     "mmsi": 320892082,
@@ -5357,7 +5562,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.825
   },
   {
     "mmsi": 321571144,
@@ -5380,7 +5586,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.826
   },
   {
     "mmsi": 321784058,
@@ -5407,7 +5614,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.243
   },
   {
     "mmsi": 324742591,
@@ -5433,7 +5641,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.889
   },
   {
     "mmsi": 324958822,
@@ -5460,7 +5669,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.437
   },
   {
     "mmsi": 327690307,
@@ -5487,7 +5697,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.696
   },
   {
     "mmsi": 328293597,
@@ -5514,7 +5725,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.874
   },
   {
     "mmsi": 329004558,
@@ -5539,7 +5751,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 2,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.791
   },
   {
     "mmsi": 330948908,
@@ -5562,7 +5775,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.828
   },
   {
     "mmsi": 332649240,
@@ -5587,7 +5801,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 2.359
   },
   {
     "mmsi": 332786654,
@@ -5613,7 +5828,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.975
   },
   {
     "mmsi": 333279592,
@@ -5636,7 +5852,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 12,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.832
   },
   {
     "mmsi": 333886054,
@@ -5659,7 +5876,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.507
   },
   {
     "mmsi": 334709857,
@@ -5686,7 +5904,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.996
   },
   {
     "mmsi": 335267736,
@@ -5712,7 +5931,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.38
   },
   {
     "mmsi": 335821955,
@@ -5735,7 +5955,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.555
   },
   {
     "mmsi": 336052886,
@@ -5758,7 +5979,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 16,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.468
   },
   {
     "mmsi": 336627928,
@@ -5783,7 +6005,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.46
   },
   {
     "mmsi": 337866372,
@@ -5808,7 +6031,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.951
   },
   {
     "mmsi": 338445994,
@@ -5833,7 +6057,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 2,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.433
   },
   {
     "mmsi": 339096327,
@@ -5860,7 +6085,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.734
   },
   {
     "mmsi": 339126012,
@@ -5883,7 +6109,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.899
   },
   {
     "mmsi": 339171260,
@@ -5910,7 +6137,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.67
   },
   {
     "mmsi": 340668048,
@@ -5935,7 +6163,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.254
   },
   {
     "mmsi": 340714037,
@@ -5961,7 +6190,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.096
   },
   {
     "mmsi": 341249881,
@@ -5984,7 +6214,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.759
   },
   {
     "mmsi": 342385591,
@@ -6007,7 +6238,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.074
   },
   {
     "mmsi": 342429088,
@@ -6034,7 +6266,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.027
   },
   {
     "mmsi": 342815822,
@@ -6060,7 +6293,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.915
   },
   {
     "mmsi": 343126146,
@@ -6083,7 +6317,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 2.311
   },
   {
     "mmsi": 344513763,
@@ -6108,7 +6343,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.598
   },
   {
     "mmsi": 345832541,
@@ -6135,7 +6371,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.5
   },
   {
     "mmsi": 345917757,
@@ -6162,7 +6399,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.975
   },
   {
     "mmsi": 346077672,
@@ -6185,7 +6423,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.72
   },
   {
     "mmsi": 347221944,
@@ -6210,7 +6449,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 1,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 3.033
   },
   {
     "mmsi": 347759038,
@@ -6236,7 +6476,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.297
   },
   {
     "mmsi": 348500992,
@@ -6263,7 +6504,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.506
   },
   {
     "mmsi": 350038017,
@@ -6288,7 +6530,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.329
   },
   {
     "mmsi": 350251451,
@@ -6314,7 +6557,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.765
   },
   {
     "mmsi": 350521742,
@@ -6339,7 +6583,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.68
   },
   {
     "mmsi": 350657692,
@@ -6364,7 +6609,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 9,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.943
   },
   {
     "mmsi": 352571434,
@@ -6387,7 +6633,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.934
   },
   {
     "mmsi": 352963430,
@@ -6410,7 +6657,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.856
   },
   {
     "mmsi": 353691130,
@@ -6433,7 +6681,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.792
   },
   {
     "mmsi": 353821583,
@@ -6459,7 +6708,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.557
   },
   {
     "mmsi": 354615733,
@@ -6485,7 +6735,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.794
   },
   {
     "mmsi": 354873118,
@@ -6508,7 +6759,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.633
   },
   {
     "mmsi": 355835421,
@@ -6534,7 +6786,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 10,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.824
   },
   {
     "mmsi": 355968100,
@@ -6557,7 +6810,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.987
   },
   {
     "mmsi": 356152670,
@@ -6582,7 +6836,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.935
   },
   {
     "mmsi": 356273956,
@@ -6608,7 +6863,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.589
   },
   {
     "mmsi": 357067982,
@@ -6631,7 +6887,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.193
   },
   {
     "mmsi": 358348599,
@@ -6656,7 +6913,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.127
   },
   {
     "mmsi": 359390541,
@@ -6683,7 +6941,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.882
   },
   {
     "mmsi": 359830573,
@@ -6710,7 +6969,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 10,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.522
   },
   {
     "mmsi": 360247230,
@@ -6736,7 +6996,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.17
   },
   {
     "mmsi": 360342720,
@@ -6759,7 +7020,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.489
   },
   {
     "mmsi": 360555312,
@@ -6785,7 +7047,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.329
   },
   {
     "mmsi": 360833773,
@@ -6811,7 +7074,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.165
   },
   {
     "mmsi": 361510820,
@@ -6837,7 +7101,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.536
   },
   {
     "mmsi": 361903938,
@@ -6860,7 +7125,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.202
   },
   {
     "mmsi": 362601507,
@@ -6885,7 +7151,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.56
   },
   {
     "mmsi": 364856950,
@@ -6911,7 +7178,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 1,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 3.448
   },
   {
     "mmsi": 367500008,
@@ -6938,7 +7206,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.571
   },
   {
     "mmsi": 368365433,
@@ -6965,7 +7234,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.713
   },
   {
     "mmsi": 369075346,
@@ -6990,7 +7260,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.921
   },
   {
     "mmsi": 369325711,
@@ -7013,7 +7284,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.976
   },
   {
     "mmsi": 370219145,
@@ -7039,7 +7311,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.485
   },
   {
     "mmsi": 371121059,
@@ -7066,7 +7339,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 1,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 3.786
   },
   {
     "mmsi": 372051562,
@@ -7089,7 +7363,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.277
   },
   {
     "mmsi": 372177283,
@@ -7116,7 +7391,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.243
   },
   {
     "mmsi": 372271550,
@@ -7139,7 +7415,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 1,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 2.468
   },
   {
     "mmsi": 372353705,
@@ -7162,7 +7439,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.809
   },
   {
     "mmsi": 372700428,
@@ -7187,7 +7465,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.017
   },
   {
     "mmsi": 373306649,
@@ -7212,7 +7491,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.749
   },
   {
     "mmsi": 374237721,
@@ -7238,7 +7518,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.733
   },
   {
     "mmsi": 374389765,
@@ -7263,7 +7544,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.158
   },
   {
     "mmsi": 375047621,
@@ -7289,7 +7571,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.53
   },
   {
     "mmsi": 375096037,
@@ -7314,7 +7597,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.153
   },
   {
     "mmsi": 375252389,
@@ -7337,7 +7621,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.925
   },
   {
     "mmsi": 375856282,
@@ -7362,7 +7647,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 1,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.981
   },
   {
     "mmsi": 377068202,
@@ -7388,7 +7674,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.622
   },
   {
     "mmsi": 377712245,
@@ -7414,7 +7701,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.896
   },
   {
     "mmsi": 377899981,
@@ -7441,7 +7729,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.625
   },
   {
     "mmsi": 377992909,
@@ -7468,7 +7757,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.843
   },
   {
     "mmsi": 378249098,
@@ -7493,7 +7783,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 1,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 2.476
   },
   {
     "mmsi": 378367378,
@@ -7518,7 +7809,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.562
   },
   {
     "mmsi": 378984233,
@@ -7545,7 +7837,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.012
   },
   {
     "mmsi": 379393743,
@@ -7570,7 +7863,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.008
   },
   {
     "mmsi": 379597254,
@@ -7595,7 +7889,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.224
   },
   {
     "mmsi": 380494325,
@@ -7618,7 +7913,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.708
   },
   {
     "mmsi": 381712071,
@@ -7645,7 +7941,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.491
   },
   {
     "mmsi": 381954352,
@@ -7671,7 +7968,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.404
   },
   {
     "mmsi": 382322288,
@@ -7696,7 +7994,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.111
   },
   {
     "mmsi": 382714823,
@@ -7722,7 +8021,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.052
   },
   {
     "mmsi": 382967807,
@@ -7749,7 +8049,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.888
   },
   {
     "mmsi": 383307372,
@@ -7775,7 +8076,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 1,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 2.861
   },
   {
     "mmsi": 383308981,
@@ -7801,7 +8103,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.168
   },
   {
     "mmsi": 384450029,
@@ -7824,7 +8127,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.938
   },
   {
     "mmsi": 384550733,
@@ -7851,7 +8155,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.556
   },
   {
     "mmsi": 385217219,
@@ -7876,7 +8181,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.17
   },
   {
     "mmsi": 386428572,
@@ -7902,7 +8208,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.016
   },
   {
     "mmsi": 388953506,
@@ -7927,7 +8234,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.714
   },
   {
     "mmsi": 389614255,
@@ -7953,7 +8261,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.663
   },
   {
     "mmsi": 389921162,
@@ -7979,7 +8288,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.826
   },
   {
     "mmsi": 390169657,
@@ -8002,7 +8312,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.759
   },
   {
     "mmsi": 390182507,
@@ -8027,7 +8338,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.25
   },
   {
     "mmsi": 391151453,
@@ -8053,7 +8365,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.996
   },
   {
     "mmsi": 391158344,
@@ -8078,7 +8391,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.793
   },
   {
     "mmsi": 391430690,
@@ -8103,7 +8417,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.897
   },
   {
     "mmsi": 391786359,
@@ -8128,7 +8443,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.132
   },
   {
     "mmsi": 392617917,
@@ -8151,7 +8467,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.936
   },
   {
     "mmsi": 393509366,
@@ -8174,7 +8491,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.351
   },
   {
     "mmsi": 393784956,
@@ -8197,7 +8515,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.489
   },
   {
     "mmsi": 394645869,
@@ -8224,7 +8543,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.647
   },
   {
     "mmsi": 394819025,
@@ -8250,7 +8570,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.849
   },
   {
     "mmsi": 396838191,
@@ -8277,7 +8598,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.023
   },
   {
     "mmsi": 397348659,
@@ -8303,7 +8625,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.043
   },
   {
     "mmsi": 398193465,
@@ -8326,7 +8649,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 1,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 2.454
   },
   {
     "mmsi": 399163627,
@@ -8349,7 +8673,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.285
   },
   {
     "mmsi": 399373193,
@@ -8374,7 +8699,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.856
   },
   {
     "mmsi": 401032142,
@@ -8397,7 +8723,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.829
   },
   {
     "mmsi": 401528305,
@@ -8422,7 +8749,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.692
   },
   {
     "mmsi": 401816566,
@@ -8445,7 +8773,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 11,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.962
   },
   {
     "mmsi": 403275944,
@@ -8468,7 +8797,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.983
   },
   {
     "mmsi": 403401992,
@@ -8493,7 +8823,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.995
   },
   {
     "mmsi": 403492770,
@@ -8520,7 +8851,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 2.213
   },
   {
     "mmsi": 403551997,
@@ -8543,7 +8875,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.505
   },
   {
     "mmsi": 404128445,
@@ -8570,7 +8903,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.805
   },
   {
     "mmsi": 405176063,
@@ -8597,7 +8931,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 2.375
   },
   {
     "mmsi": 405294999,
@@ -8620,7 +8955,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.661
   },
   {
     "mmsi": 405517314,
@@ -8643,7 +8979,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.92
   },
   {
     "mmsi": 406449637,
@@ -8669,7 +9006,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.828
   },
   {
     "mmsi": 407783617,
@@ -8692,7 +9030,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.006
   },
   {
     "mmsi": 408697312,
@@ -8718,7 +9057,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.813
   },
   {
     "mmsi": 408835992,
@@ -8743,7 +9083,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.541
   },
   {
     "mmsi": 409089660,
@@ -8768,7 +9109,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.839
   },
   {
     "mmsi": 409203436,
@@ -8794,7 +9136,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.811
   },
   {
     "mmsi": 409720576,
@@ -8817,7 +9160,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.26
   },
   {
     "mmsi": 410019201,
@@ -8844,7 +9188,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.946
   },
   {
     "mmsi": 410444994,
@@ -8867,7 +9212,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.344
   },
   {
     "mmsi": 410992457,
@@ -8892,7 +9238,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.794
   },
   {
     "mmsi": 412200014,
@@ -8919,7 +9266,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.695
   },
   {
     "mmsi": 412547846,
@@ -8946,7 +9294,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 9,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.775
   },
   {
     "mmsi": 412845068,
@@ -8971,7 +9320,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 9,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.422
   },
   {
     "mmsi": 413062848,
@@ -8996,7 +9346,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.183
   },
   {
     "mmsi": 414040537,
@@ -9023,7 +9374,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.146
   },
   {
     "mmsi": 415742193,
@@ -9049,7 +9401,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.795
   },
   {
     "mmsi": 416064970,
@@ -9075,7 +9428,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.751
   },
   {
     "mmsi": 417153380,
@@ -9101,7 +9455,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.684
   },
   {
     "mmsi": 417287774,
@@ -9124,7 +9479,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.099
   },
   {
     "mmsi": 417393024,
@@ -9147,7 +9503,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.066
   },
   {
     "mmsi": 418169543,
@@ -9173,7 +9530,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.562
   },
   {
     "mmsi": 418216232,
@@ -9200,7 +9558,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 9,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.311
   },
   {
     "mmsi": 418271823,
@@ -9226,7 +9585,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.739
   },
   {
     "mmsi": 418369900,
@@ -9249,7 +9609,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.859
   },
   {
     "mmsi": 418950990,
@@ -9274,7 +9635,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.957
   },
   {
     "mmsi": 419681851,
@@ -9301,7 +9663,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.763
   },
   {
     "mmsi": 420101729,
@@ -9328,7 +9691,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.809
   },
   {
     "mmsi": 420176132,
@@ -9354,7 +9718,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.621
   },
   {
     "mmsi": 420862582,
@@ -9380,7 +9745,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.966
   },
   {
     "mmsi": 421626132,
@@ -9406,7 +9772,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.003
   },
   {
     "mmsi": 421800471,
@@ -9429,7 +9796,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.722
   },
   {
     "mmsi": 422236152,
@@ -9454,7 +9822,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.802
   },
   {
     "mmsi": 422364175,
@@ -9477,7 +9846,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.459
   },
   {
     "mmsi": 422816465,
@@ -9503,7 +9873,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.906
   },
   {
     "mmsi": 424210268,
@@ -9529,7 +9900,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.04
   },
   {
     "mmsi": 424592926,
@@ -9555,7 +9927,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.843
   },
   {
     "mmsi": 425319931,
@@ -9578,7 +9951,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.639
   },
   {
     "mmsi": 425344391,
@@ -9604,7 +9978,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.555
   },
   {
     "mmsi": 425682454,
@@ -9631,7 +10006,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.391
   },
   {
     "mmsi": 426878147,
@@ -9657,7 +10033,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.17
   },
   {
     "mmsi": 429191774,
@@ -9682,7 +10059,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.32
   },
   {
     "mmsi": 429463049,
@@ -9705,7 +10083,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.756
   },
   {
     "mmsi": 429489274,
@@ -9731,7 +10110,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.526
   },
   {
     "mmsi": 430213890,
@@ -9754,7 +10134,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.456
   },
   {
     "mmsi": 430248110,
@@ -9779,7 +10160,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.922
   },
   {
     "mmsi": 430323255,
@@ -9802,7 +10184,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.803
   },
   {
     "mmsi": 431125158,
@@ -9827,7 +10210,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.456
   },
   {
     "mmsi": 431297958,
@@ -9850,7 +10234,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 9,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.802
   },
   {
     "mmsi": 431340436,
@@ -9877,7 +10262,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.553
   },
   {
     "mmsi": 432596188,
@@ -9904,7 +10290,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.694
   },
   {
     "mmsi": 433158282,
@@ -9930,7 +10317,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 1,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 2.386
   },
   {
     "mmsi": 433665909,
@@ -9957,7 +10345,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.024
   },
   {
     "mmsi": 433980731,
@@ -9984,7 +10373,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.247
   },
   {
     "mmsi": 434377681,
@@ -10010,7 +10400,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 2,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.763
   },
   {
     "mmsi": 436223782,
@@ -10033,7 +10424,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.186
   },
   {
     "mmsi": 436352356,
@@ -10060,7 +10452,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 2,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.873
   },
   {
     "mmsi": 437879281,
@@ -10083,7 +10476,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.613
   },
   {
     "mmsi": 438102804,
@@ -10109,7 +10503,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.014
   },
   {
     "mmsi": 439142651,
@@ -10134,7 +10529,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.531
   },
   {
     "mmsi": 439796108,
@@ -10157,7 +10553,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.801
   },
   {
     "mmsi": 440461093,
@@ -10183,7 +10580,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.51
   },
   {
     "mmsi": 440753173,
@@ -10209,7 +10607,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.99
   },
   {
     "mmsi": 441462536,
@@ -10234,7 +10633,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 1,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.853
   },
   {
     "mmsi": 441799840,
@@ -10259,7 +10659,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.953
   },
   {
     "mmsi": 442558328,
@@ -10284,7 +10685,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.027
   },
   {
     "mmsi": 442995932,
@@ -10309,7 +10711,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.143
   },
   {
     "mmsi": 443032358,
@@ -10334,7 +10737,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 10,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.591
   },
   {
     "mmsi": 443338863,
@@ -10361,7 +10765,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.24
   },
   {
     "mmsi": 443461886,
@@ -10387,7 +10792,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.09
   },
   {
     "mmsi": 443780416,
@@ -10412,7 +10818,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 8,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.743
   },
   {
     "mmsi": 443799491,
@@ -10437,7 +10844,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.504
   },
   {
     "mmsi": 443828407,
@@ -10464,7 +10872,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.024
   },
   {
     "mmsi": 444470257,
@@ -10487,7 +10896,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.591
   },
   {
     "mmsi": 444890693,
@@ -10510,7 +10920,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.079
   },
   {
     "mmsi": 446212691,
@@ -10535,7 +10946,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.474
   },
   {
     "mmsi": 447149593,
@@ -10562,7 +10974,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.719
   },
   {
     "mmsi": 447432545,
@@ -10587,7 +11000,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.851
   },
   {
     "mmsi": 448742787,
@@ -10612,7 +11026,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.238
   },
   {
     "mmsi": 448911983,
@@ -10639,7 +11054,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.82
   },
   {
     "mmsi": 449459316,
@@ -10666,7 +11082,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.382
   },
   {
     "mmsi": 449977525,
@@ -10691,7 +11108,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.181
   },
   {
     "mmsi": 450391469,
@@ -10716,7 +11134,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.85
   },
   {
     "mmsi": 450769975,
@@ -10741,7 +11160,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.824
   },
   {
     "mmsi": 451146016,
@@ -10766,7 +11186,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.537
   },
   {
     "mmsi": 452240475,
@@ -10791,7 +11212,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.787
   },
   {
     "mmsi": 452496498,
@@ -10818,7 +11240,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.805
   },
   {
     "mmsi": 452754816,
@@ -10843,7 +11266,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.875
   },
   {
     "mmsi": 455207826,
@@ -10866,7 +11290,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.529
   },
   {
     "mmsi": 455663655,
@@ -10891,7 +11316,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.905
   },
   {
     "mmsi": 457122734,
@@ -10917,7 +11343,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.662
   },
   {
     "mmsi": 457668606,
@@ -10943,7 +11370,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 7,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.655
   },
   {
     "mmsi": 458498610,
@@ -10966,7 +11394,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.103
   },
   {
     "mmsi": 459764910,
@@ -10992,7 +11421,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.841
   },
   {
     "mmsi": 462828696,
@@ -11019,7 +11449,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 1,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.57
   },
   {
     "mmsi": 465482524,
@@ -11042,7 +11473,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.801
   },
   {
     "mmsi": 465772627,
@@ -11068,7 +11500,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.846
   },
   {
     "mmsi": 466000944,
@@ -11094,7 +11527,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.767
   },
   {
     "mmsi": 466426533,
@@ -11120,7 +11554,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.0
   },
   {
     "mmsi": 467574402,
@@ -11147,7 +11582,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.211
   },
   {
     "mmsi": 468051507,
@@ -11172,7 +11608,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.433
   },
   {
     "mmsi": 468098550,
@@ -11199,7 +11636,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.617
   },
   {
     "mmsi": 468131793,
@@ -11226,7 +11664,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 1,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 2.593
   },
   {
     "mmsi": 469045896,
@@ -11251,7 +11690,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.804
   },
   {
     "mmsi": 469514250,
@@ -11278,7 +11718,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.931
   },
   {
     "mmsi": 469777847,
@@ -11303,7 +11744,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 1,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 2.242
   },
   {
     "mmsi": 470359883,
@@ -11329,7 +11771,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.953
   },
   {
     "mmsi": 471117456,
@@ -11354,7 +11797,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.301
   },
   {
     "mmsi": 471332874,
@@ -11380,7 +11824,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 8,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.186
   },
   {
     "mmsi": 471709181,
@@ -11407,7 +11852,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 2.418
   },
   {
     "mmsi": 471846120,
@@ -11432,7 +11878,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.368
   },
   {
     "mmsi": 472097386,
@@ -11458,7 +11905,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.006
   },
   {
     "mmsi": 472360093,
@@ -11481,7 +11929,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.348
   },
   {
     "mmsi": 472597180,
@@ -11506,7 +11955,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.696
   },
   {
     "mmsi": 473916468,
@@ -11529,7 +11979,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.622
   },
   {
     "mmsi": 474003611,
@@ -11554,7 +12005,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.711
   },
   {
     "mmsi": 474472853,
@@ -11577,7 +12029,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.259
   },
   {
     "mmsi": 474561158,
@@ -11602,7 +12055,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.578
   },
   {
     "mmsi": 475112776,
@@ -11629,7 +12083,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.056
   },
   {
     "mmsi": 478707016,
@@ -11652,7 +12107,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 9,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.555
   },
   {
     "mmsi": 478927568,
@@ -11679,7 +12135,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.926
   },
   {
     "mmsi": 479231964,
@@ -11704,7 +12161,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.273
   },
   {
     "mmsi": 479502357,
@@ -11731,7 +12189,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 2.102
   },
   {
     "mmsi": 479597234,
@@ -11757,7 +12216,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 2.448
   },
   {
     "mmsi": 481152642,
@@ -11784,7 +12244,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.782
   },
   {
     "mmsi": 481997523,
@@ -11810,7 +12271,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.232
   },
   {
     "mmsi": 482078287,
@@ -11837,7 +12299,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.805
   },
   {
     "mmsi": 482218335,
@@ -11860,7 +12323,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.977
   },
   {
     "mmsi": 482501437,
@@ -11885,7 +12349,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.569
   },
   {
     "mmsi": 482698090,
@@ -11911,7 +12376,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 8,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.69
   },
   {
     "mmsi": 484144611,
@@ -11938,7 +12404,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.423
   },
   {
     "mmsi": 484170624,
@@ -11965,7 +12432,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.005
   },
   {
     "mmsi": 484698904,
@@ -11988,7 +12456,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.793
   },
   {
     "mmsi": 485481754,
@@ -12015,7 +12484,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.404
   },
   {
     "mmsi": 486243458,
@@ -12038,7 +12508,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.926
   },
   {
     "mmsi": 486924016,
@@ -12064,7 +12535,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.302
   },
   {
     "mmsi": 487307571,
@@ -12087,7 +12559,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.603
   },
   {
     "mmsi": 488479599,
@@ -12110,7 +12583,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.363
   },
   {
     "mmsi": 488577018,
@@ -12133,7 +12607,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.951
   },
   {
     "mmsi": 489144334,
@@ -12158,7 +12633,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.707
   },
   {
     "mmsi": 489917841,
@@ -12184,7 +12660,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 9,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.885
   },
   {
     "mmsi": 491037315,
@@ -12211,7 +12688,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.616
   },
   {
     "mmsi": 491185579,
@@ -12234,7 +12712,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.321
   },
   {
     "mmsi": 492235960,
@@ -12259,7 +12738,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.791
   },
   {
     "mmsi": 492381951,
@@ -12285,7 +12765,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.069
   },
   {
     "mmsi": 492428548,
@@ -12308,7 +12789,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 2.675
   },
   {
     "mmsi": 493976714,
@@ -12334,7 +12816,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.927
   },
   {
     "mmsi": 494975711,
@@ -12361,7 +12844,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.209
   },
   {
     "mmsi": 497077187,
@@ -12388,7 +12872,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.764
   },
   {
     "mmsi": 497246798,
@@ -12415,7 +12900,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.736
   },
   {
     "mmsi": 498001386,
@@ -12441,7 +12927,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.847
   },
   {
     "mmsi": 498567471,
@@ -12467,7 +12954,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.161
   },
   {
     "mmsi": 498768789,
@@ -12493,7 +12981,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.659
   },
   {
     "mmsi": 499604556,
@@ -12518,7 +13007,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.049
   },
   {
     "mmsi": 499938651,
@@ -12545,7 +13035,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.517
   },
   {
     "mmsi": 500125271,
@@ -12571,7 +13062,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.986
   },
   {
     "mmsi": 500902964,
@@ -12594,7 +13086,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 2.057
   },
   {
     "mmsi": 503603324,
@@ -12619,7 +13112,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.629
   },
   {
     "mmsi": 504126903,
@@ -12642,7 +13136,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.047
   },
   {
     "mmsi": 504143081,
@@ -12668,7 +13163,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.349
   },
   {
     "mmsi": 504831183,
@@ -12691,7 +13187,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.014
   },
   {
     "mmsi": 505223390,
@@ -12718,7 +13215,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.838
   },
   {
     "mmsi": 506756098,
@@ -12745,7 +13243,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.729
   },
   {
     "mmsi": 507138220,
@@ -12772,7 +13271,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 3.161
   },
   {
     "mmsi": 507796518,
@@ -12798,7 +13298,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.728
   },
   {
     "mmsi": 507890656,
@@ -12824,7 +13325,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.655
   },
   {
     "mmsi": 508742093,
@@ -12850,7 +13352,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.36
   },
   {
     "mmsi": 509022925,
@@ -12873,7 +13376,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.758
   },
   {
     "mmsi": 510468741,
@@ -12899,7 +13403,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.703
   },
   {
     "mmsi": 510828755,
@@ -12925,7 +13430,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 1,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.432
   },
   {
     "mmsi": 510872204,
@@ -12950,7 +13456,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 1,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 2.518
   },
   {
     "mmsi": 510967857,
@@ -12976,7 +13483,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.989
   },
   {
     "mmsi": 511165374,
@@ -12999,7 +13507,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 2.259
   },
   {
     "mmsi": 511350085,
@@ -13025,7 +13534,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.817
   },
   {
     "mmsi": 512009169,
@@ -13052,7 +13562,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.914
   },
   {
     "mmsi": 512084278,
@@ -13079,7 +13590,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.348
   },
   {
     "mmsi": 512894233,
@@ -13106,7 +13618,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 1,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 2.486
   },
   {
     "mmsi": 513453764,
@@ -13133,7 +13646,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.73
   },
   {
     "mmsi": 513758672,
@@ -13159,7 +13673,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.918
   },
   {
     "mmsi": 515184149,
@@ -13184,7 +13699,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.594
   },
   {
     "mmsi": 515300056,
@@ -13211,7 +13727,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.192
   },
   {
     "mmsi": 515571477,
@@ -13234,7 +13751,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.436
   },
   {
     "mmsi": 516479771,
@@ -13261,7 +13779,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.871
   },
   {
     "mmsi": 517049090,
@@ -13287,7 +13806,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.433
   },
   {
     "mmsi": 517405518,
@@ -13314,7 +13834,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 10,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.865
   },
   {
     "mmsi": 518636217,
@@ -13337,7 +13858,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 2,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.124
   },
   {
     "mmsi": 518745437,
@@ -13364,7 +13886,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 2,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.73
   },
   {
     "mmsi": 519121293,
@@ -13389,7 +13912,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.517
   },
   {
     "mmsi": 520054675,
@@ -13414,7 +13938,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.077
   },
   {
     "mmsi": 520255194,
@@ -13437,7 +13962,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.758
   },
   {
     "mmsi": 520578344,
@@ -13463,7 +13989,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.284
   },
   {
     "mmsi": 520580257,
@@ -13489,7 +14016,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.914
   },
   {
     "mmsi": 522395156,
@@ -13514,7 +14042,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.568
   },
   {
     "mmsi": 522604490,
@@ -13537,7 +14066,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 7,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.796
   },
   {
     "mmsi": 524295608,
@@ -13562,7 +14092,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.805
   },
   {
     "mmsi": 525093906,
@@ -13585,7 +14116,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 7,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.007
   },
   {
     "mmsi": 525197879,
@@ -13612,7 +14144,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.511
   },
   {
     "mmsi": 525724682,
@@ -13637,7 +14170,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.47
   },
   {
     "mmsi": 525862714,
@@ -13660,7 +14194,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 2,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 2.424
   },
   {
     "mmsi": 527862060,
@@ -13687,7 +14222,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.049
   },
   {
     "mmsi": 528269609,
@@ -13712,7 +14248,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.688
   },
   {
     "mmsi": 529075482,
@@ -13738,7 +14275,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.991
   },
   {
     "mmsi": 529630684,
@@ -13763,7 +14301,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.863
   },
   {
     "mmsi": 530158148,
@@ -13788,7 +14327,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.059
   },
   {
     "mmsi": 531169485,
@@ -13814,7 +14354,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.139
   },
   {
     "mmsi": 531282226,
@@ -13841,7 +14382,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.449
   },
   {
     "mmsi": 535166257,
@@ -13867,7 +14409,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.169
   },
   {
     "mmsi": 535376810,
@@ -13894,7 +14437,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.887
   },
   {
     "mmsi": 535652730,
@@ -13919,7 +14463,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.143
   },
   {
     "mmsi": 536588185,
@@ -13944,7 +14489,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 10,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.846
   },
   {
     "mmsi": 537006791,
@@ -13969,7 +14515,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.889
   },
   {
     "mmsi": 537057172,
@@ -13992,7 +14539,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.316
   },
   {
     "mmsi": 537549824,
@@ -14019,7 +14567,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.088
   },
   {
     "mmsi": 538393289,
@@ -14045,7 +14594,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.824
   },
   {
     "mmsi": 538642695,
@@ -14072,7 +14622,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.872
   },
   {
     "mmsi": 539476072,
@@ -14097,7 +14648,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.945
   },
   {
     "mmsi": 539864913,
@@ -14120,7 +14672,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.932
   },
   {
     "mmsi": 541119258,
@@ -14146,7 +14699,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.874
   },
   {
     "mmsi": 543045682,
@@ -14171,7 +14725,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 2.663
   },
   {
     "mmsi": 543131057,
@@ -14196,7 +14751,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.71
   },
   {
     "mmsi": 543784647,
@@ -14219,7 +14775,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.145
   },
   {
     "mmsi": 544068709,
@@ -14244,7 +14801,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.838
   },
   {
     "mmsi": 544496921,
@@ -14269,7 +14827,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.799
   },
   {
     "mmsi": 544913102,
@@ -14295,7 +14854,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.581
   },
   {
     "mmsi": 545033469,
@@ -14322,7 +14882,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.523
   },
   {
     "mmsi": 545105896,
@@ -14349,7 +14910,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 1,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 4.056
   },
   {
     "mmsi": 545386868,
@@ -14375,7 +14937,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.651
   },
   {
     "mmsi": 548068452,
@@ -14401,7 +14964,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.695
   },
   {
     "mmsi": 548124432,
@@ -14426,7 +14990,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.858
   },
   {
     "mmsi": 548384565,
@@ -14453,7 +15018,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.885
   },
   {
     "mmsi": 548536338,
@@ -14480,7 +15046,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 8,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.849
   },
   {
     "mmsi": 548806116,
@@ -14507,7 +15074,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.406
   },
   {
     "mmsi": 548985726,
@@ -14533,7 +15101,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.866
   },
   {
     "mmsi": 549787961,
@@ -14558,7 +15127,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.794
   },
   {
     "mmsi": 551710952,
@@ -14585,7 +15155,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.124
   },
   {
     "mmsi": 552519459,
@@ -14608,7 +15179,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.982
   },
   {
     "mmsi": 553298294,
@@ -14631,7 +15203,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.923
   },
   {
     "mmsi": 554310783,
@@ -14658,7 +15231,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.516
   },
   {
     "mmsi": 554544656,
@@ -14681,7 +15255,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.657
   },
   {
     "mmsi": 556310104,
@@ -14706,7 +15281,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.929
   },
   {
     "mmsi": 556460612,
@@ -14732,7 +15308,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.641
   },
   {
     "mmsi": 556615041,
@@ -14758,7 +15335,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.332
   },
   {
     "mmsi": 556636357,
@@ -14784,7 +15362,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.703
   },
   {
     "mmsi": 557579724,
@@ -14809,7 +15388,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.548
   },
   {
     "mmsi": 557703737,
@@ -14832,7 +15412,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.778
   },
   {
     "mmsi": 558380004,
@@ -14859,7 +15440,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.815
   },
   {
     "mmsi": 558449339,
@@ -14884,7 +15466,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 10,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.001
   },
   {
     "mmsi": 559795298,
@@ -14907,7 +15490,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.984
   },
   {
     "mmsi": 559968652,
@@ -14933,7 +15517,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.037
   },
   {
     "mmsi": 560033049,
@@ -14958,7 +15543,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.016
   },
   {
     "mmsi": 561690462,
@@ -14984,7 +15570,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.444
   },
   {
     "mmsi": 562875712,
@@ -15011,7 +15598,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 1,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 3.723
   },
   {
     "mmsi": 563249678,
@@ -15034,7 +15622,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 7,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.961
   },
   {
     "mmsi": 563404199,
@@ -15060,7 +15649,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.556
   },
   {
     "mmsi": 563497602,
@@ -15083,7 +15673,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 2.105
   },
   {
     "mmsi": 564065072,
@@ -15110,7 +15701,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 10,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.127
   },
   {
     "mmsi": 565056189,
@@ -15137,7 +15729,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.272
   },
   {
     "mmsi": 565842368,
@@ -15163,7 +15756,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.869
   },
   {
     "mmsi": 566098838,
@@ -15186,7 +15780,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.868
   },
   {
     "mmsi": 566572399,
@@ -15211,7 +15806,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.838
   },
   {
     "mmsi": 566835528,
@@ -15236,7 +15832,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.718
   },
   {
     "mmsi": 567624139,
@@ -15263,7 +15860,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.071
   },
   {
     "mmsi": 567867003,
@@ -15288,7 +15886,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.87
   },
   {
     "mmsi": 568118485,
@@ -15313,7 +15912,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.336
   },
   {
     "mmsi": 568947254,
@@ -15336,7 +15936,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.47
   },
   {
     "mmsi": 570192084,
@@ -15362,7 +15963,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.652
   },
   {
     "mmsi": 570320500,
@@ -15385,7 +15987,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.274
   },
   {
     "mmsi": 570452367,
@@ -15408,7 +16011,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.919
   },
   {
     "mmsi": 570495346,
@@ -15434,7 +16038,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.251
   },
   {
     "mmsi": 570937640,
@@ -15460,7 +16065,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 2.791
   },
   {
     "mmsi": 571342118,
@@ -15487,7 +16093,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.303
   },
   {
     "mmsi": 571770455,
@@ -15513,7 +16120,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.941
   },
   {
     "mmsi": 571927479,
@@ -15539,7 +16147,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.193
   },
   {
     "mmsi": 572005284,
@@ -15565,7 +16174,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.979
   },
   {
     "mmsi": 572199062,
@@ -15588,7 +16198,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.849
   },
   {
     "mmsi": 572400748,
@@ -15614,7 +16225,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.69
   },
   {
     "mmsi": 573145682,
@@ -15637,7 +16249,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 2.403
   },
   {
     "mmsi": 573332179,
@@ -15660,7 +16273,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 2,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.257
   },
   {
     "mmsi": 574475615,
@@ -15687,7 +16301,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.378
   },
   {
     "mmsi": 575896922,
@@ -15714,7 +16329,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.733
   },
   {
     "mmsi": 576154640,
@@ -15737,7 +16353,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.737
   },
   {
     "mmsi": 577242803,
@@ -15763,7 +16380,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.719
   },
   {
     "mmsi": 578585585,
@@ -15789,7 +16407,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.952
   },
   {
     "mmsi": 579409855,
@@ -15815,7 +16434,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.601
   },
   {
     "mmsi": 580046531,
@@ -15838,7 +16458,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.112
   },
   {
     "mmsi": 580125089,
@@ -15865,7 +16486,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 2.32
   },
   {
     "mmsi": 580232268,
@@ -15892,7 +16514,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.706
   },
   {
     "mmsi": 580586117,
@@ -15919,7 +16542,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.591
   },
   {
     "mmsi": 580720286,
@@ -15944,7 +16568,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 3.147
   },
   {
     "mmsi": 581386673,
@@ -15970,7 +16595,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.006
   },
   {
     "mmsi": 583562034,
@@ -15997,7 +16623,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.968
   },
   {
     "mmsi": 583773375,
@@ -16023,7 +16650,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.568
   },
   {
     "mmsi": 583912546,
@@ -16048,7 +16676,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.175
   },
   {
     "mmsi": 584940566,
@@ -16071,7 +16700,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.912
   },
   {
     "mmsi": 585113614,
@@ -16098,7 +16728,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.906
   },
   {
     "mmsi": 585807313,
@@ -16121,7 +16752,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.022
   },
   {
     "mmsi": 586349749,
@@ -16148,7 +16780,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.618
   },
   {
     "mmsi": 587194626,
@@ -16173,7 +16806,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.974
   },
   {
     "mmsi": 587285928,
@@ -16198,7 +16832,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.565
   },
   {
     "mmsi": 588758491,
@@ -16225,7 +16860,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.99
   },
   {
     "mmsi": 588766776,
@@ -16250,7 +16886,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.809
   },
   {
     "mmsi": 591088258,
@@ -16273,7 +16910,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.394
   },
   {
     "mmsi": 591277434,
@@ -16298,7 +16936,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.934
   },
   {
     "mmsi": 591313077,
@@ -16321,7 +16960,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.797
   },
   {
     "mmsi": 591498401,
@@ -16344,7 +16984,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.215
   },
   {
     "mmsi": 592309524,
@@ -16369,7 +17010,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.705
   },
   {
     "mmsi": 592723540,
@@ -16394,7 +17036,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 1,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 2.921
   },
   {
     "mmsi": 593228934,
@@ -16419,7 +17062,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.133
   },
   {
     "mmsi": 593778451,
@@ -16445,7 +17089,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.527
   },
   {
     "mmsi": 595349224,
@@ -16471,7 +17116,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.247
   },
   {
     "mmsi": 597091746,
@@ -16498,7 +17144,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.031
   },
   {
     "mmsi": 597682613,
@@ -16521,7 +17168,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.019
   },
   {
     "mmsi": 598230058,
@@ -16548,7 +17196,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.825
   },
   {
     "mmsi": 598468769,
@@ -16574,7 +17223,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.78
   },
   {
     "mmsi": 598504483,
@@ -16599,7 +17249,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.722
   },
   {
     "mmsi": 599067818,
@@ -16622,7 +17273,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.925
   },
   {
     "mmsi": 599501374,
@@ -16649,7 +17301,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.08
   },
   {
     "mmsi": 599525298,
@@ -16672,7 +17325,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.952
   },
   {
     "mmsi": 600006033,
@@ -16697,7 +17351,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.737
   },
   {
     "mmsi": 600283742,
@@ -16722,7 +17377,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.353
   },
   {
     "mmsi": 601362648,
@@ -16745,7 +17401,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.878
   },
   {
     "mmsi": 602448584,
@@ -16768,7 +17425,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.65
   },
   {
     "mmsi": 603186147,
@@ -16795,7 +17453,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.277
   },
   {
     "mmsi": 604101348,
@@ -16818,7 +17477,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 9,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.301
   },
   {
     "mmsi": 604824558,
@@ -16844,7 +17504,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 7,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.489
   },
   {
     "mmsi": 604969493,
@@ -16871,7 +17532,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 1,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 3.055
   },
   {
     "mmsi": 606592283,
@@ -16894,7 +17556,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.787
   },
   {
     "mmsi": 607056461,
@@ -16917,7 +17580,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.673
   },
   {
     "mmsi": 607110638,
@@ -16943,7 +17607,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.482
   },
   {
     "mmsi": 607651473,
@@ -16970,7 +17635,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 9,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.236
   },
   {
     "mmsi": 607981004,
@@ -16993,7 +17659,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.82
   },
   {
     "mmsi": 608090942,
@@ -17020,7 +17687,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.292
   },
   {
     "mmsi": 608121001,
@@ -17043,7 +17711,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.444
   },
   {
     "mmsi": 608459693,
@@ -17066,7 +17735,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 9,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.938
   },
   {
     "mmsi": 609473975,
@@ -17093,7 +17763,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.939
   },
   {
     "mmsi": 609530496,
@@ -17120,7 +17791,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.595
   },
   {
     "mmsi": 610514358,
@@ -17146,7 +17818,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.795
   },
   {
     "mmsi": 610868842,
@@ -17172,7 +17845,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.019
   },
   {
     "mmsi": 611040535,
@@ -17199,7 +17873,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.047
   },
   {
     "mmsi": 611865374,
@@ -17224,7 +17899,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.74
   },
   {
     "mmsi": 611918295,
@@ -17247,7 +17923,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 9,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.777
   },
   {
     "mmsi": 612140966,
@@ -17272,7 +17949,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 2.665
   },
   {
     "mmsi": 613708156,
@@ -17295,7 +17973,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.086
   },
   {
     "mmsi": 613718689,
@@ -17322,7 +18001,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.045
   },
   {
     "mmsi": 613845594,
@@ -17348,7 +18028,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 2.132
   },
   {
     "mmsi": 613973879,
@@ -17373,7 +18054,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.776
   },
   {
     "mmsi": 614022050,
@@ -17400,7 +18082,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.626
   },
   {
     "mmsi": 614309377,
@@ -17425,7 +18108,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.817
   },
   {
     "mmsi": 614687847,
@@ -17451,7 +18135,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.388
   },
   {
     "mmsi": 614933936,
@@ -17478,7 +18163,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 2.037
   },
   {
     "mmsi": 616945014,
@@ -17501,7 +18187,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.063
   },
   {
     "mmsi": 619240990,
@@ -17527,7 +18214,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.903
   },
   {
     "mmsi": 619375900,
@@ -17554,7 +18242,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 2.103
   },
   {
     "mmsi": 620065675,
@@ -17577,7 +18266,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.934
   },
   {
     "mmsi": 620300412,
@@ -17604,7 +18294,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.375
   },
   {
     "mmsi": 621733378,
@@ -17629,7 +18320,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.155
   },
   {
     "mmsi": 621889321,
@@ -17654,7 +18346,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 1,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.988
   },
   {
     "mmsi": 624645703,
@@ -17681,7 +18374,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.854
   },
   {
     "mmsi": 624716449,
@@ -17706,7 +18400,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.6
   },
   {
     "mmsi": 624983313,
@@ -17731,7 +18426,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.178
   },
   {
     "mmsi": 625178192,
@@ -17754,7 +18450,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.975
   },
   {
     "mmsi": 625441675,
@@ -17777,7 +18474,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 1,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.833
   },
   {
     "mmsi": 625555616,
@@ -17802,7 +18500,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.456
   },
   {
     "mmsi": 627568457,
@@ -17825,7 +18524,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.75
   },
   {
     "mmsi": 628571464,
@@ -17852,7 +18552,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.617
   },
   {
     "mmsi": 629456642,
@@ -17879,7 +18580,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 1,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.42
   },
   {
     "mmsi": 629607462,
@@ -17902,7 +18604,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.89
   },
   {
     "mmsi": 629949963,
@@ -17925,7 +18628,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.794
   },
   {
     "mmsi": 630180360,
@@ -17951,7 +18655,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.159
   },
   {
     "mmsi": 630611193,
@@ -17977,7 +18682,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.341
   },
   {
     "mmsi": 630752895,
@@ -18003,7 +18709,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.465
   },
   {
     "mmsi": 630842944,
@@ -18030,7 +18737,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.196
   },
   {
     "mmsi": 630898988,
@@ -18055,7 +18763,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 2.42
   },
   {
     "mmsi": 631257671,
@@ -18082,7 +18791,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.076
   },
   {
     "mmsi": 632129532,
@@ -18109,7 +18819,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.716
   },
   {
     "mmsi": 632636162,
@@ -18135,7 +18846,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.046
   },
   {
     "mmsi": 632924730,
@@ -18161,7 +18873,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.022
   },
   {
     "mmsi": 633114101,
@@ -18188,7 +18901,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.839
   },
   {
     "mmsi": 634057757,
@@ -18215,7 +18929,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 2.468
   },
   {
     "mmsi": 634142832,
@@ -18238,7 +18953,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.438
   },
   {
     "mmsi": 636086009,
@@ -18265,7 +18981,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.606
   },
   {
     "mmsi": 636613948,
@@ -18288,7 +19005,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.192
   },
   {
     "mmsi": 636673685,
@@ -18313,7 +19031,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.933
   },
   {
     "mmsi": 637173265,
@@ -18338,7 +19057,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 1,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 3.602
   },
   {
     "mmsi": 637825183,
@@ -18363,7 +19083,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.811
   },
   {
     "mmsi": 637883177,
@@ -18390,7 +19111,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.372
   },
   {
     "mmsi": 638790258,
@@ -18415,7 +19137,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 8,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.495
   },
   {
     "mmsi": 639076915,
@@ -18441,7 +19164,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.823
   },
   {
     "mmsi": 641088694,
@@ -18468,7 +19192,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.706
   },
   {
     "mmsi": 641127136,
@@ -18494,7 +19219,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.934
   },
   {
     "mmsi": 641208534,
@@ -18520,7 +19246,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.529
   },
   {
     "mmsi": 641636735,
@@ -18543,7 +19270,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.809
   },
   {
     "mmsi": 641942797,
@@ -18568,7 +19296,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.307
   },
   {
     "mmsi": 642006437,
@@ -18595,7 +19324,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.264
   },
   {
     "mmsi": 642476777,
@@ -18620,7 +19350,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 2.246
   },
   {
     "mmsi": 642530542,
@@ -18643,7 +19374,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.037
   },
   {
     "mmsi": 642979664,
@@ -18668,7 +19400,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.702
   },
   {
     "mmsi": 643668564,
@@ -18695,7 +19428,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.884
   },
   {
     "mmsi": 643906365,
@@ -18720,7 +19454,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.029
   },
   {
     "mmsi": 644494022,
@@ -18743,7 +19478,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.985
   },
   {
     "mmsi": 645040370,
@@ -18770,7 +19506,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.161
   },
   {
     "mmsi": 645475822,
@@ -18795,7 +19532,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.755
   },
   {
     "mmsi": 646035868,
@@ -18821,7 +19559,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 3.523
   },
   {
     "mmsi": 647153817,
@@ -18847,7 +19586,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 1,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 2.063
   },
   {
     "mmsi": 647288961,
@@ -18872,7 +19612,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.612
   },
   {
     "mmsi": 647506411,
@@ -18895,7 +19636,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 1,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 3.309
   },
   {
     "mmsi": 647805776,
@@ -18918,7 +19660,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.461
   },
   {
     "mmsi": 647830647,
@@ -18943,7 +19686,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.105
   },
   {
     "mmsi": 647913365,
@@ -18966,7 +19710,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.746
   },
   {
     "mmsi": 648657172,
@@ -18992,7 +19737,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.447
   },
   {
     "mmsi": 648721599,
@@ -19018,7 +19764,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.632
   },
   {
     "mmsi": 649179064,
@@ -19043,7 +19790,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.395
   },
   {
     "mmsi": 649886379,
@@ -19069,7 +19817,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.794
   },
   {
     "mmsi": 650238672,
@@ -19095,7 +19844,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.743
   },
   {
     "mmsi": 652343612,
@@ -19122,7 +19872,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.971
   },
   {
     "mmsi": 652847414,
@@ -19148,7 +19899,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.81
   },
   {
     "mmsi": 652949635,
@@ -19171,7 +19923,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.923
   },
   {
     "mmsi": 653490597,
@@ -19194,7 +19947,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.19
   },
   {
     "mmsi": 654243705,
@@ -19217,7 +19971,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 10,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.734
   },
   {
     "mmsi": 656481138,
@@ -19243,7 +19998,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 8,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.867
   },
   {
     "mmsi": 656938489,
@@ -19268,7 +20024,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 1,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.86
   },
   {
     "mmsi": 657721811,
@@ -19294,7 +20051,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.88
   },
   {
     "mmsi": 659248773,
@@ -19321,7 +20079,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.955
   },
   {
     "mmsi": 659326175,
@@ -19344,7 +20103,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 8,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.888
   },
   {
     "mmsi": 659731996,
@@ -19371,7 +20131,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.272
   },
   {
     "mmsi": 660008982,
@@ -19397,7 +20158,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 10,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.494
   },
   {
     "mmsi": 660103569,
@@ -19423,7 +20185,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.822
   },
   {
     "mmsi": 660140090,
@@ -19450,7 +20213,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.904
   },
   {
     "mmsi": 660326323,
@@ -19475,7 +20239,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.052
   },
   {
     "mmsi": 660617716,
@@ -19498,7 +20263,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.553
   },
   {
     "mmsi": 661759768,
@@ -19525,7 +20291,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.489
   },
   {
     "mmsi": 662348240,
@@ -19552,7 +20319,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.121
   },
   {
     "mmsi": 664640837,
@@ -19579,7 +20347,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.287
   },
   {
     "mmsi": 665043604,
@@ -19602,7 +20371,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.059
   },
   {
     "mmsi": 665395794,
@@ -19629,7 +20399,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.741
   },
   {
     "mmsi": 666033258,
@@ -19652,7 +20423,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.539
   },
   {
     "mmsi": 666126066,
@@ -19679,7 +20451,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.531
   },
   {
     "mmsi": 667225274,
@@ -19705,7 +20478,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.983
   },
   {
     "mmsi": 667673622,
@@ -19732,7 +20506,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.685
   },
   {
     "mmsi": 667865493,
@@ -19757,7 +20532,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 9,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.771
   },
   {
     "mmsi": 668956359,
@@ -19784,7 +20560,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.03
   },
   {
     "mmsi": 669664879,
@@ -19807,7 +20584,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.419
   },
   {
     "mmsi": 671354147,
@@ -19834,7 +20612,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.872
   },
   {
     "mmsi": 671439793,
@@ -19857,7 +20636,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.417
   },
   {
     "mmsi": 671793762,
@@ -19880,7 +20660,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.404
   },
   {
     "mmsi": 674133860,
@@ -19907,7 +20688,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.631
   },
   {
     "mmsi": 674904608,
@@ -19933,7 +20715,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.728
   },
   {
     "mmsi": 675065379,
@@ -19960,7 +20743,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.221
   },
   {
     "mmsi": 675342430,
@@ -19987,7 +20771,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.836
   },
   {
     "mmsi": 675632623,
@@ -20012,7 +20797,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.395
   },
   {
     "mmsi": 675737967,
@@ -20039,7 +20825,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 1,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 3.227
   },
   {
     "mmsi": 677561700,
@@ -20062,7 +20849,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.083
   },
   {
     "mmsi": 677959191,
@@ -20089,7 +20877,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.972
   },
   {
     "mmsi": 678158398,
@@ -20115,7 +20904,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.779
   },
   {
     "mmsi": 678673276,
@@ -20142,7 +20932,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.636
   },
   {
     "mmsi": 679220360,
@@ -20169,7 +20960,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.728
   },
   {
     "mmsi": 679498794,
@@ -20195,7 +20987,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.988
   },
   {
     "mmsi": 679504462,
@@ -20220,7 +21013,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.388
   },
   {
     "mmsi": 679668591,
@@ -20247,7 +21041,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.888
   },
   {
     "mmsi": 680213971,
@@ -20274,7 +21069,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.279
   },
   {
     "mmsi": 680476451,
@@ -20300,7 +21096,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.666
   },
   {
     "mmsi": 682698033,
@@ -20326,7 +21123,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 10,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.689
   },
   {
     "mmsi": 683276186,
@@ -20349,7 +21147,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.089
   },
   {
     "mmsi": 683402053,
@@ -20376,7 +21175,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.111
   },
   {
     "mmsi": 683663765,
@@ -20401,7 +21201,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.966
   },
   {
     "mmsi": 684534584,
@@ -20427,7 +21228,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.616
   },
   {
     "mmsi": 685694091,
@@ -20454,7 +21256,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.622
   },
   {
     "mmsi": 686208585,
@@ -20479,7 +21282,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.424
   },
   {
     "mmsi": 686834541,
@@ -20502,7 +21306,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.553
   },
   {
     "mmsi": 687486089,
@@ -20525,7 +21330,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.584
   },
   {
     "mmsi": 688105049,
@@ -20551,7 +21357,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.203
   },
   {
     "mmsi": 689796314,
@@ -20576,7 +21383,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.664
   },
   {
     "mmsi": 691566561,
@@ -20602,7 +21410,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.217
   },
   {
     "mmsi": 692604640,
@@ -20628,7 +21437,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.067
   },
   {
     "mmsi": 693467838,
@@ -20653,7 +21463,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 10,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.983
   },
   {
     "mmsi": 694118682,
@@ -20679,7 +21490,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.01
   },
   {
     "mmsi": 696020593,
@@ -20704,7 +21516,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.238
   },
   {
     "mmsi": 697499423,
@@ -20727,7 +21540,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.035
   },
   {
     "mmsi": 697745795,
@@ -20750,7 +21564,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.844
   },
   {
     "mmsi": 698666723,
@@ -20777,7 +21592,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.79
   },
   {
     "mmsi": 699245737,
@@ -20803,7 +21619,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 9,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.604
   },
   {
     "mmsi": 699529355,
@@ -20826,7 +21643,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.938
   },
   {
     "mmsi": 699922387,
@@ -20852,7 +21670,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.925
   },
   {
     "mmsi": 701852009,
@@ -20879,7 +21698,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.425
   },
   {
     "mmsi": 702708383,
@@ -20905,7 +21725,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.193
   },
   {
     "mmsi": 703637316,
@@ -20932,7 +21753,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.946
   },
   {
     "mmsi": 704661953,
@@ -20957,7 +21779,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.616
   },
   {
     "mmsi": 704843269,
@@ -20982,7 +21805,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 8,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.992
   },
   {
     "mmsi": 705561223,
@@ -21009,7 +21833,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.726
   },
   {
     "mmsi": 706491378,
@@ -21032,7 +21857,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.919
   },
   {
     "mmsi": 707000071,
@@ -21055,7 +21881,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.477
   },
   {
     "mmsi": 708338175,
@@ -21080,7 +21907,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.122
   },
   {
     "mmsi": 711942599,
@@ -21103,7 +21931,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.405
   },
   {
     "mmsi": 713738657,
@@ -21129,7 +21958,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.996
   },
   {
     "mmsi": 714252611,
@@ -21152,7 +21982,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.59
   },
   {
     "mmsi": 715406233,
@@ -21177,7 +22008,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.643
   },
   {
     "mmsi": 716823280,
@@ -21200,7 +22032,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.89
   },
   {
     "mmsi": 717151265,
@@ -21225,7 +22058,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.49
   },
   {
     "mmsi": 718413378,
@@ -21252,7 +22086,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 1,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.401
   },
   {
     "mmsi": 719643596,
@@ -21277,7 +22112,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.256
   },
   {
     "mmsi": 720463075,
@@ -21304,7 +22140,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.024
   },
   {
     "mmsi": 720519326,
@@ -21330,7 +22167,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 10,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.76
   },
   {
     "mmsi": 721604393,
@@ -21356,7 +22194,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.199
   },
   {
     "mmsi": 722197210,
@@ -21383,7 +22222,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.513
   },
   {
     "mmsi": 722440326,
@@ -21408,7 +22248,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.84
   },
   {
     "mmsi": 722847112,
@@ -21434,7 +22275,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.849
   },
   {
     "mmsi": 722908274,
@@ -21459,7 +22301,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.803
   },
   {
     "mmsi": 723636831,
@@ -21485,7 +22328,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.106
   },
   {
     "mmsi": 723678138,
@@ -21510,7 +22354,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.183
   },
   {
     "mmsi": 723722389,
@@ -21536,7 +22381,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.692
   },
   {
     "mmsi": 724448480,
@@ -21559,7 +22405,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 2.144
   },
   {
     "mmsi": 724638764,
@@ -21586,7 +22433,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 2.527
   },
   {
     "mmsi": 725306361,
@@ -21609,7 +22457,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.928
   },
   {
     "mmsi": 726467074,
@@ -21634,7 +22483,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.503
   },
   {
     "mmsi": 727206661,
@@ -21660,7 +22510,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.65
   },
   {
     "mmsi": 727417459,
@@ -21683,7 +22534,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.68
   },
   {
     "mmsi": 728358748,
@@ -21708,7 +22560,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.058
   },
   {
     "mmsi": 728594801,
@@ -21734,7 +22587,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.145
   },
   {
     "mmsi": 729794426,
@@ -21757,7 +22611,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.804
   },
   {
     "mmsi": 729801011,
@@ -21784,7 +22639,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 2.012
   },
   {
     "mmsi": 729834349,
@@ -21811,7 +22667,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.736
   },
   {
     "mmsi": 729874439,
@@ -21838,7 +22695,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.726
   },
   {
     "mmsi": 730358706,
@@ -21861,7 +22719,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.926
   },
   {
     "mmsi": 731337211,
@@ -21887,7 +22746,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.449
   },
   {
     "mmsi": 733587569,
@@ -21913,7 +22773,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.244
   },
   {
     "mmsi": 733723778,
@@ -21939,7 +22800,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.845
   },
   {
     "mmsi": 735319356,
@@ -21964,7 +22826,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.496
   },
   {
     "mmsi": 735932992,
@@ -21987,7 +22850,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.432
   },
   {
     "mmsi": 737553133,
@@ -22010,7 +22874,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.828
   },
   {
     "mmsi": 738742479,
@@ -22037,7 +22902,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 2.222
   },
   {
     "mmsi": 738790875,
@@ -22060,7 +22926,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.241
   },
   {
     "mmsi": 738849774,
@@ -22083,7 +22950,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.618
   },
   {
     "mmsi": 739418888,
@@ -22108,7 +22976,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.753
   },
   {
     "mmsi": 742245762,
@@ -22134,7 +23003,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 7,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.886
   },
   {
     "mmsi": 742854816,
@@ -22157,7 +23027,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 9,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.952
   },
   {
     "mmsi": 743162389,
@@ -22180,7 +23051,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.918
   },
   {
     "mmsi": 744192701,
@@ -22203,7 +23075,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.06
   },
   {
     "mmsi": 744527202,
@@ -22230,7 +23103,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.964
   },
   {
     "mmsi": 744844875,
@@ -22257,7 +23131,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.515
   },
   {
     "mmsi": 746255510,
@@ -22282,7 +23157,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.074
   },
   {
     "mmsi": 747743383,
@@ -22308,7 +23184,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 8,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.928
   },
   {
     "mmsi": 748359141,
@@ -22334,7 +23211,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.963
   },
   {
     "mmsi": 748905485,
@@ -22360,7 +23238,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.198
   },
   {
     "mmsi": 749313033,
@@ -22383,7 +23262,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.994
   },
   {
     "mmsi": 749434747,
@@ -22406,7 +23286,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.725
   },
   {
     "mmsi": 749937520,
@@ -22433,7 +23314,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.523
   },
   {
     "mmsi": 750400300,
@@ -22460,7 +23342,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.137
   },
   {
     "mmsi": 750747879,
@@ -22486,7 +23369,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 8,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.113
   },
   {
     "mmsi": 750940589,
@@ -22509,7 +23393,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 2,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 2.389
   },
   {
     "mmsi": 752014060,
@@ -22535,7 +23420,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 9,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.933
   },
   {
     "mmsi": 752289007,
@@ -22558,7 +23444,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.867
   },
   {
     "mmsi": 753345065,
@@ -22581,7 +23468,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.314
   },
   {
     "mmsi": 753582834,
@@ -22608,7 +23496,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.619
   },
   {
     "mmsi": 753673738,
@@ -22631,7 +23520,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.0
   },
   {
     "mmsi": 754313150,
@@ -22658,7 +23548,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.986
   },
   {
     "mmsi": 754816502,
@@ -22683,7 +23574,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.287
   },
   {
     "mmsi": 754922447,
@@ -22708,7 +23600,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.63
   },
   {
     "mmsi": 755635261,
@@ -22734,7 +23627,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.477
   },
   {
     "mmsi": 755940023,
@@ -22759,7 +23653,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.0
   },
   {
     "mmsi": 756035927,
@@ -22784,7 +23679,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.803
   },
   {
     "mmsi": 758310772,
@@ -22807,7 +23703,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.994
   },
   {
     "mmsi": 759217626,
@@ -22833,7 +23730,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.844
   },
   {
     "mmsi": 760132103,
@@ -22858,7 +23756,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.364
   },
   {
     "mmsi": 760384526,
@@ -22881,7 +23780,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.864
   },
   {
     "mmsi": 761368866,
@@ -22906,7 +23806,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 6,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.674
   },
   {
     "mmsi": 761439274,
@@ -22929,7 +23830,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 1,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 2.852
   },
   {
     "mmsi": 761838030,
@@ -22956,7 +23858,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.977
   },
   {
     "mmsi": 762178422,
@@ -22979,7 +23882,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.854
   },
   {
     "mmsi": 763146211,
@@ -23006,7 +23910,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.248
   },
   {
     "mmsi": 763169399,
@@ -23033,7 +23938,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 9,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.803
   },
   {
     "mmsi": 763605056,
@@ -23056,7 +23962,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.873
   },
   {
     "mmsi": 763846551,
@@ -23079,7 +23986,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.478
   },
   {
     "mmsi": 763973816,
@@ -23102,7 +24010,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.68
   },
   {
     "mmsi": 764353680,
@@ -23129,7 +24038,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.848
   },
   {
     "mmsi": 764633816,
@@ -23154,7 +24064,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.786
   },
   {
     "mmsi": 764776555,
@@ -23180,7 +24091,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.928
   },
   {
     "mmsi": 765262794,
@@ -23203,7 +24115,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.691
   },
   {
     "mmsi": 766040528,
@@ -23226,7 +24139,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.6
   },
   {
     "mmsi": 766133415,
@@ -23252,7 +24166,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.166
   },
   {
     "mmsi": 766277551,
@@ -23277,7 +24192,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.725
   },
   {
     "mmsi": 767793733,
@@ -23302,7 +24218,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.747
   },
   {
     "mmsi": 767801946,
@@ -23329,7 +24246,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.508
   },
   {
     "mmsi": 767955728,
@@ -23356,7 +24274,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.518
   },
   {
     "mmsi": 768075179,
@@ -23382,7 +24301,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.375
   },
   {
     "mmsi": 768349235,
@@ -23409,7 +24329,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.053
   },
   {
     "mmsi": 768467727,
@@ -23435,7 +24356,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.464
   },
   {
     "mmsi": 769565144,
@@ -23460,7 +24382,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.089
   },
   {
     "mmsi": 771069098,
@@ -23485,7 +24408,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.15
   },
   {
     "mmsi": 771150112,
@@ -23511,7 +24435,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 7,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.856
   },
   {
     "mmsi": 771305759,
@@ -23534,7 +24459,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 14,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.269
   },
   {
     "mmsi": 771937775,
@@ -23559,7 +24485,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.723
   },
   {
     "mmsi": 772043340,
@@ -23584,7 +24511,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.4
   },
   {
     "mmsi": 772134211,
@@ -23609,7 +24537,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.358
   },
   {
     "mmsi": 772687223,
@@ -23634,7 +24563,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.623
   },
   {
     "mmsi": 773465268,
@@ -23659,7 +24589,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.513
   },
   {
     "mmsi": 773610320,
@@ -23684,7 +24615,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.938
   },
   {
     "mmsi": 774339038,
@@ -23709,7 +24641,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.151
   },
   {
     "mmsi": 775231305,
@@ -23736,7 +24669,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 2,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.84
   },
   {
     "mmsi": 775404149,
@@ -23761,7 +24695,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.197
   },
   {
     "mmsi": 775416352,
@@ -23788,7 +24723,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 2.765
   },
   {
     "mmsi": 775929575,
@@ -23814,7 +24750,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.776
   },
   {
     "mmsi": 776350480,
@@ -23839,7 +24776,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.06
   },
   {
     "mmsi": 777022296,
@@ -23862,7 +24800,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 12,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.01
   },
   {
     "mmsi": 777450460,
@@ -23887,7 +24826,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.487
   },
   {
     "mmsi": 777666051,
@@ -23912,7 +24852,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Continuous",
     "nSignatures": 12,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.344
   },
   {
     "mmsi": 778196639,
@@ -23938,7 +24879,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.48
   },
   {
     "mmsi": 778281235,
@@ -23961,7 +24903,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 2,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.961
   },
   {
     "mmsi": 778418171,
@@ -23986,7 +24929,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 2,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 2.176
   },
   {
     "mmsi": 778903980,
@@ -24013,7 +24957,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.809
   },
   {
     "mmsi": 779191453,
@@ -24036,7 +24981,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.761
   },
   {
     "mmsi": 779676678,
@@ -24063,7 +25009,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.871
   },
   {
     "mmsi": 779719852,
@@ -24090,7 +25037,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 1,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 2.216
   },
   {
     "mmsi": 780410570,
@@ -24115,7 +25063,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.166
   },
   {
     "mmsi": 780476855,
@@ -24141,7 +25090,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 1.322
   },
   {
     "mmsi": 780543548,
@@ -24164,7 +25114,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.744
   },
   {
     "mmsi": 780611688,
@@ -24191,7 +25142,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.984
   },
   {
     "mmsi": 780860305,
@@ -24214,7 +25166,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.938
   },
   {
     "mmsi": 780872220,
@@ -24239,7 +25192,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.829
   },
   {
     "mmsi": 780970320,
@@ -24264,7 +25218,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 10,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.593
   },
   {
     "mmsi": 781122679,
@@ -24289,7 +25244,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.016
   },
   {
     "mmsi": 782140749,
@@ -24316,7 +25272,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.684
   },
   {
     "mmsi": 782576379,
@@ -24339,7 +25296,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 9,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.616
   },
   {
     "mmsi": 782905490,
@@ -24364,7 +25322,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.636
   },
   {
     "mmsi": 782964567,
@@ -24389,7 +25348,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.41
   },
   {
     "mmsi": 783109193,
@@ -24415,7 +25375,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.538
   },
   {
     "mmsi": 783480433,
@@ -24440,7 +25401,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.79
   },
   {
     "mmsi": 783771062,
@@ -24467,7 +25429,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 1,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 2.564
   },
   {
     "mmsi": 784062106,
@@ -24492,7 +25455,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.703
   },
   {
     "mmsi": 784993050,
@@ -24515,7 +25479,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.322
   },
   {
     "mmsi": 786527370,
@@ -24541,7 +25506,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 9,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.752
   },
   {
     "mmsi": 786592775,
@@ -24564,7 +25530,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.554
   },
   {
     "mmsi": 787276961,
@@ -24587,7 +25554,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.913
   },
   {
     "mmsi": 787632236,
@@ -24610,7 +25578,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.774
   },
   {
     "mmsi": 787790467,
@@ -24637,7 +25606,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 4,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.898
   },
   {
     "mmsi": 788222557,
@@ -24662,7 +25632,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Long",
     "nSignatures": 4,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.231
   },
   {
     "mmsi": 789472539,
@@ -24685,7 +25656,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 3,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.803
   },
   {
     "mmsi": 789983559,
@@ -24711,7 +25683,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Continuous",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.527
   },
   {
     "mmsi": 790078615,
@@ -24738,7 +25711,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.293
   },
   {
     "mmsi": 790918169,
@@ -24761,7 +25735,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.784
   },
   {
     "mmsi": 791982495,
@@ -24787,7 +25762,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 7,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.082
   },
   {
     "mmsi": 792163190,
@@ -24814,7 +25790,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.367
   },
   {
     "mmsi": 792191610,
@@ -24841,7 +25818,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 5,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 0.797
   },
   {
     "mmsi": 792400356,
@@ -24866,7 +25844,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.591
   },
   {
     "mmsi": 792401778,
@@ -24889,7 +25868,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 1.034
   },
   {
     "mmsi": 792478979,
@@ -24915,7 +25895,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 6,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.339
   },
   {
     "mmsi": 792597146,
@@ -24940,7 +25921,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 5,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 0.898
   },
   {
     "mmsi": 793562464,
@@ -24963,7 +25945,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 0.939
   },
   {
     "mmsi": 794030443,
@@ -24989,7 +25972,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 4,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.283
   },
   {
     "mmsi": 794556784,
@@ -25012,7 +25996,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Short-Long-Short",
     "nSignatures": 5,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.932
   },
   {
     "mmsi": 794690449,
@@ -25038,7 +26023,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "SSB",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 4
+    "cluster": 4,
+    "distanceToCentroid": 2.291
   },
   {
     "mmsi": 795339740,
@@ -25063,7 +26049,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 8,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.397
   },
   {
     "mmsi": 795801450,
@@ -25086,7 +26073,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 2,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 1.319
   },
   {
     "mmsi": 796002514,
@@ -25109,7 +26097,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 7,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.653
   },
   {
     "mmsi": 796664560,
@@ -25136,7 +26125,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "FM",
     "dominantPulse": "Long-Short-Long",
     "nSignatures": 5,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 0.363
   },
   {
     "mmsi": 796671313,
@@ -25163,7 +26153,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 3,
-    "cluster": 1
+    "cluster": 1,
+    "distanceToCentroid": 1.047
   },
   {
     "mmsi": 797047520,
@@ -25189,7 +26180,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "OFDM",
     "dominantPulse": "Continuous",
     "nSignatures": 10,
-    "cluster": 2
+    "cluster": 2,
+    "distanceToCentroid": 0.226
   },
   {
     "mmsi": 798437882,
@@ -25212,7 +26204,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "AM",
     "dominantPulse": "Short-Short-Short",
     "nSignatures": 6,
-    "cluster": 0
+    "cluster": 0,
+    "distanceToCentroid": 1.418
   },
   {
     "mmsi": 798578134,
@@ -25239,7 +26232,8 @@ export const ML_VESSELS: MlVessel[] = [
     "dominantModulation": "DSC",
     "dominantPulse": "Long-Long-Short",
     "nSignatures": 1,
-    "cluster": 3
+    "cluster": 3,
+    "distanceToCentroid": 3.209
   }
 ];
 
@@ -33214,10 +34208,15 @@ export const ML_KPIS = {
   "nFakeFlagFlagged": 60,
   "nNameChangeFlagged": 258,
   "nOrphans": 0,
-  "achievableRecallCeiling": 0.63,
-  "nUnrecoverable": 37,
-  "scoreAuc": 0.553,
-  "scorePrecisionAtK": 0.146,
+  "achievableRecallCeiling": 1.0,
+  "achievableRecallCeilingBefore": 0.63,
+  "nUnrecoverable": 0,
+  "nUnrecoverableBefore": 37,
+  "recallOverall": 0.49,
+  "recallOverallBefore": 0.28,
+  "nRecoveredKinematic": 35,
+  "scoreAuc": 0.555,
+  "scorePrecisionAtK": 0.156,
   "kmeansK": 5,
   "silhouette": 0.2237,
   "nDistinctPulse": 6,
@@ -33226,6 +34225,22 @@ export const ML_KPIS = {
 
 // Recall par type d'anomalie vs vérité terrain anomalies_large.csv (S/04)
 export const ML_RECALL_BY_TYPE: { type: string; nTruth: number; nOverlap: number; recall: number; recoverable: boolean; note: string }[] = [
+  {
+    "type": "Course Anomaly",
+    "nTruth": 21,
+    "nOverlap": 21,
+    "recall": 1.0,
+    "recoverable": true,
+    "note": "détecteur : 996 MMSI flaggés au total"
+  },
+  {
+    "type": "Speed Anomaly",
+    "nTruth": 16,
+    "nOverlap": 14,
+    "recall": 0.875,
+    "recoverable": true,
+    "note": "détecteur : 806 MMSI flaggés au total"
+  },
   {
     "type": "Spoofing",
     "nTruth": 10,
@@ -33265,22 +34280,6 @@ export const ML_RECALL_BY_TYPE: { type: string; nTruth: number; nOverlap: number
     "recall": 0.083,
     "recoverable": true,
     "note": "détecteur : 60 MMSI flaggés au total"
-  },
-  {
-    "type": "Course Anomaly",
-    "nTruth": 21,
-    "nOverlap": 0,
-    "recall": 0.0,
-    "recoverable": false,
-    "note": "non récupérable des tables (valeur seulement dans la description)"
-  },
-  {
-    "type": "Speed Anomaly",
-    "nTruth": 16,
-    "nOverlap": 0,
-    "recall": 0.0,
-    "recoverable": false,
-    "note": "non récupérable des tables (valeur seulement dans la description)"
   }
 ];
 
@@ -33392,6 +34391,449 @@ export const ML_TEMPORAL_Q9 = {
     }
   ]
 } as const;
+
+// Navires du registre sans aucune signature radio (« jamais entendus » — S/02)
+export const ML_SILENT_SHIPS: { mmsi: number; name: string; flag: string; type: string; destination: string; yearBuilt: number; isSuspicious: boolean }[] = [
+  {
+    "mmsi": 535117872,
+    "name": "NAVIRE-7872",
+    "flag": "Denmark",
+    "type": "Tanker",
+    "destination": "Shanghai",
+    "yearBuilt": 2006,
+    "isSuspicious": false
+  },
+  {
+    "mmsi": 363951510,
+    "name": "NAVIRE-1510",
+    "flag": "France",
+    "type": "General Cargo",
+    "destination": "Marseille",
+    "yearBuilt": 1995,
+    "isSuspicious": true
+  },
+  {
+    "mmsi": 522451298,
+    "name": "NAVIRE-1298",
+    "flag": "France",
+    "type": "Passenger Ship",
+    "destination": "New York",
+    "yearBuilt": 1992,
+    "isSuspicious": true
+  },
+  {
+    "mmsi": 675464001,
+    "name": "NAVIRE-4001",
+    "flag": "Panama",
+    "type": "Bulk Carrier",
+    "destination": "New York",
+    "yearBuilt": 2009,
+    "isSuspicious": false
+  },
+  {
+    "mmsi": 534553120,
+    "name": "NAVIRE-3120",
+    "flag": "France",
+    "type": "Bulk Carrier",
+    "destination": "Los Angeles",
+    "yearBuilt": 1983,
+    "isSuspicious": true
+  },
+  {
+    "mmsi": 435131361,
+    "name": "NAVIRE-1361",
+    "flag": "Singapore",
+    "type": "Tanker",
+    "destination": "New York",
+    "yearBuilt": 1985,
+    "isSuspicious": true
+  }
+];
+
+// Top 10 navires les plus éloignés de leur centroïde K-Means — « aberrants RF » (S/02)
+export const ML_TOP_OUTLIERS: MlVessel[] = [
+  {
+    "mmsi": 545105896,
+    "imo": 0,
+    "name": "NAVIRE-5896",
+    "flag": "Bahamas",
+    "type": "Container Ship",
+    "length": 0,
+    "width": 0,
+    "yearBuilt": 0,
+    "destination": "—",
+    "historicalNames": [
+      "OLD_NAME_0",
+      "OLD_NAME_1",
+      "OLD_NAME_2"
+    ],
+    "isSuspicious": false,
+    "freqMean": 156.3,
+    "freqStd": 0.0,
+    "bandwidthMean": 12.8,
+    "powerMean": 48.4,
+    "signalStrengthMean": -87.8,
+    "snrMean": 11.1,
+    "dominantModulation": "OFDM",
+    "dominantPulse": "Short-Short-Short",
+    "nSignatures": 1,
+    "cluster": 4,
+    "distanceToCentroid": 4.056
+  },
+  {
+    "mmsi": 231663168,
+    "imo": 0,
+    "name": "NAVIRE-3168",
+    "flag": "Marshall Islands",
+    "type": "Bulk Carrier",
+    "length": 0,
+    "width": 0,
+    "yearBuilt": 0,
+    "destination": "—",
+    "historicalNames": [
+      "OLD_NAME_0"
+    ],
+    "isSuspicious": false,
+    "freqMean": 156.38,
+    "freqStd": 0.0,
+    "bandwidthMean": 44.4,
+    "powerMean": 114.1,
+    "signalStrengthMean": -117.8,
+    "snrMean": 10.3,
+    "dominantModulation": "SSB",
+    "dominantPulse": "Continuous",
+    "nSignatures": 1,
+    "cluster": 0,
+    "distanceToCentroid": 3.936
+  },
+  {
+    "mmsi": 371121059,
+    "imo": 0,
+    "name": "NAVIRE-1059",
+    "flag": "Singapore",
+    "type": "Bulk Carrier",
+    "length": 0,
+    "width": 0,
+    "yearBuilt": 0,
+    "destination": "—",
+    "historicalNames": [
+      "OLD_NAME_0",
+      "OLD_NAME_1",
+      "OLD_NAME_2"
+    ],
+    "isSuspicious": false,
+    "freqMean": 156.07,
+    "freqStd": 0.0,
+    "bandwidthMean": 43.4,
+    "powerMean": 491.8,
+    "signalStrengthMean": -27.5,
+    "snrMean": 19.8,
+    "dominantModulation": "DSC",
+    "dominantPulse": "Long-Short-Long",
+    "nSignatures": 1,
+    "cluster": 0,
+    "distanceToCentroid": 3.786
+  },
+  {
+    "mmsi": 562875712,
+    "imo": 0,
+    "name": "NAVIRE-5712",
+    "flag": "France",
+    "type": "Tanker",
+    "length": 0,
+    "width": 0,
+    "yearBuilt": 0,
+    "destination": "—",
+    "historicalNames": [
+      "OLD_NAME_0",
+      "OLD_NAME_1",
+      "OLD_NAME_2"
+    ],
+    "isSuspicious": true,
+    "freqMean": 160.32,
+    "freqStd": 0.0,
+    "bandwidthMean": 43.2,
+    "powerMean": 3.5,
+    "signalStrengthMean": -113.0,
+    "snrMean": 49.7,
+    "dominantModulation": "FM",
+    "dominantPulse": "Short-Short-Long",
+    "nSignatures": 1,
+    "cluster": 2,
+    "distanceToCentroid": 3.723
+  },
+  {
+    "mmsi": 637173265,
+    "imo": 0,
+    "name": "NAVIRE-3265",
+    "flag": "Denmark",
+    "type": "Bulk Carrier",
+    "length": 0,
+    "width": 0,
+    "yearBuilt": 0,
+    "destination": "—",
+    "historicalNames": [
+      "OLD_NAME_0"
+    ],
+    "isSuspicious": true,
+    "freqMean": 161.54,
+    "freqStd": 0.0,
+    "bandwidthMean": 14.9,
+    "powerMean": 35.6,
+    "signalStrengthMean": -69.8,
+    "snrMean": 49.9,
+    "dominantModulation": "OFDM",
+    "dominantPulse": "Long-Short-Long",
+    "nSignatures": 1,
+    "cluster": 1,
+    "distanceToCentroid": 3.602
+  },
+  {
+    "mmsi": 211239944,
+    "imo": 0,
+    "name": "NAVIRE-9944",
+    "flag": "Singapore",
+    "type": "Tanker",
+    "length": 0,
+    "width": 0,
+    "yearBuilt": 0,
+    "destination": "—",
+    "historicalNames": [
+      "OLD_NAME_0",
+      "OLD_NAME_1"
+    ],
+    "isSuspicious": false,
+    "freqMean": 161.94,
+    "freqStd": 0.0,
+    "bandwidthMean": 14.5,
+    "powerMean": 114.1,
+    "signalStrengthMean": -109.0,
+    "snrMean": 38.5,
+    "dominantModulation": "AM",
+    "dominantPulse": "Short-Short-Short",
+    "nSignatures": 1,
+    "cluster": 1,
+    "distanceToCentroid": 3.546
+  },
+  {
+    "mmsi": 646035868,
+    "imo": 0,
+    "name": "NAVIRE-5868",
+    "flag": "Singapore",
+    "type": "Container Ship",
+    "length": 0,
+    "width": 0,
+    "yearBuilt": 0,
+    "destination": "—",
+    "historicalNames": [
+      "OLD_NAME_0",
+      "OLD_NAME_1"
+    ],
+    "isSuspicious": false,
+    "freqMean": 158.36,
+    "freqStd": 1.344,
+    "bandwidthMean": 47.75,
+    "powerMean": 60.8,
+    "signalStrengthMean": -40.2,
+    "snrMean": 26.8,
+    "dominantModulation": "FM",
+    "dominantPulse": "Short-Long-Short",
+    "nSignatures": 2,
+    "cluster": 2,
+    "distanceToCentroid": 3.523
+  },
+  {
+    "mmsi": 364856950,
+    "imo": 0,
+    "name": "NAVIRE-6950",
+    "flag": "France",
+    "type": "Bulk Carrier",
+    "length": 0,
+    "width": 0,
+    "yearBuilt": 0,
+    "destination": "—",
+    "historicalNames": [
+      "OLD_NAME_0",
+      "OLD_NAME_1"
+    ],
+    "isSuspicious": false,
+    "freqMean": 156.14,
+    "freqStd": 0.0,
+    "bandwidthMean": 27.7,
+    "powerMean": 481.6,
+    "signalStrengthMean": -81.9,
+    "snrMean": 18.2,
+    "dominantModulation": "OFDM",
+    "dominantPulse": "Short-Short-Long",
+    "nSignatures": 1,
+    "cluster": 0,
+    "distanceToCentroid": 3.448
+  },
+  {
+    "mmsi": 647506411,
+    "imo": 0,
+    "name": "NAVIRE-6411",
+    "flag": "Marshall Islands",
+    "type": "Fishing Vessel",
+    "length": 0,
+    "width": 0,
+    "yearBuilt": 0,
+    "destination": "—",
+    "historicalNames": [],
+    "isSuspicious": false,
+    "freqMean": 156.07,
+    "freqStd": 0.0,
+    "bandwidthMean": 25.5,
+    "powerMean": 67.2,
+    "signalStrengthMean": -32.9,
+    "snrMean": 9.3,
+    "dominantModulation": "AM",
+    "dominantPulse": "Continuous",
+    "nSignatures": 1,
+    "cluster": 4,
+    "distanceToCentroid": 3.309
+  },
+  {
+    "mmsi": 675737967,
+    "imo": 0,
+    "name": "NAVIRE-7967",
+    "flag": "Malta",
+    "type": "Tanker",
+    "length": 0,
+    "width": 0,
+    "yearBuilt": 0,
+    "destination": "—",
+    "historicalNames": [
+      "OLD_NAME_0",
+      "OLD_NAME_1",
+      "OLD_NAME_2"
+    ],
+    "isSuspicious": true,
+    "freqMean": 158.62,
+    "freqStd": 0.0,
+    "bandwidthMean": 49.5,
+    "powerMean": 437.4,
+    "signalStrengthMean": -58.2,
+    "snrMean": 36.3,
+    "dominantModulation": "FM",
+    "dominantPulse": "Long-Long-Short",
+    "nSignatures": 1,
+    "cluster": 0,
+    "distanceToCentroid": 3.227
+  }
+];
+
+// Veille OSINT (Q14) — derniers items RSS (gCaptain, Maritime Executive, OFAC) — S/01
+export const ML_WATCHLIST: { title: string; source: string; link: string; published: string; mmsi: string; imo: string; suspicionKeywords: string }[] = [
+  {
+    "title": "Sweden Proceeds with Cargo Ship Seizure on Request from Ukraine",
+    "source": "www.maritime-executive.com",
+    "link": "https://maritime-executive.com/article/sweden-proceeds-with-cargo-ship-seizure-on-request-from-ukraine",
+    "published": "",
+    "mmsi": "",
+    "imo": "",
+    "suspicionKeywords": "seizure"
+  },
+  {
+    "title": "Iraq and Pakistan Strike Iran Transit Deals to Move Oil and LNG Through Hormuz",
+    "source": "gcaptain.com",
+    "link": "https://gcaptain.com/iraq-and-pakistan-strike-iran-transit-deals-to-move-oil-and-lng-through-hormuz/",
+    "published": "Tue, 12 May 2026 22:39:26 +0000",
+    "mmsi": "",
+    "imo": "",
+    "suspicionKeywords": ""
+  },
+  {
+    "title": "UK Leads 40-Nation Defensive Mission to Secure Strait of Hormuz",
+    "source": "gcaptain.com",
+    "link": "https://gcaptain.com/uk-leads-40-nation-defensive-mission-to-secure-strait-of-hormuz/",
+    "published": "Tue, 12 May 2026 20:59:52 +0000",
+    "mmsi": "",
+    "imo": "",
+    "suspicionKeywords": ""
+  },
+  {
+    "title": "Supply-Chain Stress That Peaked in Covid Heads Higher Again",
+    "source": "gcaptain.com",
+    "link": "https://gcaptain.com/supply-chain-stress-that-peaked-in-covid-heads-higher-again/",
+    "published": "Tue, 12 May 2026 18:53:11 +0000",
+    "mmsi": "",
+    "imo": "",
+    "suspicionKeywords": ""
+  },
+  {
+    "title": "Greek operators meet evolving connectivity demands with Inmarsat NexusWave",
+    "source": "gcaptain.com",
+    "link": "https://gcaptain.com/greek-operators-meet-evolving-connectivity-demands-with-inmarsat-nexuswave/",
+    "published": "Tue, 12 May 2026 17:45:51 +0000",
+    "mmsi": "",
+    "imo": "",
+    "suspicionKeywords": ""
+  },
+  {
+    "title": "Maersk Keeping Strait of Hormuz Transits Suspended as Ceasefire Confidence Wavers",
+    "source": "gcaptain.com",
+    "link": "https://gcaptain.com/maersk-keeping-strait-of-hormuz-transits-suspended-as-ceasefire-confidence-wavers/",
+    "published": "Tue, 12 May 2026 17:30:30 +0000",
+    "mmsi": "",
+    "imo": "",
+    "suspicionKeywords": ""
+  },
+  {
+    "title": "Bing, Bing, Gone: Is Trump Underestimating Iran’s Fast Attack Craft?",
+    "source": "gcaptain.com",
+    "link": "https://gcaptain.com/bing-bing-gone-is-trump-underestimating-irans-fast-attack-craft/",
+    "published": "Tue, 12 May 2026 16:18:47 +0000",
+    "mmsi": "",
+    "imo": "",
+    "suspicionKeywords": ""
+  },
+  {
+    "title": "Iraqi Supertanker Pulls Back From U.S. Hormuz Blockade",
+    "source": "gcaptain.com",
+    "link": "https://gcaptain.com/iraqi-supertanker-pulls-back-from-u-s-hormuz-blockade/",
+    "published": "Tue, 12 May 2026 15:59:19 +0000",
+    "mmsi": "",
+    "imo": "",
+    "suspicionKeywords": ""
+  },
+  {
+    "title": "America’s Nuclear Shipping Revival Is About More Than Reactors",
+    "source": "gcaptain.com",
+    "link": "https://gcaptain.com/americas-nuclear-shipping-revival-is-about-more-than-reactors/",
+    "published": "Tue, 12 May 2026 15:30:39 +0000",
+    "mmsi": "",
+    "imo": "",
+    "suspicionKeywords": ""
+  },
+  {
+    "title": "Foreign Operators of M/V Dali Indicted Over Fatal Baltimore Bridge Collapse",
+    "source": "gcaptain.com",
+    "link": "https://gcaptain.com/foreign-operators-of-m-v-dali-indicted-over-fatal-baltimore-bridge-collapse/",
+    "published": "Tue, 12 May 2026 14:46:18 +0000",
+    "mmsi": "",
+    "imo": "",
+    "suspicionKeywords": ""
+  },
+  {
+    "title": "Planes With Hantavirus Cruise Passengers Land in the Netherlands; Hospital Quarantines 12",
+    "source": "gcaptain.com",
+    "link": "https://gcaptain.com/planes-with-hantavirus-cruise-passengers-land-in-the-netherlands-hospital-quarantines-12/",
+    "published": "Tue, 12 May 2026 08:32:39 +0000",
+    "mmsi": "",
+    "imo": "",
+    "suspicionKeywords": ""
+  },
+  {
+    "title": "Iran War Ceasefire Fragile as US Rejects Tehran’s Latest Offer",
+    "source": "gcaptain.com",
+    "link": "https://gcaptain.com/iran-war-ceasefire-fragile-as-us-rejects-tehrans-latest-offer/",
+    "published": "Tue, 12 May 2026 08:29:35 +0000",
+    "mmsi": "",
+    "imo": "",
+    "suspicionKeywords": ""
+  }
+];
 
 // Presets = signatures RF réelles extraites de radio_signatures_large.csv.
 // `_trueMmsi`/`_trueRank` = vérité terrain (le rang auquel le k-Nn du dashboard

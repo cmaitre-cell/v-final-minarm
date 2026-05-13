@@ -196,9 +196,18 @@ export function AnomaliesView() {
           <div>
             <h3 className="section-title">Évaluation vs vérité terrain — anomalies_large.csv</h3>
             <div className="label-tag mt-0.5">
-              100 anomalies de référence · rappel = part retrouvée par nos détecteurs à partir des tables ·
-              plafond atteignable {Math.round(ML_KPIS.achievableRecallCeiling * 100)} % ({ML_KPIS.nUnrecoverable} anomalies
-              décrites uniquement en texte libre, non récupérables)
+              {ML_KPIS.nAnomaliesTruth} anomalies de référence · rappel global passé de{" "}
+              <span className="text-alert-medium">
+                {Math.round(ML_KPIS.recallOverallBefore * 100)} %
+              </span>{" "}
+              à{" "}
+              <span className="text-alert-nominal">
+                {Math.round(ML_KPIS.recallOverall * 100)} %
+              </span>{" "}
+              en récupérant Speed / Course Anomaly par analyse cinématique des positions AIS
+              (+{ML_KPIS.nRecoveredKinematic} cas) — plafond théorique levé de{" "}
+              {Math.round(ML_KPIS.achievableRecallCeilingBefore * 100)} % à{" "}
+              {Math.round(ML_KPIS.achievableRecallCeiling * 100)} %
             </div>
           </div>
           <button
